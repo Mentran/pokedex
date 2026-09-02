@@ -26,7 +26,7 @@ Use PokeAPI legacy OGG (original-style clips) and IMA-ADPCM rather than Opus. Th
 
 ## 2026-09-02 — Reuse Who Am I as a cache, not as the product
 
-Names, bios, and official art already live in the Who Am I project. Copy and convert 1-151 here. Do not run the quiz firmware from that codebase.
+Who Am I may supply a local official-art cache via `WHOAMI_ROOT`. This play does not vendor that project's sources, quiz, or PNGs. Catalog text and cries come from PokeAPI.
 
 ## 2026-09-02 — Abilities are modern names
 

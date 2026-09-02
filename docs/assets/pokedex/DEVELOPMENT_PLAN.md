@@ -19,7 +19,7 @@ Acceptance: `./tools/validate.sh --static` includes `tests/test_pokedex.c`; cata
 
 ## M1 — Catalog quality
 
-- Fill missing Chinese fields from the Who Am I cache if PokeAPI is short.
+- Chinese names and bios from PokeAPI `zh-hans`. Optional `WHOAMI_ROOT` artwork cache is for sprite packing only, not catalog text.
 - Cap moves at 8. Keep evolution conditions readable on a 240 px panel.
 - Generate `pokedex_catalog.inc` from JSON.
 

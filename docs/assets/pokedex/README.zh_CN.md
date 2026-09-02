@@ -34,35 +34,29 @@ V1 范围只有**全国图鉴 1–151**。真机跑通之前，不做后续世�
 | --- | --- | --- | --- |
 | 官方立绘 PNG，约 180 KB × 151 | 约 27 MB | 80 × 80 RGB565，拆成两个打包文件 | 约 1.93 MB |
 | 叫声 OGG，约 1 秒 × 151 | 数 MB | IMA-ADPCM，8 kHz 单声道，一个索引包 | 约 0.8 MB |
-| 名称、属性、能力值、1 段介绍、8 个招式、进化 | 很小 | 打包成 C / JSON 再编译或进 SPIFFS | 0.2 MB |
+| 名称、属性、能力值、介绍、全部升级招式、进化 | 很小 | 打包成 C / JSON 再编译 | 0.2 MB |
 | SPIFFS 开销和余量 | — | 留余量 | 约 1.0 MB |
 
 V1 明确不做：
 
 - 把官方原图原分辨率放进仓库或固件；
-- 全部招式机器 / 教学招式（只保留短的升级招式表）；
+- 技能机 / 教学招式（只保留升级自学招式）；
 - 第一版就上 Opus（解码器吃 RAM；151 段短叫声用不上）；
 - 运行时联网查图鉴（目录离线）；
 - 第二套语言界面（界面中文优先；英文名只作为数据字段）。
 
-## 从「我是谁」能复用什么
+## 立绘
 
-本地网页游戏「我是谁」（`/Users/vitamin/Desktop/vibecoding/projects/我是谁`）里已经有：
+设备精灵图是 gitignore 的 `assets/pokedex/fs/` 里 80 × 80 RGB565。设置了 `WHOAMI_ROOT` 时，`tools/pokedex/build_media.py` 优先读 `$WHOAMI_ROOT/public/pokemon-artwork/`；否则从 PokeAPI 下载官方立绘到 gitignore 的 `assets/pokedex/raw/`。原 PNG 和其他项目的源文件不进本仓库。
 
-- 386 只的中英文名和别名（`src/data/pokemon.ts`）；
-- 分类、两句图鉴、属性（`src/data/pokedex.ts`）；
-- `public/pokemon-artwork/` 下 386 张官方立绘 PNG。
-
-V1 **只取 1–151**。不导入猜谜、语音合成或剪影逻辑。立绘在本仓库转换；约 180 KB 的原 PNG 不提交。若那份缓存不在，抓取脚本改从 PokeAPI 下同一套官方立绘。
-
-能力值、特性、招式、进化链和叫声不在「我是谁」里，改从 PokeAPI 取。
+目录文本和叫声来自 PokeAPI。
 
 ## 数据来源
 
 | 字段 | 来源 | 说明 |
 | --- | --- | --- |
 | 全国编号、英文名 | PokeAPI `/pokemon/{id}` | 1–151 稳定 |
-| 中文名、分类 | PokeAPI `/pokemon-species/{id}` 的 `zh-hans` | 缺条目时回退「我是谁」 |
+| 中文名、分类 | PokeAPI `/pokemon-species/{id}` 的 `zh-hans` | 编进目录 |
 | 介绍 | PokeAPI `zh-hans` 图鉴文本，一句 | 若有第二句且不重复，放在介绍页当补充 |
 | 属性 | PokeAPI types，映射成中文 | 最多两个 |
 | 身高 / 体重 | PokeAPI `height`（分米）、`weight`（百克） | 封面显示成米和千克 |
@@ -72,10 +66,10 @@ V1 **只取 1–151**。不导入猜谜、语音合成或剪影逻辑。立绘�
 | 招式 | 红绿（缺则黄 / 火红叶绿）升级招式 | 列出全部升级自学招式；不加技能机、威力和招式说明 |
 | 进化 | PokeAPI evolution chain | 记录从/到编号和一句条件 |
 | 世界小知识 | `assets/pokedex/gen1/facts.json` | 原创短句，不复制图鉴原文 |
-| 图片 | 「我是谁」缓存，否则 PokeAPI 官方立绘 | 转成 80 × 80 RGB565 精灵图 |
+| 图片 | PokeAPI 官方立绘；可选 `WHOAMI_ROOT` 缓存 | 转成 80 × 80 RGB565 精灵图；原 PNG 保持 gitignore |
 | 叫声 | `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/{id}.ogg` | legacy 更接近初代 151，不用 latest |
 
-原始下载放进 `assets/pokedex/raw/`，并加入 gitignore。生成后的固件二进制放在 `assets/pokedex/gen1/`，体积可接受后再跟踪。
+原始下载放进 `assets/pokedex/raw/`，并加入 gitignore。打包后的立绘和叫声在 `assets/pokedex/fs/`，同样 gitignore。入库文本是 `assets/pokedex/gen1/catalog.json` 和 `facts.json`。
 
 ## 交互
 
@@ -139,8 +133,6 @@ tests/test_pokedex.c    编号循环、随机、页循环、目录解析
 ```text
 tools/pokedex/fetch_gen1.py
     -> assets/pokedex/gen1/catalog.json
-    -> assets/pokedex/raw/art/{id}.png     (gitignore)
-    -> assets/pokedex/raw/cries/{id}.ogg   (gitignore)
 
 tools/pokedex/enrich_catalog.py
     -> 补身高、体重、捕获率、性别比、特性介绍
@@ -160,18 +152,4 @@ tools/pokedex/gen_font.py
 根目录 CMakeLists 里的 spiffs_create_partition_image(pokedexfs)
 ```
 
-`catalog.json` 是入库的文本真源。C 代码可以嵌入精简表，或从 SPIFFS 读 JSON；V1 倾向生成 `pokedex_catalog.inc`，这样主机测试不依赖文件系统。
-
-## 文件地图
-
-```text
-README.md                             玩法总览（本 fork 根 README）
-docs/assets/pokedex/README.md         本架构
-docs/assets/pokedex/DEVELOPMENT_PLAN.md
-docs/assets/pokedex/TODO.md
-docs/assets/pokedex/DECISIONS.md
-assets/pokedex/                       玩法素材（不和文档混放）
-tools/pokedex/                        生成脚本
-main/pokedex*.c                       固件
-tests/test_pokedex.c                  主机测试
-```
+`catalog.json` 是入库的文本真源。V1 生成 `pokedex_catalog.inc`，主机测试不依赖文件系统。

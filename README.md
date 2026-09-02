@@ -4,7 +4,7 @@
 
 # Generation I Pokedex
 
-A wearable Pokedex for [AI Passport](https://ai-passport.folotoy.cn). It boots into the original 151: browse in order, pick a random encounter, or read short world facts. Each entry has a sprite, cry, types, height and weight, gender, bio, stats, abilities, level-up moves, matchups, and evolution.
+A wearable Pokedex for [AI Passport](https://ai-passport.folotoy.cn) (ESP32-C3, ESP-IDF 5.5.3). It boots into the original 151: browse in order, pick a random encounter, or read short world facts. Each entry has a sprite, cry, types, height and weight, gender, bio, stats, abilities, level-up moves, matchups, and evolution.
 
 Design, flash budget, and data pipeline: [docs/assets/pokedex/README.md](docs/assets/pokedex/README.md).
 

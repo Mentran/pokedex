@@ -10,8 +10,7 @@
 | --- | --- | --- |
 | `gen1/catalog.json` | 是 | 151 条文本目录 |
 | `gen1/facts.json` | 是 | 原创短句世界小知识 |
-| `gen1/sprites/` | 稍后 | 设备精灵图 |
-| `gen1/cries/` | 稍后 | IMA-ADPCM 叫声 |
+| `fs/sprites1.bin`、`fs/sprites2.bin`、`fs/cries.bin` | 否 | 打包后的机上素材 |
 | `raw/` | 否 | 原始 PNG / OGG 下载 |
 
-用 `python3 tools/pokedex/fetch_gen1.py` 重新生成目录。只补身高、捕获、性别和特性介绍时用 `python3 tools/pokedex/enrich_catalog.py`。可选环境变量 `WHOAMI_ROOT` 指向本地「我是谁」缓存，用来取官方立绘。
+用 `python3 tools/pokedex/fetch_gen1.py` 重新生成目录。只补身高、捕获、性别和特性介绍时用 `python3 tools/pokedex/enrich_catalog.py`。可选环境变量 `WHOAMI_ROOT` 指向本机官方立绘目录，只用于打包精灵图，该缓存不入库。

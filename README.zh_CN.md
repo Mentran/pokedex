@@ -4,7 +4,7 @@
 
 # 第一世代宝可梦图鉴
 
-给 [AI Passport](https://ai-passport.folotoy.cn) 用的可穿戴图鉴。开机直接进第一世代 151 只：按顺序浏览、随机遇见，或看短小知识。每条有立绘、叫声、属性、身高体重、性别、介绍、能力、招式、克制和进化。
+给 [AI Passport](https://ai-passport.folotoy.cn) 用的可穿戴图鉴（ESP32-C3，ESP-IDF 5.5.3）。开机直接进第一世代 151 只：按顺序浏览、随机遇见，或看短小知识。每条有立绘、叫声、属性、身高体重、性别、介绍、能力、招式、克制和进化。
 
 方案、容量和数据管线见 [docs/assets/pokedex/README.zh_CN.md](docs/assets/pokedex/README.zh_CN.md)。
 

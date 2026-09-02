@@ -10,8 +10,7 @@ Play resources for Generation I. Binary art and cries belong here; Markdown docu
 | --- | --- | --- |
 | `gen1/catalog.json` | yes | Text catalog for 151 entries |
 | `gen1/facts.json` | yes | Original short world-fact sentences |
-| `gen1/sprites/` | later | Device sprites |
-| `gen1/cries/` | later | IMA-ADPCM cries |
+| `fs/sprites1.bin`, `fs/sprites2.bin`, `fs/cries.bin` | no | Packed device media |
 | `raw/` | no | Original PNG / OGG downloads |
 
-Regenerate the catalog with `python3 tools/pokedex/fetch_gen1.py`. Patch size, catch, gender, and ability intros with `python3 tools/pokedex/enrich_catalog.py` when a full move refresh is not needed. Optional `WHOAMI_ROOT` points at the local Who Am I cache for official artwork.
+Regenerate the catalog with `python3 tools/pokedex/fetch_gen1.py`. Patch size, catch, gender, and ability intros with `python3 tools/pokedex/enrich_catalog.py` when a full move refresh is not needed. Optional `WHOAMI_ROOT` is a local official-art directory for packing sprites; that cache is never committed.

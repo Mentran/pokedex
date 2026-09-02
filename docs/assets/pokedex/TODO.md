@@ -16,7 +16,7 @@ Status: handheld dex with sprites and cries. Device flash is the remaining check
 
 ## M1
 
-- [ ] Who Am I fallback for thin Chinese bios
+- [x] PokeAPI bios plus trivia; do not import Who Am I text files
 - [x] Generate `pokedex_catalog.inc`
 - [x] Host tests for 151 parse + four spot checks
 

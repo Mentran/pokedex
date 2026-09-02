@@ -28,8 +28,8 @@ SPRITE_W = 80
 SPRITE_H = 80
 SPRITE_BYTES = SPRITE_W * SPRITE_H * 2
 RATE = 8000
-WHOAMI = Path(os.environ.get("WHOAMI_ROOT", "/Users/vitamin/Desktop/vibecoding/projects/我是谁"))
-ART = WHOAMI / "public" / "pokemon-artwork"
+WHOAMI_ROOT = os.environ.get("WHOAMI_ROOT", "")
+ART = Path(WHOAMI_ROOT) / "public" / "pokemon-artwork" if WHOAMI_ROOT else None
 ART_URL = (
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/"
     "sprites/pokemon/other/official-artwork/{id}.png"
@@ -111,9 +111,10 @@ def download(url: str, dest: Path) -> None:
 
 
 def art_png(pid: int) -> Path:
-    local = ART / f"{pid}.png"
-    if local.is_file() and local.stat().st_size > 1000:
-        return local
+    if ART is not None:
+        local = ART / f"{pid}.png"
+        if local.is_file() and local.stat().st_size > 1000:
+            return local
     cached = RAW_ART / f"{pid}.png"
     if cached.is_file() and cached.stat().st_size > 1000:
         return cached

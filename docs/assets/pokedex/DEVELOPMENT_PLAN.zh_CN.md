@@ -19,7 +19,7 @@
 
 ## M1 — 目录质量
 
-- PokeAPI 中文不够时，用「我是谁」缓存补。
+- 中文名和介绍来自 PokeAPI `zh-hans`。`WHOAMI_ROOT` 立绘缓存只用于打包精灵图，不进目录文本。
 - 招式最多 8 个。进化条件要能在 240 px 面板上读完。
 - 由 JSON 生成 `pokedex_catalog.inc`。
 
