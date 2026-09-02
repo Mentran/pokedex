@@ -3,6 +3,7 @@
 #pragma once
 
 #include "bsp_button.h"
+#include <stdbool.h>
 
 typedef struct {
     const char *name;
@@ -32,3 +33,7 @@ void demo_ble_key(bsp_btn_t btn, bsp_btn_ev_t ev);
 
 void demo_low_power_enter(void); void demo_low_power_exit(void);
 void demo_low_power_key(bsp_btn_t btn, bsp_btn_ev_t ev);
+
+void demo_pokedex_enter(void); void demo_pokedex_exit(void);
+void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev);
+bool demo_pokedex_is_home(void);

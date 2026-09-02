@@ -6,6 +6,9 @@
 
 ## Unreleased
 
+- Restyled the Generation I Pokedex as a red handheld dex with 80x80 sprites
+  and IMA-ADPCM cries in the `pokedexfs` partition. Use segmented `idf.py flash`;
+  do not write the merged image from `0x0` on a provisioned badge.
 - Made mini-program BLE install compatibility a template-level invariant: fixed
   protected `cardid`/Recovery partitions, retained the five-second UP-key
   Recovery boot hook, and added CI validation for merged-image structure,

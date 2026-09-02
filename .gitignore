@@ -4,3 +4,9 @@ sdkconfig.old
 managed_components/
 .vscode/
 .idea/
+assets/pokedex/raw/
+assets/pokedex/fs/sprites1.bin
+assets/pokedex/fs/sprites2.bin
+assets/pokedex/fs/cries.bin
+__pycache__/
+*.pyc

@@ -14,4 +14,4 @@
 
 ## 目录说明
 
-> 当前为空骨架，用于存放后续加入的字库资源。加入资源时请同步更新本 `README.md` 的索引。
+- `tools/pokedex/gen_font.py` 会把 `NotoSansSC-Regular.otf` 下到 `~/.cache/ai-passport/`，不入库。生成的 `main/font_pokedex_16.c` 是 16 像素、4 bpp 的目录+界面子集，字体许可证为 SIL Open Font License。

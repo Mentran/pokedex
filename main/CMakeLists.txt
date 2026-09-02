@@ -10,6 +10,11 @@ idf_component_register(
          "demo_wifi.c"
          "demo_ble.c"
          "demo_low_power.c"
+         "pokedex.c"
+         "pokedex_ima.c"
+         "pokedex_media.c"
+         "demo_pokedex.c"
+         "font_pokedex_16.c"
     INCLUDE_DIRS "."
-    REQUIRES bsp bt esp_event esp_hw_support esp_netif esp_timer esp_wifi nvs_flash
+    REQUIRES bsp bt esp_event esp_hw_support esp_netif esp_timer esp_wifi nvs_flash spiffs
 )

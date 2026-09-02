@@ -6,6 +6,8 @@
 
 ## Unreleased
 
+- 第一世代图鉴改成红色手持外壳，封面 80×80 立绘，叫声为 IMA-ADPCM，放进 `pokedexfs`。
+  已写身份的胸牌用分段 `idf.py flash`，不要从 `0x0` 整包刷合并镜像。
 - 将小程序 BLE 安装兼容提升为二创模板强制契约：固定保护 `cardid`/Recovery 分区，
   保留上键持续 5 秒进入 Recovery 的 bootloader hook，并在 CI 强制校验合并镜像结构、
   分区表 MD5/范围、3 MB 应用上限和保护分区数据不入包。

@@ -28,9 +28,26 @@ run_static_checks() {
         tests/test_ui_pixel_math.c main/ui_pixel_math.c \
         -o "${test_dir}/test_ui_pixel_math"
     "${test_dir}/test_ui_pixel_math"
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
+        tests/test_pokedex.c main/pokedex.c \
+        -o "${test_dir}/test_pokedex"
+    "${test_dir}/test_pokedex"
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
+        tests/test_pokedex_ima.c main/pokedex_ima.c \
+        -o "${test_dir}/test_pokedex_ima"
+    "${test_dir}/test_pokedex_ima"
+    python3 tests/test_pokedex_catalog.py
     python3 tests/test_verify_firmware.py
     rm -rf "${test_dir}"
     echo "Host tests: PASS"
+}
+
+ensure_pokedex_media() {
+    if [[ ! -f "${repo_root}/assets/pokedex/fs/sprites1.bin" || \
+          ! -f "${repo_root}/assets/pokedex/fs/sprites2.bin" || \
+          ! -f "${repo_root}/assets/pokedex/fs/cries.bin" ]]; then
+        python3 "${repo_root}/tools/pokedex/build_media.py" --placeholder
+    fi
 }
 
 run_firmware_checks() (
@@ -44,6 +61,7 @@ run_firmware_checks() (
     validation_build_dir="$(mktemp -d /tmp/ai-passport-firmware.XXXXXX)"
     trap 'case "${validation_build_dir}" in /tmp/ai-passport-firmware.*) rm -rf -- "${validation_build_dir}" ;; esac' EXIT
 
+    ensure_pokedex_media
     SDKCONFIG_DEFAULTS="${repo_root}/sdkconfig.defaults" \
         idf.py -B "${validation_build_dir}" \
         -D "SDKCONFIG=${validation_build_dir}/sdkconfig" build

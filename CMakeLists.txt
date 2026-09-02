@@ -10,3 +10,12 @@ idf_build_set_property(
     APPEND)
 
 project(FoloToy-AI-Passport)
+
+# pokedexfs sits at 0x35A000, after protected cardid. FLASH_IN_PROJECT lets
+# `idf.py flash` write it as its own segment and skip cardid / Recovery.
+set(POKEDEX_FS_DIR "${CMAKE_CURRENT_LIST_DIR}/assets/pokedex/fs")
+if(EXISTS "${POKEDEX_FS_DIR}/sprites1.bin" AND EXISTS "${POKEDEX_FS_DIR}/sprites2.bin" AND EXISTS "${POKEDEX_FS_DIR}/cries.bin")
+    spiffs_create_partition_image(pokedexfs "${POKEDEX_FS_DIR}" FLASH_IN_PROJECT)
+else()
+    message(WARNING "Pokedex media missing; run python3 tools/pokedex/build_media.py")
+endif()
