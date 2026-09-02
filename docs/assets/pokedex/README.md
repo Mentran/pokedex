@@ -65,10 +65,13 @@ Stats, abilities, moves, evolution chains, and cries are not in Who Am I. Those 
 | Chinese name, category | PokeAPI `/pokemon-species/{id}` `zh-hans` | Fallback to Who Am I if an entry is missing |
 | Bio | PokeAPI `zh-hans` flavor text, one sentence | Second sentence is trivia on the bio page if it differs |
 | Types | PokeAPI types, mapped to Chinese labels | At most two |
-| Abilities | PokeAPI abilities, `zh-hans` names | Generation I had no abilities; still show the modern names |
-| Base stats | HP / Atk / Def / SpA / SpD / Spe | Drawn as bars |
-| Moves | Red/Blue (or generation-red) level-up, max 8 | Prefer iconic late-level moves if there are more than 8 |
+| Height / weight | PokeAPI `height` (dm), `weight` (hg) | Shown on cover as meters and kilograms |
+| Catch / gender | PokeAPI `capture_rate`, `gender_rate` | Catch rate is stored; cover shows gender only (`-1` genderless, `0..8` female eighths) |
+| Abilities | PokeAPI abilities, `zh-hans` names and flavor | Generation I had no abilities; still show the modern names plus intro |
+| Base stats | HP / Atk / Def / SpA / SpD / Spe | Drawn as bars plus the six-stat total |
+| Moves | Red/Blue (then yellow / FR/LG) level-up | All level-up moves; no TM, power, or move flavor |
 | Evolution | PokeAPI evolution chain | Store from/to ids and a short condition string |
+| World facts | `assets/pokedex/gen1/facts.json` | Original short sentences, not copied dex entries |
 | Picture | Who Am I cache, else PokeAPI official artwork | Converted to an 80 x 80 RGB565 sprite |
 | Cry | `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/{id}.ogg` | Legacy clip matches the original 151 better than "latest" |
 
@@ -76,20 +79,22 @@ Raw downloads land in `assets/pokedex/raw/` and stay gitignored. Generated firmw
 
 ## Interaction
 
-Boot goes straight to a home screen with two modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel.
+Boot goes straight to a home screen with three modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel.
 
 ```text
 Home
-  Browse  ----+
-  Random  ----+--> Entry (always starts on Cover)
-                  Up / Down : previous / next id (Browse wraps 1..151;
-                              Random also wraps, and OK long-press on
-                              Cover is reserved for cry + home)
-                  OK click  : Cover -> Bio -> Stats -> Moves -> Matchup -> Evo -> Cover
-                  OK long   : play cry when on Cover, then return home
+  Browse  ----+--> Entry (always starts on Cover)
+  Random  ----+    Up / Down : previous / next id
+                   (on Matchup: scroll overflow first, then change id)
+                   OK click  : Cover -> Bio -> Stats -> Moves -> Matchup -> Evo -> Cover
+                   OK long   : play cry when on Cover, then return home
+  Facts   ----+--> Fact
+                   Up / Down : previous / next world fact
+                   OK click  : next fact
+                   OK long   : return home
 ```
 
-Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry.
+Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Facts picks a random sentence on enter, then Up / Down walk the pool without showing an index.
 
 Three keys cannot search by name in V1. Sequential and random cover the request.
 
@@ -97,17 +102,19 @@ Three keys cannot search by name in V1. Sequential and random cover the request.
 
 Title bar is the red dex bezel. Content sits in the green inner LCD.
 
-**Cover:** number, 80 x 80 sprite, Chinese name, English name, one or two type chips, category. Opening cover plays the cry.
+**Cover:** number, 80 x 80 sprite, Chinese name, English name, one or two type chips, category, height/weight, and gender ratio. Opening cover plays the cry.
 
-**Bio:** category plus one wrapped paragraph. If a second distinct sentence exists, it follows.
+**Bio:** one wrapped paragraph. If a second distinct sentence exists, it follows.
 
-**Stats:** six bars, values 1-255 scaled to a 100 px track, plus the six-stat total.
+**Stats:** six compact bars, the six-stat total, then modern ability names prefixed with an explicit label, plus intros.
 
-**Moves:** every Generation I level-up move, with the learn level.
+**Moves:** every Generation I level-up move, with the learn level. No power or move flavor.
 
-**Matchup:** defending 4x / 2x / 1/2 / 1/4 / 0, and attacking 2x / 1/2 / 0, using the modern type chart.
+**Matchup:** defending 4x / 2x / 0 / 1/2 / 1/4 and attacking 2x / 0 / 1/2 on one page, with colored chips. If the list is taller than the LCD, Up / Down scrolls; at the ends they still change the Pokemon.
 
 **Evolution:** a vertical chain of Chinese names and the condition between them. Single-stage Pokemon show "does not evolve".
+
+Home is a titled menu: browse the dex, random encounter, and world facts. Facts is a dedicated screen with no index or count, so each page looks like a random draw.
 
 ## Firmware split
 
@@ -117,7 +124,7 @@ main/pokedex_ima.c      IMA-ADPCM decoder
 main/pokedex_media.c    SPIFFS mount, sprite load, cry worker
 main/demo_pokedex.c     Handheld-dex LVGL chrome, keys
 main/font_pokedex_16.*  Subset CJK font from the actual text corpus
-assets/pokedex/gen1/    Catalog JSON
+assets/pokedex/gen1/    Catalog JSON and world-fact pool
 assets/pokedex/fs/      Packed sprites1/2.bin + cries.bin (gitignored)
 tools/pokedex/          Fetch, convert, font, media pack
 tests/test_pokedex.c    Id wrap, random, tab cycle, catalog parse
@@ -132,6 +139,13 @@ tools/pokedex/fetch_gen1.py
     -> assets/pokedex/gen1/catalog.json
     -> assets/pokedex/raw/art/{id}.png     (gitignore)
     -> assets/pokedex/raw/cries/{id}.ogg   (gitignore)
+
+tools/pokedex/enrich_catalog.py
+    -> patch height, weight, catch, gender, ability intros
+
+tools/pokedex/gen_catalog_inc.py
+    -> main/pokedex_catalog.inc
+    -> main/pokedex_facts.inc
 
 tools/pokedex/build_media.py
     -> assets/pokedex/fs/sprites1.bin      (ids 1-80, gitignore)

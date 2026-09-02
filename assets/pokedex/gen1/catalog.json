@@ -15,7 +15,10 @@
         "毒"
       ],
       "abilities": [
-        "茂盛"
+        {
+          "zh": "茂盛",
+          "intro": "HP减少的时候,草属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -103,7 +106,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/1.ogg",
-      "artwork": "raw/art/1.png"
+      "artwork": "raw/art/1.png",
+      "height_dm": 7,
+      "weight_hg": 69,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 2,
@@ -117,7 +124,10 @@
         "毒"
       ],
       "abilities": [
-        "茂盛"
+        {
+          "zh": "茂盛",
+          "intro": "HP减少的时候,草属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -205,7 +215,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/2.ogg",
-      "artwork": "raw/art/2.png"
+      "artwork": "raw/art/2.png",
+      "height_dm": 10,
+      "weight_hg": 130,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 3,
@@ -219,7 +233,10 @@
         "毒"
       ],
       "abilities": [
-        "茂盛"
+        {
+          "zh": "茂盛",
+          "intro": "HP减少的时候,草属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -307,7 +324,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/3.ogg",
-      "artwork": "raw/art/3.png"
+      "artwork": "raw/art/3.png",
+      "height_dm": 20,
+      "weight_hg": 1000,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 4,
@@ -320,7 +341,10 @@
         "火"
       ],
       "abilities": [
-        "猛火"
+        {
+          "zh": "猛火",
+          "intro": "HP减少的时候,火属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 39,
@@ -413,7 +437,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/4.ogg",
-      "artwork": "raw/art/4.png"
+      "artwork": "raw/art/4.png",
+      "height_dm": 6,
+      "weight_hg": 85,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 5,
@@ -426,7 +454,10 @@
         "火"
       ],
       "abilities": [
-        "猛火"
+        {
+          "zh": "猛火",
+          "intro": "HP减少的时候,火属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 58,
@@ -519,7 +550,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/5.ogg",
-      "artwork": "raw/art/5.png"
+      "artwork": "raw/art/5.png",
+      "height_dm": 11,
+      "weight_hg": 190,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 6,
@@ -533,7 +568,10 @@
         "飞行"
       ],
       "abilities": [
-        "猛火"
+        {
+          "zh": "猛火",
+          "intro": "HP减少的时候,火属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 78,
@@ -636,7 +674,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/6.ogg",
-      "artwork": "raw/art/6.png"
+      "artwork": "raw/art/6.png",
+      "height_dm": 17,
+      "weight_hg": 905,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 7,
@@ -649,7 +691,10 @@
         "水"
       ],
       "abilities": [
-        "激流"
+        {
+          "zh": "激流",
+          "intro": "HP减少的时候,水属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 44,
@@ -737,7 +782,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/7.ogg",
-      "artwork": "raw/art/7.png"
+      "artwork": "raw/art/7.png",
+      "height_dm": 5,
+      "weight_hg": 90,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 8,
@@ -750,7 +799,10 @@
         "水"
       ],
       "abilities": [
-        "激流"
+        {
+          "zh": "激流",
+          "intro": "HP减少的时候,水属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 59,
@@ -838,7 +890,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/8.ogg",
-      "artwork": "raw/art/8.png"
+      "artwork": "raw/art/8.png",
+      "height_dm": 10,
+      "weight_hg": 225,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 9,
@@ -851,7 +907,10 @@
         "水"
       ],
       "abilities": [
-        "激流"
+        {
+          "zh": "激流",
+          "intro": "HP减少的时候,水属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 79,
@@ -939,7 +998,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/9.ogg",
-      "artwork": "raw/art/9.png"
+      "artwork": "raw/art/9.png",
+      "height_dm": 16,
+      "weight_hg": 855,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 10,
@@ -952,7 +1015,10 @@
         "虫"
       ],
       "abilities": [
-        "鳞粉"
+        {
+          "zh": "鳞粉",
+          "intro": "被鳞粉守护着,不会受到招式的追加效果影响。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -995,7 +1061,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/10.ogg",
-      "artwork": "raw/art/10.png"
+      "artwork": "raw/art/10.png",
+      "height_dm": 3,
+      "weight_hg": 29,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 11,
@@ -1008,7 +1078,10 @@
         "虫"
       ],
       "abilities": [
-        "蜕皮"
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -1046,7 +1119,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/11.ogg",
-      "artwork": "raw/art/11.png"
+      "artwork": "raw/art/11.png",
+      "height_dm": 7,
+      "weight_hg": 99,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 12,
@@ -1060,7 +1137,10 @@
         "飞行"
       ],
       "abilities": [
-        "复眼"
+        {
+          "zh": "复眼",
+          "intro": "因为拥有复眼,招式的命中率会提高。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -1143,7 +1223,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/12.ogg",
-      "artwork": "raw/art/12.png"
+      "artwork": "raw/art/12.png",
+      "height_dm": 11,
+      "weight_hg": 320,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 13,
@@ -1157,7 +1241,10 @@
         "毒"
       ],
       "abilities": [
-        "鳞粉"
+        {
+          "zh": "鳞粉",
+          "intro": "被鳞粉守护着,不会受到招式的追加效果影响。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -1200,7 +1287,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/13.ogg",
-      "artwork": "raw/art/13.png"
+      "artwork": "raw/art/13.png",
+      "height_dm": 3,
+      "weight_hg": 32,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 14,
@@ -1214,7 +1305,10 @@
         "毒"
       ],
       "abilities": [
-        "蜕皮"
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -1252,7 +1346,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/14.ogg",
-      "artwork": "raw/art/14.png"
+      "artwork": "raw/art/14.png",
+      "height_dm": 6,
+      "weight_hg": 100,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 15,
@@ -1266,7 +1364,10 @@
         "毒"
       ],
       "abilities": [
-        "虫之预感"
+        {
+          "zh": "虫之预感",
+          "intro": "HP减少的时候,虫属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -1339,7 +1440,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/15.ogg",
-      "artwork": "raw/art/15.png"
+      "artwork": "raw/art/15.png",
+      "height_dm": 10,
+      "weight_hg": 295,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 16,
@@ -1353,8 +1458,14 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光",
-        "蹒跚"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        },
+        {
+          "zh": "蹒跚",
+          "intro": "在混乱状态时,闪避率会提高。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -1432,7 +1543,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/16.ogg",
-      "artwork": "raw/art/16.png"
+      "artwork": "raw/art/16.png",
+      "height_dm": 3,
+      "weight_hg": 18,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 17,
@@ -1446,8 +1561,14 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光",
-        "蹒跚"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        },
+        {
+          "zh": "蹒跚",
+          "intro": "在混乱状态时,闪避率会提高。"
+        }
       ],
       "stats": {
         "hp": 63,
@@ -1525,7 +1646,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/17.ogg",
-      "artwork": "raw/art/17.png"
+      "artwork": "raw/art/17.png",
+      "height_dm": 11,
+      "weight_hg": 300,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 18,
@@ -1539,8 +1664,14 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光",
-        "蹒跚"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        },
+        {
+          "zh": "蹒跚",
+          "intro": "在混乱状态时,闪避率会提高。"
+        }
       ],
       "stats": {
         "hp": 83,
@@ -1618,7 +1749,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/18.ogg",
-      "artwork": "raw/art/18.png"
+      "artwork": "raw/art/18.png",
+      "height_dm": 15,
+      "weight_hg": 395,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 19,
@@ -1631,8 +1766,14 @@
         "一般"
       ],
       "abilities": [
-        "逃跑",
-        "毅力"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "毅力",
+          "intro": "如果变为异常状态,会拿出毅力,攻击会提高。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -1699,7 +1840,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/19.ogg",
-      "artwork": "raw/art/19.png"
+      "artwork": "raw/art/19.png",
+      "height_dm": 3,
+      "weight_hg": 35,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 20,
@@ -1712,8 +1857,14 @@
         "一般"
       ],
       "abilities": [
-        "逃跑",
-        "毅力"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "毅力",
+          "intro": "如果变为异常状态,会拿出毅力,攻击会提高。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -1785,7 +1936,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/20.ogg",
-      "artwork": "raw/art/20.png"
+      "artwork": "raw/art/20.png",
+      "height_dm": 7,
+      "weight_hg": 185,
+      "catch_rate": 127,
+      "gender_rate": 4
     },
     {
       "id": 21,
@@ -1799,7 +1954,10 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -1871,7 +2029,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/21.ogg",
-      "artwork": "raw/art/21.png"
+      "artwork": "raw/art/21.png",
+      "height_dm": 3,
+      "weight_hg": 20,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 22,
@@ -1885,7 +2047,10 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -1952,7 +2117,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/22.ogg",
-      "artwork": "raw/art/22.png"
+      "artwork": "raw/art/22.png",
+      "height_dm": 12,
+      "weight_hg": 380,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 23,
@@ -1965,8 +2134,14 @@
         "毒"
       ],
       "abilities": [
-        "威吓",
-        "蜕皮"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        },
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -2048,7 +2223,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/23.ogg",
-      "artwork": "raw/art/23.png"
+      "artwork": "raw/art/23.png",
+      "height_dm": 20,
+      "weight_hg": 69,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 24,
@@ -2061,8 +2240,14 @@
         "毒"
       ],
       "abilities": [
-        "威吓",
-        "蜕皮"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        },
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -2144,7 +2329,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/24.ogg",
-      "artwork": "raw/art/24.png"
+      "artwork": "raw/art/24.png",
+      "height_dm": 35,
+      "weight_hg": 650,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 25,
@@ -2157,7 +2346,10 @@
         "电"
       ],
       "abilities": [
-        "静电"
+        {
+          "zh": "静电",
+          "intro": "身上带有静电,有时会让接触到的对手麻痹。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -2244,7 +2436,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/25.ogg",
-      "artwork": "raw/art/25.png"
+      "artwork": "raw/art/25.png",
+      "height_dm": 4,
+      "weight_hg": 60,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 26,
@@ -2257,7 +2453,10 @@
         "电"
       ],
       "abilities": [
-        "静电"
+        {
+          "zh": "静电",
+          "intro": "身上带有静电,有时会让接触到的对手麻痹。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -2314,7 +2513,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/26.ogg",
-      "artwork": "raw/art/26.png"
+      "artwork": "raw/art/26.png",
+      "height_dm": 8,
+      "weight_hg": 300,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 27,
@@ -2327,7 +2530,10 @@
         "地面"
       ],
       "abilities": [
-        "沙隐"
+        {
+          "zh": "沙隐",
+          "intro": "在沙暴的时候,闪避率会提高。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -2399,7 +2605,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/27.ogg",
-      "artwork": "raw/art/27.png"
+      "artwork": "raw/art/27.png",
+      "height_dm": 6,
+      "weight_hg": 120,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 28,
@@ -2412,7 +2622,10 @@
         "地面"
       ],
       "abilities": [
-        "沙隐"
+        {
+          "zh": "沙隐",
+          "intro": "在沙暴的时候,闪避率会提高。"
+        }
       ],
       "stats": {
         "hp": 75,
@@ -2484,7 +2697,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/28.ogg",
-      "artwork": "raw/art/28.png"
+      "artwork": "raw/art/28.png",
+      "height_dm": 10,
+      "weight_hg": 295,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 29,
@@ -2497,8 +2714,14 @@
         "毒"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -2586,7 +2809,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/29.ogg",
-      "artwork": "raw/art/29.png"
+      "artwork": "raw/art/29.png",
+      "height_dm": 4,
+      "weight_hg": 70,
+      "catch_rate": 235,
+      "gender_rate": 8
     },
     {
       "id": 30,
@@ -2599,8 +2826,14 @@
         "毒"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -2688,7 +2921,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/30.ogg",
-      "artwork": "raw/art/30.png"
+      "artwork": "raw/art/30.png",
+      "height_dm": 8,
+      "weight_hg": 200,
+      "catch_rate": 120,
+      "gender_rate": 8
     },
     {
       "id": 31,
@@ -2702,8 +2939,14 @@
         "地面"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -2771,7 +3014,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/31.ogg",
-      "artwork": "raw/art/31.png"
+      "artwork": "raw/art/31.png",
+      "height_dm": 13,
+      "weight_hg": 600,
+      "catch_rate": 45,
+      "gender_rate": 8
     },
     {
       "id": 32,
@@ -2784,8 +3031,14 @@
         "毒"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 46,
@@ -2873,7 +3126,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/32.ogg",
-      "artwork": "raw/art/32.png"
+      "artwork": "raw/art/32.png",
+      "height_dm": 5,
+      "weight_hg": 90,
+      "catch_rate": 235,
+      "gender_rate": 0
     },
     {
       "id": 33,
@@ -2886,8 +3143,14 @@
         "毒"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 61,
@@ -2975,7 +3238,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/33.ogg",
-      "artwork": "raw/art/33.png"
+      "artwork": "raw/art/33.png",
+      "height_dm": 9,
+      "weight_hg": 195,
+      "catch_rate": 120,
+      "gender_rate": 0
     },
     {
       "id": 34,
@@ -2989,8 +3256,14 @@
         "地面"
       ],
       "abilities": [
-        "毒刺",
-        "斗争心"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "斗争心",
+          "intro": "面对性别相同的对手,会燃起斗争心,变得更强。而面对性别不同的,则会变弱。"
+        }
       ],
       "stats": {
         "hp": 81,
@@ -3063,7 +3336,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/34.ogg",
-      "artwork": "raw/art/34.png"
+      "artwork": "raw/art/34.png",
+      "height_dm": 14,
+      "weight_hg": 620,
+      "catch_rate": 45,
+      "gender_rate": 0
     },
     {
       "id": 35,
@@ -3076,8 +3353,14 @@
         "妖精"
       ],
       "abilities": [
-        "迷人之躯",
-        "魔法防守"
+        {
+          "zh": "迷人之躯",
+          "intro": "有时会让接触到自己的对手着迷。"
+        },
+        {
+          "zh": "魔法防守",
+          "intro": "不会受到攻击以外的伤害。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -3169,7 +3452,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/35.ogg",
-      "artwork": "raw/art/35.png"
+      "artwork": "raw/art/35.png",
+      "height_dm": 6,
+      "weight_hg": 75,
+      "catch_rate": 150,
+      "gender_rate": 6
     },
     {
       "id": 36,
@@ -3182,8 +3469,14 @@
         "妖精"
       ],
       "abilities": [
-        "迷人之躯",
-        "魔法防守"
+        {
+          "zh": "迷人之躯",
+          "intro": "有时会让接触到自己的对手着迷。"
+        },
+        {
+          "zh": "魔法防守",
+          "intro": "不会受到攻击以外的伤害。"
+        }
       ],
       "stats": {
         "hp": 95,
@@ -3230,7 +3523,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/36.ogg",
-      "artwork": "raw/art/36.png"
+      "artwork": "raw/art/36.png",
+      "height_dm": 13,
+      "weight_hg": 400,
+      "catch_rate": 25,
+      "gender_rate": 6
     },
     {
       "id": 37,
@@ -3243,7 +3540,10 @@
         "火"
       ],
       "abilities": [
-        "引火"
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 38,
@@ -3325,7 +3625,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/37.ogg",
-      "artwork": "raw/art/37.png"
+      "artwork": "raw/art/37.png",
+      "height_dm": 6,
+      "weight_hg": 99,
+      "catch_rate": 190,
+      "gender_rate": 6
     },
     {
       "id": 38,
@@ -3338,7 +3642,10 @@
         "火"
       ],
       "abilities": [
-        "引火"
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 73,
@@ -3400,7 +3707,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/38.ogg",
-      "artwork": "raw/art/38.png"
+      "artwork": "raw/art/38.png",
+      "height_dm": 11,
+      "weight_hg": 199,
+      "catch_rate": 75,
+      "gender_rate": 6
     },
     {
       "id": 39,
@@ -3414,8 +3725,14 @@
         "妖精"
       ],
       "abilities": [
-        "迷人之躯",
-        "好胜"
+        {
+          "zh": "迷人之躯",
+          "intro": "有时会让接触到自己的对手着迷。"
+        },
+        {
+          "zh": "好胜",
+          "intro": "如果能力被降低,特攻就会大幅提高。"
+        }
       ],
       "stats": {
         "hp": 115,
@@ -3497,7 +3814,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/39.ogg",
-      "artwork": "raw/art/39.png"
+      "artwork": "raw/art/39.png",
+      "height_dm": 5,
+      "weight_hg": 55,
+      "catch_rate": 170,
+      "gender_rate": 6
     },
     {
       "id": 40,
@@ -3511,8 +3832,14 @@
         "妖精"
       ],
       "abilities": [
-        "迷人之躯",
-        "好胜"
+        {
+          "zh": "迷人之躯",
+          "intro": "有时会让接触到自己的对手着迷。"
+        },
+        {
+          "zh": "好胜",
+          "intro": "如果能力被降低,特攻就会大幅提高。"
+        }
       ],
       "stats": {
         "hp": 140,
@@ -3559,7 +3886,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/40.ogg",
-      "artwork": "raw/art/40.png"
+      "artwork": "raw/art/40.png",
+      "height_dm": 10,
+      "weight_hg": 120,
+      "catch_rate": 50,
+      "gender_rate": 6
     },
     {
       "id": 41,
@@ -3573,7 +3904,10 @@
         "飞行"
       ],
       "abilities": [
-        "精神力"
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -3650,7 +3984,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/41.ogg",
-      "artwork": "raw/art/41.png"
+      "artwork": "raw/art/41.png",
+      "height_dm": 8,
+      "weight_hg": 75,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 42,
@@ -3664,7 +4002,10 @@
         "飞行"
       ],
       "abilities": [
-        "精神力"
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 75,
@@ -3746,7 +4087,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/42.ogg",
-      "artwork": "raw/art/42.png"
+      "artwork": "raw/art/42.png",
+      "height_dm": 16,
+      "weight_hg": 550,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 43,
@@ -3760,7 +4105,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -3838,7 +4186,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/43.ogg",
-      "artwork": "raw/art/43.png"
+      "artwork": "raw/art/43.png",
+      "height_dm": 5,
+      "weight_hg": 54,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 44,
@@ -3852,7 +4204,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -3930,7 +4285,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/44.ogg",
-      "artwork": "raw/art/44.png"
+      "artwork": "raw/art/44.png",
+      "height_dm": 8,
+      "weight_hg": 86,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 45,
@@ -3944,7 +4303,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 75,
@@ -4017,7 +4379,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/45.ogg",
-      "artwork": "raw/art/45.png"
+      "artwork": "raw/art/45.png",
+      "height_dm": 12,
+      "weight_hg": 186,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 46,
@@ -4031,8 +4397,14 @@
         "草"
       ],
       "abilities": [
-        "孢子",
-        "干燥皮肤"
+        {
+          "zh": "孢子",
+          "intro": "受到攻击时,有时会把接触到自己的对手变为中毒、麻痹或睡眠状态。"
+        },
+        {
+          "zh": "干燥皮肤",
+          "intro": "下雨天气时和受到水属性的招式时,HP会回复。晴朗天气时和受到火属性的招式时,HP会减少。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -4104,7 +4476,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/46.ogg",
-      "artwork": "raw/art/46.png"
+      "artwork": "raw/art/46.png",
+      "height_dm": 3,
+      "weight_hg": 54,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 47,
@@ -4118,8 +4494,14 @@
         "草"
       ],
       "abilities": [
-        "孢子",
-        "干燥皮肤"
+        {
+          "zh": "孢子",
+          "intro": "受到攻击时,有时会把接触到自己的对手变为中毒、麻痹或睡眠状态。"
+        },
+        {
+          "zh": "干燥皮肤",
+          "intro": "下雨天气时和受到水属性的招式时,HP会回复。晴朗天气时和受到火属性的招式时,HP会减少。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -4191,7 +4573,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/47.ogg",
-      "artwork": "raw/art/47.png"
+      "artwork": "raw/art/47.png",
+      "height_dm": 10,
+      "weight_hg": 295,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 48,
@@ -4205,8 +4591,14 @@
         "毒"
       ],
       "abilities": [
-        "复眼",
-        "有色眼镜"
+        {
+          "zh": "复眼",
+          "intro": "因为拥有复眼,招式的命中率会提高。"
+        },
+        {
+          "zh": "有色眼镜",
+          "intro": "可以将效果不好的招式以通常的威力使出。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -4288,7 +4680,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/48.ogg",
-      "artwork": "raw/art/48.png"
+      "artwork": "raw/art/48.png",
+      "height_dm": 10,
+      "weight_hg": 300,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 49,
@@ -4302,8 +4698,14 @@
         "毒"
       ],
       "abilities": [
-        "鳞粉",
-        "有色眼镜"
+        {
+          "zh": "鳞粉",
+          "intro": "被鳞粉守护着,不会受到招式的追加效果影响。"
+        },
+        {
+          "zh": "有色眼镜",
+          "intro": "可以将效果不好的招式以通常的威力使出。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -4395,7 +4797,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/49.ogg",
-      "artwork": "raw/art/49.png"
+      "artwork": "raw/art/49.png",
+      "height_dm": 15,
+      "weight_hg": 125,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 50,
@@ -4408,8 +4814,14 @@
         "地面"
       ],
       "abilities": [
-        "沙隐",
-        "沙穴"
+        {
+          "zh": "沙隐",
+          "intro": "在沙暴的时候,闪避率会提高。"
+        },
+        {
+          "zh": "沙穴",
+          "intro": "在战斗中让对手无法逃走。"
+        }
       ],
       "stats": {
         "hp": 10,
@@ -4486,7 +4898,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/50.ogg",
-      "artwork": "raw/art/50.png"
+      "artwork": "raw/art/50.png",
+      "height_dm": 2,
+      "weight_hg": 8,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 51,
@@ -4499,8 +4915,14 @@
         "地面"
       ],
       "abilities": [
-        "沙隐",
-        "沙穴"
+        {
+          "zh": "沙隐",
+          "intro": "在沙暴的时候,闪避率会提高。"
+        },
+        {
+          "zh": "沙穴",
+          "intro": "在战斗中让对手无法逃走。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -4587,7 +5009,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/51.ogg",
-      "artwork": "raw/art/51.png"
+      "artwork": "raw/art/51.png",
+      "height_dm": 7,
+      "weight_hg": 333,
+      "catch_rate": 50,
+      "gender_rate": 4
     },
     {
       "id": 52,
@@ -4600,8 +5026,14 @@
         "一般"
       ],
       "abilities": [
-        "捡拾",
-        "技术高手"
+        {
+          "zh": "捡拾",
+          "intro": "有时会捡来对手用过的道具,冒险过程中也会捡到。"
+        },
+        {
+          "zh": "技术高手",
+          "intro": "攻击时可以将低威力招式的威力提高。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -4678,7 +5110,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/52.ogg",
-      "artwork": "raw/art/52.png"
+      "artwork": "raw/art/52.png",
+      "height_dm": 4,
+      "weight_hg": 42,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 53,
@@ -4691,8 +5127,14 @@
         "一般"
       ],
       "abilities": [
-        "柔软",
-        "技术高手"
+        {
+          "zh": "柔软",
+          "intro": "因为身体柔软,不会变为麻痹状态。"
+        },
+        {
+          "zh": "技术高手",
+          "intro": "攻击时可以将低威力招式的威力提高。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -4769,7 +5211,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/53.ogg",
-      "artwork": "raw/art/53.png"
+      "artwork": "raw/art/53.png",
+      "height_dm": 10,
+      "weight_hg": 320,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 54,
@@ -4782,8 +5228,14 @@
         "水"
       ],
       "abilities": [
-        "湿气",
-        "无关天气"
+        {
+          "zh": "湿气",
+          "intro": "通过把周围都弄湿,使谁都无法使用自爆等爆炸类的招式。"
+        },
+        {
+          "zh": "无关天气",
+          "intro": "任何天气的影响都会消失。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -4855,7 +5307,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/54.ogg",
-      "artwork": "raw/art/54.png"
+      "artwork": "raw/art/54.png",
+      "height_dm": 8,
+      "weight_hg": 196,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 55,
@@ -4868,8 +5324,14 @@
         "水"
       ],
       "abilities": [
-        "湿气",
-        "无关天气"
+        {
+          "zh": "湿气",
+          "intro": "通过把周围都弄湿,使谁都无法使用自爆等爆炸类的招式。"
+        },
+        {
+          "zh": "无关天气",
+          "intro": "任何天气的影响都会消失。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -4941,7 +5403,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/55.ogg",
-      "artwork": "raw/art/55.png"
+      "artwork": "raw/art/55.png",
+      "height_dm": 17,
+      "weight_hg": 766,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 56,
@@ -4954,8 +5420,14 @@
         "格斗"
       ],
       "abilities": [
-        "干劲",
-        "愤怒穴位"
+        {
+          "zh": "干劲",
+          "intro": "通过激发出干劲,不会变为睡眠状态。"
+        },
+        {
+          "zh": "愤怒穴位",
+          "intro": "要害被击中时,会大发雷霆,攻击力变为最大。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -5037,7 +5509,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/56.ogg",
-      "artwork": "raw/art/56.png"
+      "artwork": "raw/art/56.png",
+      "height_dm": 5,
+      "weight_hg": 280,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 57,
@@ -5050,8 +5526,14 @@
         "格斗"
       ],
       "abilities": [
-        "干劲",
-        "愤怒穴位"
+        {
+          "zh": "干劲",
+          "intro": "通过激发出干劲,不会变为睡眠状态。"
+        },
+        {
+          "zh": "愤怒穴位",
+          "intro": "要害被击中时,会大发雷霆,攻击力变为最大。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -5138,7 +5620,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/57.ogg",
-      "artwork": "raw/art/57.png"
+      "artwork": "raw/art/57.png",
+      "height_dm": 10,
+      "weight_hg": 320,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 58,
@@ -5151,8 +5637,14 @@
         "火"
       ],
       "abilities": [
-        "威吓",
-        "引火"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        },
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -5229,7 +5721,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/58.ogg",
-      "artwork": "raw/art/58.png"
+      "artwork": "raw/art/58.png",
+      "height_dm": 7,
+      "weight_hg": 190,
+      "catch_rate": 190,
+      "gender_rate": 2
     },
     {
       "id": 59,
@@ -5242,8 +5738,14 @@
         "火"
       ],
       "abilities": [
-        "威吓",
-        "引火"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        },
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -5305,7 +5807,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/59.ogg",
-      "artwork": "raw/art/59.png"
+      "artwork": "raw/art/59.png",
+      "height_dm": 19,
+      "weight_hg": 1550,
+      "catch_rate": 75,
+      "gender_rate": 2
     },
     {
       "id": 60,
@@ -5318,8 +5824,14 @@
         "水"
       ],
       "abilities": [
-        "储水",
-        "湿气"
+        {
+          "zh": "储水",
+          "intro": "受到水属性的招式攻击时,不会受到伤害,而是会回复。"
+        },
+        {
+          "zh": "湿气",
+          "intro": "通过把周围都弄湿,使谁都无法使用自爆等爆炸类的招式。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -5397,7 +5909,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/60.ogg",
-      "artwork": "raw/art/60.png"
+      "artwork": "raw/art/60.png",
+      "height_dm": 6,
+      "weight_hg": 124,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 61,
@@ -5410,8 +5926,14 @@
         "水"
       ],
       "abilities": [
-        "储水",
-        "湿气"
+        {
+          "zh": "储水",
+          "intro": "受到水属性的招式攻击时,不会受到伤害,而是会回复。"
+        },
+        {
+          "zh": "湿气",
+          "intro": "通过把周围都弄湿,使谁都无法使用自爆等爆炸类的招式。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -5489,7 +6011,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/61.ogg",
-      "artwork": "raw/art/61.png"
+      "artwork": "raw/art/61.png",
+      "height_dm": 10,
+      "weight_hg": 200,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 62,
@@ -5503,8 +6029,14 @@
         "格斗"
       ],
       "abilities": [
-        "储水",
-        "湿气"
+        {
+          "zh": "储水",
+          "intro": "受到水属性的招式攻击时,不会受到伤害,而是会回复。"
+        },
+        {
+          "zh": "湿气",
+          "intro": "通过把周围都弄湿,使谁都无法使用自爆等爆炸类的招式。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -5567,7 +6099,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/62.ogg",
-      "artwork": "raw/art/62.png"
+      "artwork": "raw/art/62.png",
+      "height_dm": 13,
+      "weight_hg": 540,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 63,
@@ -5580,8 +6116,14 @@
         "超能力"
       ],
       "abilities": [
-        "同步",
-        "精神力"
+        {
+          "zh": "同步",
+          "intro": "将自己的中毒、麻痹或灼伤状态传染给对手。"
+        },
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 25,
@@ -5619,7 +6161,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/63.ogg",
-      "artwork": "raw/art/63.png"
+      "artwork": "raw/art/63.png",
+      "height_dm": 9,
+      "weight_hg": 195,
+      "catch_rate": 200,
+      "gender_rate": 2
     },
     {
       "id": 64,
@@ -5632,8 +6178,14 @@
         "超能力"
       ],
       "abilities": [
-        "同步",
-        "精神力"
+        {
+          "zh": "同步",
+          "intro": "将自己的中毒、麻痹或灼伤状态传染给对手。"
+        },
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -5721,7 +6273,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/64.ogg",
-      "artwork": "raw/art/64.png"
+      "artwork": "raw/art/64.png",
+      "height_dm": 13,
+      "weight_hg": 565,
+      "catch_rate": 100,
+      "gender_rate": 2
     },
     {
       "id": 65,
@@ -5734,8 +6290,14 @@
         "超能力"
       ],
       "abilities": [
-        "同步",
-        "精神力"
+        {
+          "zh": "同步",
+          "intro": "将自己的中毒、麻痹或灼伤状态传染给对手。"
+        },
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -5823,7 +6385,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/65.ogg",
-      "artwork": "raw/art/65.png"
+      "artwork": "raw/art/65.png",
+      "height_dm": 15,
+      "weight_hg": 480,
+      "catch_rate": 50,
+      "gender_rate": 2
     },
     {
       "id": 66,
@@ -5836,8 +6402,14 @@
         "格斗"
       ],
       "abilities": [
-        "毅力",
-        "无防守"
+        {
+          "zh": "毅力",
+          "intro": "如果变为异常状态,会拿出毅力,攻击会提高。"
+        },
+        {
+          "zh": "无防守",
+          "intro": "由于无防守战术,双方使出的招式都必定会击中。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -5930,7 +6502,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/66.ogg",
-      "artwork": "raw/art/66.png"
+      "artwork": "raw/art/66.png",
+      "height_dm": 8,
+      "weight_hg": 195,
+      "catch_rate": 180,
+      "gender_rate": 2
     },
     {
       "id": 67,
@@ -5943,8 +6519,14 @@
         "格斗"
       ],
       "abilities": [
-        "毅力",
-        "无防守"
+        {
+          "zh": "毅力",
+          "intro": "如果变为异常状态,会拿出毅力,攻击会提高。"
+        },
+        {
+          "zh": "无防守",
+          "intro": "由于无防守战术,双方使出的招式都必定会击中。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -6037,7 +6619,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/67.ogg",
-      "artwork": "raw/art/67.png"
+      "artwork": "raw/art/67.png",
+      "height_dm": 15,
+      "weight_hg": 705,
+      "catch_rate": 90,
+      "gender_rate": 2
     },
     {
       "id": 68,
@@ -6050,8 +6636,14 @@
         "格斗"
       ],
       "abilities": [
-        "毅力",
-        "无防守"
+        {
+          "zh": "毅力",
+          "intro": "如果变为异常状态,会拿出毅力,攻击会提高。"
+        },
+        {
+          "zh": "无防守",
+          "intro": "由于无防守战术,双方使出的招式都必定会击中。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -6144,7 +6736,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/68.ogg",
-      "artwork": "raw/art/68.png"
+      "artwork": "raw/art/68.png",
+      "height_dm": 16,
+      "weight_hg": 1300,
+      "catch_rate": 45,
+      "gender_rate": 2
     },
     {
       "id": 69,
@@ -6158,7 +6754,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -6241,7 +6840,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/69.ogg",
-      "artwork": "raw/art/69.png"
+      "artwork": "raw/art/69.png",
+      "height_dm": 7,
+      "weight_hg": 40,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 70,
@@ -6255,7 +6858,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -6338,7 +6944,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/70.ogg",
-      "artwork": "raw/art/70.png"
+      "artwork": "raw/art/70.png",
+      "height_dm": 10,
+      "weight_hg": 64,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 71,
@@ -6352,7 +6962,10 @@
         "毒"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -6440,7 +7053,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/71.ogg",
-      "artwork": "raw/art/71.png"
+      "artwork": "raw/art/71.png",
+      "height_dm": 17,
+      "weight_hg": 155,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 72,
@@ -6454,8 +7071,14 @@
         "毒"
       ],
       "abilities": [
-        "恒净之躯",
-        "污泥浆"
+        {
+          "zh": "恒净之躯",
+          "intro": "不会因为对手的招式或特性而被降低能力。"
+        },
+        {
+          "zh": "污泥浆",
+          "intro": "吸收了污泥浆的对手会因强烈的恶臭而受到伤害,减少HP。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -6532,7 +7155,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/72.ogg",
-      "artwork": "raw/art/72.png"
+      "artwork": "raw/art/72.png",
+      "height_dm": 9,
+      "weight_hg": 455,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 73,
@@ -6546,8 +7173,14 @@
         "毒"
       ],
       "abilities": [
-        "恒净之躯",
-        "污泥浆"
+        {
+          "zh": "恒净之躯",
+          "intro": "不会因为对手的招式或特性而被降低能力。"
+        },
+        {
+          "zh": "污泥浆",
+          "intro": "吸收了污泥浆的对手会因强烈的恶臭而受到伤害,减少HP。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -6624,7 +7257,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/73.ogg",
-      "artwork": "raw/art/73.png"
+      "artwork": "raw/art/73.png",
+      "height_dm": 16,
+      "weight_hg": 550,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 74,
@@ -6638,8 +7275,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "结实"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -6732,7 +7375,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/74.ogg",
-      "artwork": "raw/art/74.png"
+      "artwork": "raw/art/74.png",
+      "height_dm": 4,
+      "weight_hg": 200,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 75,
@@ -6746,8 +7393,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "结实"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -6840,7 +7493,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/75.ogg",
-      "artwork": "raw/art/75.png"
+      "artwork": "raw/art/75.png",
+      "height_dm": 10,
+      "weight_hg": 1050,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 76,
@@ -6854,8 +7511,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "结实"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -6948,7 +7611,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/76.ogg",
-      "artwork": "raw/art/76.png"
+      "artwork": "raw/art/76.png",
+      "height_dm": 14,
+      "weight_hg": 3000,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 77,
@@ -6961,8 +7628,14 @@
         "火"
       ],
       "abilities": [
-        "逃跑",
-        "引火"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -7039,7 +7712,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/77.ogg",
-      "artwork": "raw/art/77.png"
+      "artwork": "raw/art/77.png",
+      "height_dm": 10,
+      "weight_hg": 300,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 78,
@@ -7052,8 +7729,14 @@
         "火"
       ],
       "abilities": [
-        "逃跑",
-        "引火"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -7135,7 +7818,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/78.ogg",
-      "artwork": "raw/art/78.png"
+      "artwork": "raw/art/78.png",
+      "height_dm": 17,
+      "weight_hg": 950,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 79,
@@ -7149,8 +7836,14 @@
         "超能力"
       ],
       "abilities": [
-        "迟钝",
-        "我行我素"
+        {
+          "zh": "迟钝",
+          "intro": "因为感觉迟钝,不会变为着迷和被挑衅状态。"
+        },
+        {
+          "zh": "我行我素",
+          "intro": "因为我行我素,不会变为混乱状态。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -7232,7 +7925,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/79.ogg",
-      "artwork": "raw/art/79.png"
+      "artwork": "raw/art/79.png",
+      "height_dm": 12,
+      "weight_hg": 360,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 80,
@@ -7246,8 +7943,14 @@
         "超能力"
       ],
       "abilities": [
-        "迟钝",
-        "我行我素"
+        {
+          "zh": "迟钝",
+          "intro": "因为感觉迟钝,不会变为着迷和被挑衅状态。"
+        },
+        {
+          "zh": "我行我素",
+          "intro": "因为我行我素,不会变为混乱状态。"
+        }
       ],
       "stats": {
         "hp": 95,
@@ -7334,7 +8037,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/80.ogg",
-      "artwork": "raw/art/80.png"
+      "artwork": "raw/art/80.png",
+      "height_dm": 16,
+      "weight_hg": 785,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 81,
@@ -7348,8 +8055,14 @@
         "steel"
       ],
       "abilities": [
-        "磁力",
-        "结实"
+        {
+          "zh": "磁力",
+          "intro": "用磁力吸住钢属性的宝可梦,使其无法逃走。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 25,
@@ -7431,7 +8144,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/81.ogg",
-      "artwork": "raw/art/81.png"
+      "artwork": "raw/art/81.png",
+      "height_dm": 3,
+      "weight_hg": 60,
+      "catch_rate": 190,
+      "gender_rate": -1
     },
     {
       "id": 82,
@@ -7445,8 +8162,14 @@
         "steel"
       ],
       "abilities": [
-        "磁力",
-        "结实"
+        {
+          "zh": "磁力",
+          "intro": "用磁力吸住钢属性的宝可梦,使其无法逃走。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -7533,7 +8256,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/82.ogg",
-      "artwork": "raw/art/82.png"
+      "artwork": "raw/art/82.png",
+      "height_dm": 10,
+      "weight_hg": 600,
+      "catch_rate": 60,
+      "gender_rate": -1
     },
     {
       "id": 83,
@@ -7547,8 +8274,14 @@
         "飞行"
       ],
       "abilities": [
-        "锐利目光",
-        "精神力"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        },
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 52,
@@ -7619,7 +8352,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/83.ogg",
-      "artwork": "raw/art/83.png"
+      "artwork": "raw/art/83.png",
+      "height_dm": 8,
+      "weight_hg": 150,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 84,
@@ -7633,8 +8370,14 @@
         "飞行"
       ],
       "abilities": [
-        "逃跑",
-        "早起"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "早起",
+          "intro": "即使变为睡眠状态,也能以2倍的速度提早醒来。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -7706,7 +8449,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/84.ogg",
-      "artwork": "raw/art/84.png"
+      "artwork": "raw/art/84.png",
+      "height_dm": 14,
+      "weight_hg": 392,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 85,
@@ -7720,8 +8467,14 @@
         "飞行"
       ],
       "abilities": [
-        "逃跑",
-        "早起"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "早起",
+          "intro": "即使变为睡眠状态,也能以2倍的速度提早醒来。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -7793,7 +8546,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/85.ogg",
-      "artwork": "raw/art/85.png"
+      "artwork": "raw/art/85.png",
+      "height_dm": 18,
+      "weight_hg": 852,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 86,
@@ -7806,8 +8563,14 @@
         "水"
       ],
       "abilities": [
-        "厚脂肪",
-        "湿润之躯"
+        {
+          "zh": "厚脂肪",
+          "intro": "因为被厚厚的脂肪保护着,会让火属性和冰属性的招式伤害减半。"
+        },
+        {
+          "zh": "湿润之躯",
+          "intro": "下雨天气时,异常状态会治愈。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -7874,7 +8637,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/86.ogg",
-      "artwork": "raw/art/86.png"
+      "artwork": "raw/art/86.png",
+      "height_dm": 11,
+      "weight_hg": 900,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 87,
@@ -7888,8 +8655,14 @@
         "冰"
       ],
       "abilities": [
-        "厚脂肪",
-        "湿润之躯"
+        {
+          "zh": "厚脂肪",
+          "intro": "因为被厚厚的脂肪保护着,会让火属性和冰属性的招式伤害减半。"
+        },
+        {
+          "zh": "湿润之躯",
+          "intro": "下雨天气时,异常状态会治愈。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -7966,7 +8739,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/87.ogg",
-      "artwork": "raw/art/87.png"
+      "artwork": "raw/art/87.png",
+      "height_dm": 17,
+      "weight_hg": 1200,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 88,
@@ -7979,8 +8756,14 @@
         "毒"
       ],
       "abilities": [
-        "恶臭",
-        "黏着"
+        {
+          "zh": "恶臭",
+          "intro": "通过释放臭臭的气味,在攻击的时候,有时会使对手畏缩。"
+        },
+        {
+          "zh": "黏着",
+          "intro": "因为道具是粘在黏性身体上的,所以不会被对手夺走。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -8057,7 +8840,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/88.ogg",
-      "artwork": "raw/art/88.png"
+      "artwork": "raw/art/88.png",
+      "height_dm": 9,
+      "weight_hg": 300,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 89,
@@ -8070,8 +8857,14 @@
         "毒"
       ],
       "abilities": [
-        "恶臭",
-        "黏着"
+        {
+          "zh": "恶臭",
+          "intro": "通过释放臭臭的气味,在攻击的时候,有时会使对手畏缩。"
+        },
+        {
+          "zh": "黏着",
+          "intro": "因为道具是粘在黏性身体上的,所以不会被对手夺走。"
+        }
       ],
       "stats": {
         "hp": 105,
@@ -8148,7 +8941,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/89.ogg",
-      "artwork": "raw/art/89.png"
+      "artwork": "raw/art/89.png",
+      "height_dm": 12,
+      "weight_hg": 300,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 90,
@@ -8161,8 +8958,14 @@
         "水"
       ],
       "abilities": [
-        "硬壳盔甲",
-        "连续攻击"
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        },
+        {
+          "zh": "连续攻击",
+          "intro": "如果使用连续招式,总是能使出最高次数。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -8234,7 +9037,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/90.ogg",
-      "artwork": "raw/art/90.png"
+      "artwork": "raw/art/90.png",
+      "height_dm": 3,
+      "weight_hg": 40,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 91,
@@ -8248,8 +9055,14 @@
         "冰"
       ],
       "abilities": [
-        "硬壳盔甲",
-        "连续攻击"
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        },
+        {
+          "zh": "连续攻击",
+          "intro": "如果使用连续招式,总是能使出最高次数。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -8311,7 +9124,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/91.ogg",
-      "artwork": "raw/art/91.png"
+      "artwork": "raw/art/91.png",
+      "height_dm": 15,
+      "weight_hg": 1325,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 92,
@@ -8325,7 +9142,10 @@
         "毒"
       ],
       "abilities": [
-        "飘浮"
+        {
+          "zh": "飘浮",
+          "intro": "从地面浮起,从而不会受到地面属性招式的攻击。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -8413,7 +9233,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/92.ogg",
-      "artwork": "raw/art/92.png"
+      "artwork": "raw/art/92.png",
+      "height_dm": 13,
+      "weight_hg": 1,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 93,
@@ -8427,7 +9251,10 @@
         "毒"
       ],
       "abilities": [
-        "飘浮"
+        {
+          "zh": "飘浮",
+          "intro": "从地面浮起,从而不会受到地面属性招式的攻击。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -8520,7 +9347,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/93.ogg",
-      "artwork": "raw/art/93.png"
+      "artwork": "raw/art/93.png",
+      "height_dm": 16,
+      "weight_hg": 1,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 94,
@@ -8534,7 +9365,10 @@
         "毒"
       ],
       "abilities": [
-        "诅咒之躯"
+        {
+          "zh": "诅咒之躯",
+          "intro": "受到攻击时,有时会把对手的招式变为定身法状态。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -8627,7 +9461,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/94.ogg",
-      "artwork": "raw/art/94.png"
+      "artwork": "raw/art/94.png",
+      "height_dm": 15,
+      "weight_hg": 405,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 95,
@@ -8641,8 +9479,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "结实"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "结实",
+          "intro": "即使受到对手的招式攻击,也不会被一击打倒。一击必杀的招式也没有效果。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -8723,7 +9567,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/95.ogg",
-      "artwork": "raw/art/95.png"
+      "artwork": "raw/art/95.png",
+      "height_dm": 88,
+      "weight_hg": 2100,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 96,
@@ -8736,8 +9584,14 @@
         "超能力"
       ],
       "abilities": [
-        "不眠",
-        "预知梦"
+        {
+          "zh": "不眠",
+          "intro": "因为是不会睡觉的体质,所以不会变为睡眠状态。"
+        },
+        {
+          "zh": "预知梦",
+          "intro": "出场时,只读取1个对手拥有的招式。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -8819,7 +9673,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/96.ogg",
-      "artwork": "raw/art/96.png"
+      "artwork": "raw/art/96.png",
+      "height_dm": 10,
+      "weight_hg": 324,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 97,
@@ -8832,8 +9690,14 @@
         "超能力"
       ],
       "abilities": [
-        "不眠",
-        "预知梦"
+        {
+          "zh": "不眠",
+          "intro": "因为是不会睡觉的体质,所以不会变为睡眠状态。"
+        },
+        {
+          "zh": "预知梦",
+          "intro": "出场时,只读取1个对手拥有的招式。"
+        }
       ],
       "stats": {
         "hp": 85,
@@ -8920,7 +9784,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/97.ogg",
-      "artwork": "raw/art/97.png"
+      "artwork": "raw/art/97.png",
+      "height_dm": 16,
+      "weight_hg": 756,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 98,
@@ -8933,8 +9801,14 @@
         "水"
       ],
       "abilities": [
-        "怪力钳",
-        "硬壳盔甲"
+        {
+          "zh": "怪力钳",
+          "intro": "因为拥有以力量自豪的钳子,不会被对手降低攻击。"
+        },
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -9011,7 +9885,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/98.ogg",
-      "artwork": "raw/art/98.png"
+      "artwork": "raw/art/98.png",
+      "height_dm": 4,
+      "weight_hg": 65,
+      "catch_rate": 225,
+      "gender_rate": 4
     },
     {
       "id": 99,
@@ -9024,8 +9902,14 @@
         "水"
       ],
       "abilities": [
-        "怪力钳",
-        "硬壳盔甲"
+        {
+          "zh": "怪力钳",
+          "intro": "因为拥有以力量自豪的钳子,不会被对手降低攻击。"
+        },
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -9107,7 +9991,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/99.ogg",
-      "artwork": "raw/art/99.png"
+      "artwork": "raw/art/99.png",
+      "height_dm": 13,
+      "weight_hg": 600,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 100,
@@ -9120,8 +10008,14 @@
         "电"
       ],
       "abilities": [
-        "隔音",
-        "静电"
+        {
+          "zh": "隔音",
+          "intro": "通过屏蔽声音,不受到声音招式的攻击。"
+        },
+        {
+          "zh": "静电",
+          "intro": "身上带有静电,有时会让接触到的对手麻痹。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -9203,7 +10097,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/100.ogg",
-      "artwork": "raw/art/100.png"
+      "artwork": "raw/art/100.png",
+      "height_dm": 5,
+      "weight_hg": 104,
+      "catch_rate": 190,
+      "gender_rate": -1
     },
     {
       "id": 101,
@@ -9216,8 +10114,14 @@
         "电"
       ],
       "abilities": [
-        "隔音",
-        "静电"
+        {
+          "zh": "隔音",
+          "intro": "通过屏蔽声音,不受到声音招式的攻击。"
+        },
+        {
+          "zh": "静电",
+          "intro": "身上带有静电,有时会让接触到的对手麻痹。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -9299,7 +10203,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/101.ogg",
-      "artwork": "raw/art/101.png"
+      "artwork": "raw/art/101.png",
+      "height_dm": 12,
+      "weight_hg": 666,
+      "catch_rate": 60,
+      "gender_rate": -1
     },
     {
       "id": 102,
@@ -9313,7 +10221,10 @@
         "超能力"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -9390,7 +10301,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/102.ogg",
-      "artwork": "raw/art/102.png"
+      "artwork": "raw/art/102.png",
+      "height_dm": 4,
+      "weight_hg": 25,
+      "catch_rate": 90,
+      "gender_rate": 4
     },
     {
       "id": 103,
@@ -9404,7 +10319,10 @@
         "超能力"
       ],
       "abilities": [
-        "叶绿素"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 95,
@@ -9456,7 +10374,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/103.ogg",
-      "artwork": "raw/art/103.png"
+      "artwork": "raw/art/103.png",
+      "height_dm": 20,
+      "weight_hg": 1200,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 104,
@@ -9469,8 +10391,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "避雷针"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "避雷针",
+          "intro": "将电属性的招式吸引到自己身上,不会受到伤害,而是会提高特攻。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -9557,7 +10485,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/104.ogg",
-      "artwork": "raw/art/104.png"
+      "artwork": "raw/art/104.png",
+      "height_dm": 4,
+      "weight_hg": 65,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 105,
@@ -9570,8 +10502,14 @@
         "地面"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "避雷针"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "避雷针",
+          "intro": "将电属性的招式吸引到自己身上,不会受到伤害,而是会提高特攻。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -9658,7 +10596,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/105.ogg",
-      "artwork": "raw/art/105.png"
+      "artwork": "raw/art/105.png",
+      "height_dm": 10,
+      "weight_hg": 450,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 106,
@@ -9671,8 +10613,14 @@
         "格斗"
       ],
       "abilities": [
-        "柔软",
-        "舍身"
+        {
+          "zh": "柔软",
+          "intro": "因为身体柔软,不会变为麻痹状态。"
+        },
+        {
+          "zh": "舍身",
+          "intro": "自己会因反作用力受伤的招式,其威力会提高。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -9764,7 +10712,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/106.ogg",
-      "artwork": "raw/art/106.png"
+      "artwork": "raw/art/106.png",
+      "height_dm": 15,
+      "weight_hg": 498,
+      "catch_rate": 45,
+      "gender_rate": 0
     },
     {
       "id": 107,
@@ -9777,8 +10729,14 @@
         "格斗"
       ],
       "abilities": [
-        "锐利目光",
-        "铁拳"
+        {
+          "zh": "锐利目光",
+          "intro": "多亏了锐利的目光,命中率不会被降低。"
+        },
+        {
+          "zh": "铁拳",
+          "intro": "使用拳类招式的威力会提高。"
+        }
       ],
       "stats": {
         "hp": 50,
@@ -9865,7 +10823,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/107.ogg",
-      "artwork": "raw/art/107.png"
+      "artwork": "raw/art/107.png",
+      "height_dm": 14,
+      "weight_hg": 502,
+      "catch_rate": 45,
+      "gender_rate": 0
     },
     {
       "id": 108,
@@ -9878,8 +10840,14 @@
         "一般"
       ],
       "abilities": [
-        "我行我素",
-        "迟钝"
+        {
+          "zh": "我行我素",
+          "intro": "因为我行我素,不会变为混乱状态。"
+        },
+        {
+          "zh": "迟钝",
+          "intro": "因为感觉迟钝,不会变为着迷和被挑衅状态。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -9950,7 +10918,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/108.ogg",
-      "artwork": "raw/art/108.png"
+      "artwork": "raw/art/108.png",
+      "height_dm": 12,
+      "weight_hg": 655,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 109,
@@ -9963,8 +10935,14 @@
         "毒"
       ],
       "abilities": [
-        "飘浮",
-        "化学变化气体"
+        {
+          "zh": "飘浮",
+          "intro": "从地面浮起,从而不会受到地面属性招式的攻击。"
+        },
+        {
+          "zh": "化学变化气体",
+          "intro": "特性为化学变化气体的宝可梦在场时,场上所有宝可梦的特性效果都会消失或者无法生效。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -10041,7 +11019,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/109.ogg",
-      "artwork": "raw/art/109.png"
+      "artwork": "raw/art/109.png",
+      "height_dm": 6,
+      "weight_hg": 10,
+      "catch_rate": 190,
+      "gender_rate": 4
     },
     {
       "id": 110,
@@ -10054,8 +11036,14 @@
         "毒"
       ],
       "abilities": [
-        "飘浮",
-        "化学变化气体"
+        {
+          "zh": "飘浮",
+          "intro": "从地面浮起,从而不会受到地面属性招式的攻击。"
+        },
+        {
+          "zh": "化学变化气体",
+          "intro": "特性为化学变化气体的宝可梦在场时,场上所有宝可梦的特性效果都会消失或者无法生效。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -10132,7 +11120,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/110.ogg",
-      "artwork": "raw/art/110.png"
+      "artwork": "raw/art/110.png",
+      "height_dm": 12,
+      "weight_hg": 95,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 111,
@@ -10146,8 +11138,14 @@
         "岩石"
       ],
       "abilities": [
-        "避雷针",
-        "坚硬脑袋"
+        {
+          "zh": "避雷针",
+          "intro": "将电属性的招式吸引到自己身上,不会受到伤害,而是会提高特攻。"
+        },
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -10229,7 +11227,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/111.ogg",
-      "artwork": "raw/art/111.png"
+      "artwork": "raw/art/111.png",
+      "height_dm": 10,
+      "weight_hg": 1150,
+      "catch_rate": 120,
+      "gender_rate": 4
     },
     {
       "id": 112,
@@ -10243,8 +11245,14 @@
         "岩石"
       ],
       "abilities": [
-        "避雷针",
-        "坚硬脑袋"
+        {
+          "zh": "避雷针",
+          "intro": "将电属性的招式吸引到自己身上,不会受到伤害,而是会提高特攻。"
+        },
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        }
       ],
       "stats": {
         "hp": 105,
@@ -10326,7 +11334,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/112.ogg",
-      "artwork": "raw/art/112.png"
+      "artwork": "raw/art/112.png",
+      "height_dm": 19,
+      "weight_hg": 1200,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 113,
@@ -10339,8 +11351,14 @@
         "一般"
       ],
       "abilities": [
-        "自然回复",
-        "天恩"
+        {
+          "zh": "自然回复",
+          "intro": "回到同行队伍后,异常状态就会被治愈。"
+        },
+        {
+          "zh": "天恩",
+          "intro": "托天恩的福,招式的追加效果容易出现。"
+        }
       ],
       "stats": {
         "hp": 250,
@@ -10421,7 +11439,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/113.ogg",
-      "artwork": "raw/art/113.png"
+      "artwork": "raw/art/113.png",
+      "height_dm": 11,
+      "weight_hg": 346,
+      "catch_rate": 30,
+      "gender_rate": 8
     },
     {
       "id": 114,
@@ -10434,8 +11456,14 @@
         "草"
       ],
       "abilities": [
-        "叶绿素",
-        "叶子防守"
+        {
+          "zh": "叶绿素",
+          "intro": "晴朗天气时,速度会提高。"
+        },
+        {
+          "zh": "叶子防守",
+          "intro": "晴朗天气时,不会变为异常状态。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -10516,7 +11544,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/114.ogg",
-      "artwork": "raw/art/114.png"
+      "artwork": "raw/art/114.png",
+      "height_dm": 10,
+      "weight_hg": 350,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 115,
@@ -10529,8 +11561,14 @@
         "一般"
       ],
       "abilities": [
-        "早起",
-        "胆量"
+        {
+          "zh": "早起",
+          "intro": "即使变为睡眠状态,也能以2倍的速度提早醒来。"
+        },
+        {
+          "zh": "胆量",
+          "intro": "一般属性和格斗属性的招式可以击中幽灵属性的宝可梦。"
+        }
       ],
       "stats": {
         "hp": 105,
@@ -10601,7 +11639,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/115.ogg",
-      "artwork": "raw/art/115.png"
+      "artwork": "raw/art/115.png",
+      "height_dm": 22,
+      "weight_hg": 800,
+      "catch_rate": 45,
+      "gender_rate": 8
     },
     {
       "id": 116,
@@ -10614,8 +11656,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "狙击手"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "狙击手",
+          "intro": "击中要害时,威力会变得更强。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -10682,7 +11730,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/116.ogg",
-      "artwork": "raw/art/116.png"
+      "artwork": "raw/art/116.png",
+      "height_dm": 4,
+      "weight_hg": 80,
+      "catch_rate": 225,
+      "gender_rate": 4
     },
     {
       "id": 117,
@@ -10695,8 +11747,14 @@
         "水"
       ],
       "abilities": [
-        "毒刺",
-        "狙击手"
+        {
+          "zh": "毒刺",
+          "intro": "有时会让接触到自己的对手变为中毒状态。"
+        },
+        {
+          "zh": "狙击手",
+          "intro": "击中要害时,威力会变得更强。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -10763,7 +11821,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/117.ogg",
-      "artwork": "raw/art/117.png"
+      "artwork": "raw/art/117.png",
+      "height_dm": 12,
+      "weight_hg": 250,
+      "catch_rate": 75,
+      "gender_rate": 4
     },
     {
       "id": 118,
@@ -10776,8 +11838,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "水幕"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "水幕",
+          "intro": "将水幕裹在身上,不会变为灼伤状态。"
+        }
       ],
       "stats": {
         "hp": 45,
@@ -10859,7 +11927,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/118.ogg",
-      "artwork": "raw/art/118.png"
+      "artwork": "raw/art/118.png",
+      "height_dm": 6,
+      "weight_hg": 150,
+      "catch_rate": 225,
+      "gender_rate": 4
     },
     {
       "id": 119,
@@ -10872,8 +11944,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "水幕"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "水幕",
+          "intro": "将水幕裹在身上,不会变为灼伤状态。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -10955,7 +12033,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/119.ogg",
-      "artwork": "raw/art/119.png"
+      "artwork": "raw/art/119.png",
+      "height_dm": 13,
+      "weight_hg": 390,
+      "catch_rate": 60,
+      "gender_rate": 4
     },
     {
       "id": 120,
@@ -10968,8 +12050,14 @@
         "水"
       ],
       "abilities": [
-        "发光",
-        "自然回复"
+        {
+          "zh": "发光",
+          "intro": "通过让周围变亮,变得容易遇到野生的宝可梦。"
+        },
+        {
+          "zh": "自然回复",
+          "intro": "回到同行队伍后,异常状态就会被治愈。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -11056,7 +12144,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/120.ogg",
-      "artwork": "raw/art/120.png"
+      "artwork": "raw/art/120.png",
+      "height_dm": 8,
+      "weight_hg": 345,
+      "catch_rate": 225,
+      "gender_rate": -1
     },
     {
       "id": 121,
@@ -11070,8 +12162,14 @@
         "超能力"
       ],
       "abilities": [
-        "发光",
-        "自然回复"
+        {
+          "zh": "发光",
+          "intro": "通过让周围变亮,变得容易遇到野生的宝可梦。"
+        },
+        {
+          "zh": "自然回复",
+          "intro": "回到同行队伍后,异常状态就会被治愈。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -11133,7 +12231,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/121.ogg",
-      "artwork": "raw/art/121.png"
+      "artwork": "raw/art/121.png",
+      "height_dm": 11,
+      "weight_hg": 800,
+      "catch_rate": 60,
+      "gender_rate": -1
     },
     {
       "id": 122,
@@ -11147,8 +12249,14 @@
         "妖精"
       ],
       "abilities": [
-        "隔音",
-        "过滤"
+        {
+          "zh": "隔音",
+          "intro": "通过屏蔽声音,不受到声音招式的攻击。"
+        },
+        {
+          "zh": "过滤",
+          "intro": "受到效果绝佳的攻击时,可以减弱其威力。"
+        }
       ],
       "stats": {
         "hp": 40,
@@ -11249,7 +12357,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/122.ogg",
-      "artwork": "raw/art/122.png"
+      "artwork": "raw/art/122.png",
+      "height_dm": 13,
+      "weight_hg": 545,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 123,
@@ -11263,8 +12375,14 @@
         "飞行"
       ],
       "abilities": [
-        "虫之预感",
-        "技术高手"
+        {
+          "zh": "虫之预感",
+          "intro": "HP减少的时候,虫属性的招式威力会提高。"
+        },
+        {
+          "zh": "技术高手",
+          "intro": "攻击时可以将低威力招式的威力提高。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -11340,7 +12458,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/123.ogg",
-      "artwork": "raw/art/123.png"
+      "artwork": "raw/art/123.png",
+      "height_dm": 15,
+      "weight_hg": 560,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 124,
@@ -11354,8 +12476,14 @@
         "超能力"
       ],
       "abilities": [
-        "迟钝",
-        "预知梦"
+        {
+          "zh": "迟钝",
+          "intro": "因为感觉迟钝,不会变为着迷和被挑衅状态。"
+        },
+        {
+          "zh": "预知梦",
+          "intro": "出场时,只读取1个对手拥有的招式。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -11436,7 +12564,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/124.ogg",
-      "artwork": "raw/art/124.png"
+      "artwork": "raw/art/124.png",
+      "height_dm": 14,
+      "weight_hg": 406,
+      "catch_rate": 45,
+      "gender_rate": 8
     },
     {
       "id": 125,
@@ -11449,7 +12581,10 @@
         "电"
       ],
       "abilities": [
-        "静电"
+        {
+          "zh": "静电",
+          "intro": "身上带有静电,有时会让接触到的对手麻痹。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -11515,7 +12650,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/125.ogg",
-      "artwork": "raw/art/125.png"
+      "artwork": "raw/art/125.png",
+      "height_dm": 11,
+      "weight_hg": 300,
+      "catch_rate": 45,
+      "gender_rate": 2
     },
     {
       "id": 126,
@@ -11528,7 +12667,10 @@
         "火"
       ],
       "abilities": [
-        "火焰之躯"
+        {
+          "zh": "火焰之躯",
+          "intro": "有时会让接触到自己的对手变为灼伤状态。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -11594,7 +12736,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/126.ogg",
-      "artwork": "raw/art/126.png"
+      "artwork": "raw/art/126.png",
+      "height_dm": 13,
+      "weight_hg": 445,
+      "catch_rate": 45,
+      "gender_rate": 2
     },
     {
       "id": 127,
@@ -11607,8 +12753,14 @@
         "虫"
       ],
       "abilities": [
-        "怪力钳",
-        "破格"
+        {
+          "zh": "怪力钳",
+          "intro": "因为拥有以力量自豪的钳子,不会被对手降低攻击。"
+        },
+        {
+          "zh": "破格",
+          "intro": "可以不受对手特性的干扰,向对手使出招式。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -11684,7 +12836,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/127.ogg",
-      "artwork": "raw/art/127.png"
+      "artwork": "raw/art/127.png",
+      "height_dm": 15,
+      "weight_hg": 550,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 128,
@@ -11697,8 +12853,14 @@
         "一般"
       ],
       "abilities": [
-        "威吓",
-        "愤怒穴位"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        },
+        {
+          "zh": "愤怒穴位",
+          "intro": "要害被击中时,会大发雷霆,攻击力变为最大。"
+        }
       ],
       "stats": {
         "hp": 75,
@@ -11779,7 +12941,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/128.ogg",
-      "artwork": "raw/art/128.png"
+      "artwork": "raw/art/128.png",
+      "height_dm": 14,
+      "weight_hg": 884,
+      "catch_rate": 45,
+      "gender_rate": 0
     },
     {
       "id": 129,
@@ -11792,7 +12958,10 @@
         "水"
       ],
       "abilities": [
-        "悠游自如"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        }
       ],
       "stats": {
         "hp": 20,
@@ -11834,7 +13003,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/129.ogg",
-      "artwork": "raw/art/129.png"
+      "artwork": "raw/art/129.png",
+      "height_dm": 9,
+      "weight_hg": 100,
+      "catch_rate": 255,
+      "gender_rate": 4
     },
     {
       "id": 130,
@@ -11848,7 +13021,10 @@
         "飞行"
       ],
       "abilities": [
-        "威吓"
+        {
+          "zh": "威吓",
+          "intro": "出场时威吓对手,让其退缩,降低对手的攻击。"
+        }
       ],
       "stats": {
         "hp": 95,
@@ -11925,7 +13101,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/130.ogg",
-      "artwork": "raw/art/130.png"
+      "artwork": "raw/art/130.png",
+      "height_dm": 65,
+      "weight_hg": 2350,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 131,
@@ -11939,8 +13119,14 @@
         "冰"
       ],
       "abilities": [
-        "储水",
-        "硬壳盔甲"
+        {
+          "zh": "储水",
+          "intro": "受到水属性的招式攻击时,不会受到伤害,而是会回复。"
+        },
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        }
       ],
       "stats": {
         "hp": 130,
@@ -12021,7 +13207,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/131.ogg",
-      "artwork": "raw/art/131.png"
+      "artwork": "raw/art/131.png",
+      "height_dm": 25,
+      "weight_hg": 2200,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 132,
@@ -12034,7 +13224,10 @@
         "一般"
       ],
       "abilities": [
-        "柔软"
+        {
+          "zh": "柔软",
+          "intro": "因为身体柔软,不会变为麻痹状态。"
+        }
       ],
       "stats": {
         "hp": 48,
@@ -12060,7 +13253,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/132.ogg",
-      "artwork": "raw/art/132.png"
+      "artwork": "raw/art/132.png",
+      "height_dm": 3,
+      "weight_hg": 40,
+      "catch_rate": 35,
+      "gender_rate": -1
     },
     {
       "id": 133,
@@ -12073,8 +13270,14 @@
         "一般"
       ],
       "abilities": [
-        "逃跑",
-        "适应力"
+        {
+          "zh": "逃跑",
+          "intro": "一定能从野生宝可梦那儿逃走。"
+        },
+        {
+          "zh": "适应力",
+          "intro": "与自身同属性的招式威力会提高。"
+        }
       ],
       "stats": {
         "hp": 55,
@@ -12163,7 +13366,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/133.ogg",
-      "artwork": "raw/art/133.png"
+      "artwork": "raw/art/133.png",
+      "height_dm": 3,
+      "weight_hg": 65,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 134,
@@ -12176,7 +13383,10 @@
         "水"
       ],
       "abilities": [
-        "储水"
+        {
+          "zh": "储水",
+          "intro": "受到水属性的招式攻击时,不会受到伤害,而是会回复。"
+        }
       ],
       "stats": {
         "hp": 130,
@@ -12275,7 +13485,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/134.ogg",
-      "artwork": "raw/art/134.png"
+      "artwork": "raw/art/134.png",
+      "height_dm": 10,
+      "weight_hg": 290,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 135,
@@ -12288,7 +13502,10 @@
         "电"
       ],
       "abilities": [
-        "蓄电"
+        {
+          "zh": "蓄电",
+          "intro": "受到电属性的招式攻击时,不会受到伤害,而是会回复。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -12382,7 +13599,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/135.ogg",
-      "artwork": "raw/art/135.png"
+      "artwork": "raw/art/135.png",
+      "height_dm": 8,
+      "weight_hg": 245,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 136,
@@ -12395,7 +13616,10 @@
         "火"
       ],
       "abilities": [
-        "引火"
+        {
+          "zh": "引火",
+          "intro": "受到火属性的招式攻击时,吸收火焰,自己使出的火属性招式会变强。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -12494,7 +13718,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/136.ogg",
-      "artwork": "raw/art/136.png"
+      "artwork": "raw/art/136.png",
+      "height_dm": 9,
+      "weight_hg": 250,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 137,
@@ -12507,8 +13735,14 @@
         "一般"
       ],
       "abilities": [
-        "复制",
-        "下载"
+        {
+          "zh": "复制",
+          "intro": "出场时,复制对手的特性,变为与之相同的特性。"
+        },
+        {
+          "zh": "下载",
+          "intro": "比较对手的防御和特防,根据较低的那项能力相应地提高自己的攻击或特攻。"
+        }
       ],
       "stats": {
         "hp": 65,
@@ -12584,7 +13818,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/137.ogg",
-      "artwork": "raw/art/137.png"
+      "artwork": "raw/art/137.png",
+      "height_dm": 8,
+      "weight_hg": 365,
+      "catch_rate": 45,
+      "gender_rate": -1
     },
     {
       "id": 138,
@@ -12598,8 +13836,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "硬壳盔甲"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        }
       ],
       "stats": {
         "hp": 35,
@@ -12686,7 +13930,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/138.ogg",
-      "artwork": "raw/art/138.png"
+      "artwork": "raw/art/138.png",
+      "height_dm": 4,
+      "weight_hg": 75,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 139,
@@ -12700,8 +13948,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "硬壳盔甲"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "硬壳盔甲",
+          "intro": "被坚硬的壳保护着,对手的攻击不会击中要害。"
+        }
       ],
       "stats": {
         "hp": 70,
@@ -12788,7 +14042,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/139.ogg",
-      "artwork": "raw/art/139.png"
+      "artwork": "raw/art/139.png",
+      "height_dm": 10,
+      "weight_hg": 350,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 140,
@@ -12802,8 +14060,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "战斗盔甲"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "战斗盔甲",
+          "intro": "被坚硬的甲壳守护着,不会被对手的攻击击中要害。"
+        }
       ],
       "stats": {
         "hp": 30,
@@ -12890,7 +14154,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/140.ogg",
-      "artwork": "raw/art/140.png"
+      "artwork": "raw/art/140.png",
+      "height_dm": 5,
+      "weight_hg": 115,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 141,
@@ -12904,8 +14172,14 @@
         "水"
       ],
       "abilities": [
-        "悠游自如",
-        "战斗盔甲"
+        {
+          "zh": "悠游自如",
+          "intro": "下雨天气时,速度会提高。"
+        },
+        {
+          "zh": "战斗盔甲",
+          "intro": "被坚硬的甲壳守护着,不会被对手的攻击击中要害。"
+        }
       ],
       "stats": {
         "hp": 60,
@@ -12997,7 +14271,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/141.ogg",
-      "artwork": "raw/art/141.png"
+      "artwork": "raw/art/141.png",
+      "height_dm": 13,
+      "weight_hg": 405,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 142,
@@ -13011,8 +14289,14 @@
         "飞行"
       ],
       "abilities": [
-        "坚硬脑袋",
-        "压迫感"
+        {
+          "zh": "坚硬脑袋",
+          "intro": "即使使出会受反作用力伤害的招式,HP也不会减少。"
+        },
+        {
+          "zh": "压迫感",
+          "intro": "给予对手压迫感,大量减少其使用招式的PP。"
+        }
       ],
       "stats": {
         "hp": 80,
@@ -13073,7 +14357,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/142.ogg",
-      "artwork": "raw/art/142.png"
+      "artwork": "raw/art/142.png",
+      "height_dm": 18,
+      "weight_hg": 590,
+      "catch_rate": 45,
+      "gender_rate": 1
     },
     {
       "id": 143,
@@ -13086,8 +14374,14 @@
         "一般"
       ],
       "abilities": [
-        "免疫",
-        "厚脂肪"
+        {
+          "zh": "免疫",
+          "intro": "因为体内拥有免疫能力,不会变为中毒状态。"
+        },
+        {
+          "zh": "厚脂肪",
+          "intro": "因为被厚厚的脂肪保护着,会让火属性和冰属性的招式伤害减半。"
+        }
       ],
       "stats": {
         "hp": 160,
@@ -13188,7 +14482,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/143.ogg",
-      "artwork": "raw/art/143.png"
+      "artwork": "raw/art/143.png",
+      "height_dm": 21,
+      "weight_hg": 4600,
+      "catch_rate": 25,
+      "gender_rate": 1
     },
     {
       "id": 144,
@@ -13202,7 +14500,10 @@
         "飞行"
       ],
       "abilities": [
-        "压迫感"
+        {
+          "zh": "压迫感",
+          "intro": "给予对手压迫感,大量减少其使用招式的PP。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -13273,7 +14574,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/144.ogg",
-      "artwork": "raw/art/144.png"
+      "artwork": "raw/art/144.png",
+      "height_dm": 17,
+      "weight_hg": 554,
+      "catch_rate": 3,
+      "gender_rate": -1
     },
     {
       "id": 145,
@@ -13287,7 +14592,10 @@
         "飞行"
       ],
       "abilities": [
-        "压迫感"
+        {
+          "zh": "压迫感",
+          "intro": "给予对手压迫感,大量减少其使用招式的PP。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -13353,7 +14661,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/145.ogg",
-      "artwork": "raw/art/145.png"
+      "artwork": "raw/art/145.png",
+      "height_dm": 16,
+      "weight_hg": 526,
+      "catch_rate": 3,
+      "gender_rate": -1
     },
     {
       "id": 146,
@@ -13367,7 +14679,10 @@
         "飞行"
       ],
       "abilities": [
-        "压迫感"
+        {
+          "zh": "压迫感",
+          "intro": "给予对手压迫感,大量减少其使用招式的PP。"
+        }
       ],
       "stats": {
         "hp": 90,
@@ -13443,7 +14758,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/146.ogg",
-      "artwork": "raw/art/146.png"
+      "artwork": "raw/art/146.png",
+      "height_dm": 20,
+      "weight_hg": 600,
+      "catch_rate": 3,
+      "gender_rate": -1
     },
     {
       "id": 147,
@@ -13456,7 +14775,10 @@
         "龙"
       ],
       "abilities": [
-        "蜕皮"
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 41,
@@ -13539,7 +14861,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/147.ogg",
-      "artwork": "raw/art/147.png"
+      "artwork": "raw/art/147.png",
+      "height_dm": 18,
+      "weight_hg": 33,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 148,
@@ -13552,7 +14878,10 @@
         "龙"
       ],
       "abilities": [
-        "蜕皮"
+        {
+          "zh": "蜕皮",
+          "intro": "通过蜕去身上的皮,有时会治愈异常状态。"
+        }
       ],
       "stats": {
         "hp": 61,
@@ -13635,7 +14964,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/148.ogg",
-      "artwork": "raw/art/148.png"
+      "artwork": "raw/art/148.png",
+      "height_dm": 40,
+      "weight_hg": 165,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 149,
@@ -13649,7 +14982,10 @@
         "飞行"
       ],
       "abilities": [
-        "精神力"
+        {
+          "zh": "精神力",
+          "intro": "通过锻炼精神,不会因对手的攻击而畏缩。"
+        }
       ],
       "stats": {
         "hp": 91,
@@ -13737,7 +15073,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/149.ogg",
-      "artwork": "raw/art/149.png"
+      "artwork": "raw/art/149.png",
+      "height_dm": 22,
+      "weight_hg": 2100,
+      "catch_rate": 45,
+      "gender_rate": 4
     },
     {
       "id": 150,
@@ -13750,7 +15090,10 @@
         "超能力"
       ],
       "abilities": [
-        "压迫感"
+        {
+          "zh": "压迫感",
+          "intro": "给予对手压迫感,大量减少其使用招式的PP。"
+        }
       ],
       "stats": {
         "hp": 106,
@@ -13826,7 +15169,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/150.ogg",
-      "artwork": "raw/art/150.png"
+      "artwork": "raw/art/150.png",
+      "height_dm": 20,
+      "weight_hg": 1220,
+      "catch_rate": 3,
+      "gender_rate": -1
     },
     {
       "id": 151,
@@ -13839,7 +15186,10 @@
         "超能力"
       ],
       "abilities": [
-        "同步"
+        {
+          "zh": "同步",
+          "intro": "将自己的中毒、麻痹或灼伤状态传染给对手。"
+        }
       ],
       "stats": {
         "hp": 100,
@@ -13890,7 +15240,11 @@
         }
       ],
       "cry": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/151.ogg",
-      "artwork": "raw/art/151.png"
+      "artwork": "raw/art/151.png",
+      "height_dm": 4,
+      "weight_hg": 40,
+      "catch_rate": 45,
+      "gender_rate": -1
     }
   ]
 }

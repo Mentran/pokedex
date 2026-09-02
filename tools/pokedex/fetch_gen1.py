@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -60,11 +61,22 @@ def lang_field(entries: list, lang: str, field: str):
 
 
 def clean_text(text: str) -> str:
-    return "".join(text.replace("\u000c", " ").split())
+    return "".join(unicodedata.normalize("NFKC", text.replace("\u000c", " ")).split())
 
 
 def species_id_from_url(url: str) -> int:
     return int(url.rstrip("/").split("/")[-1])
+
+
+def ability_intro(data: dict) -> str:
+    for lang in ("zh-hans", "en"):
+        for entry in data.get("flavor_text_entries", []):
+            if entry.get("language", {}).get("name") != lang:
+                continue
+            text = clean_text(entry.get("flavor_text") or "")
+            if text:
+                return text
+    return ""
 
 
 def flavor_texts(species: dict) -> list[str]:
@@ -239,13 +251,24 @@ def main() -> int:
                 "category": lang_field(species.get("genera", []), "zh-hans", "genus") or "",
                 "intro": flavors[0] if flavors else "",
                 "trivia": flavors[1] if len(flavors) > 1 else "",
+                "height_dm": int(pokemon.get("height") or 0),
+                "weight_hg": int(pokemon.get("weight") or 0),
+                "catch_rate": int(species.get("capture_rate") or 0),
+                "gender_rate": int(species.get("gender_rate") if species.get("gender_rate") is not None else -1),
                 "types": [
                     TYPE_ZH.get(slot["type"]["name"], slot["type"]["name"])
                     for slot in pokemon["types"]
                 ],
                 "abilities": [
-                    lang_field(abilities[item["ability"]["url"]].get("names", []), "zh-hans", "name")
-                    or abilities[item["ability"]["url"]]["name"]
+                    {
+                        "zh": lang_field(
+                            abilities[item["ability"]["url"]].get("names", []),
+                            "zh-hans",
+                            "name",
+                        )
+                        or abilities[item["ability"]["url"]]["name"],
+                        "intro": ability_intro(abilities[item["ability"]["url"]]),
+                    }
                     for item in pokemon.get("abilities", [])
                     if not item.get("is_hidden")
                 ],

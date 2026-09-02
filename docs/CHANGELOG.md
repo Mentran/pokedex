@@ -12,6 +12,11 @@
 - Stats page now shows the six-stat total. The moves page lists every
   Generation I level-up move. A matchup page shows 2x / 0.5x / 0 attacking and
   defending types.
+- Cover shows height, weight, and gender ratio. Catch rate stays in the catalog
+  but is hidden on screen. The bio page adds a second dex sentence when it
+  differs from the first. The stats page labels abilities explicitly. Matchup
+  types use colored chips on one page; Up / Down scrolls when the list overflows. World facts are a dedicated home item with at least
+  100 sentences and no visible index. Move power and move flavor stay omitted.
 - Made mini-program BLE install compatibility a template-level invariant: fixed
   protected `cardid`/Recovery partitions, retained the five-second UP-key
   Recovery boot hook, and added CI validation for merged-image structure,

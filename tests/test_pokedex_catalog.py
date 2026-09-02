@@ -21,6 +21,12 @@ REQUIRED = (
     "moves",
     "evolution",
 )
+NUMERIC = (
+    "height_dm",
+    "weight_hg",
+    "catch_rate",
+    "gender_rate",
+)
 
 
 def main() -> int:
@@ -34,6 +40,21 @@ def main() -> int:
         for key in REQUIRED:
             if not entry.get(key):
                 print(f"#{entry.get('id')} missing {key}", file=sys.stderr)
+                return 1
+        for key in NUMERIC:
+            if key not in entry:
+                print(f"#{entry.get('id')} missing {key}", file=sys.stderr)
+                return 1
+        abilities = entry["abilities"]
+        if not isinstance(abilities, list) or not abilities:
+            print(f"#{entry['id']} abilities empty", file=sys.stderr)
+            return 1
+        for ability in abilities:
+            if not isinstance(ability, dict) or not ability.get("zh"):
+                print(f"#{entry['id']} ability missing zh", file=sys.stderr)
+                return 1
+            if "intro" not in ability:
+                print(f"#{entry['id']} ability missing intro", file=sys.stderr)
                 return 1
         if not (1 <= entry["id"] <= 151):
             print(f"id out of range: {entry['id']}", file=sys.stderr)
@@ -57,6 +78,25 @@ def main() -> int:
         return 1
     if by_id[133]["zh"] != "伊布":
         print("spot check failed for Eevee", file=sys.stderr)
+        return 1
+    one = by_id[1]
+    if not one.get("trivia") or one["trivia"] == one["intro"]:
+        print("spot check failed for Bulbasaur trivia", file=sys.stderr)
+        return 1
+    if one["height_dm"] != 7 or one["weight_hg"] != 69 or one["catch_rate"] != 45:
+        print("spot check failed for Bulbasaur size/catch", file=sys.stderr)
+        return 1
+    if one["gender_rate"] != 1 or by_id[25]["gender_rate"] != 4:
+        print("spot check failed for gender_rate", file=sys.stderr)
+        return 1
+    if by_id[29]["gender_rate"] != 8 or by_id[32]["gender_rate"] != 0:
+        print("spot check failed for Nidoran gender", file=sys.stderr)
+        return 1
+    if by_id[151]["gender_rate"] != -1:
+        print("spot check failed for Mew gender", file=sys.stderr)
+        return 1
+    if not one["abilities"][0].get("intro"):
+        print("spot check failed for ability intro", file=sys.stderr)
         return 1
     print("Pokedex catalog: PASS")
     return 0

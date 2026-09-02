@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdint.h>
 #include <string.h>
 #include "pokedex.h"
 
@@ -22,6 +23,8 @@ int main(void)
 
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_RANDOM);
+    pokedex_home_move(&s, 1);
+    assert(s.home_sel == POKEDEX_HOME_FACTS);
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_BROWSE);
 
@@ -55,6 +58,24 @@ int main(void)
     pokedex_enter_from_home(&s, 24);
     assert(s.id != 25);
 
+    pokedex_init(&s);
+    pokedex_home_move(&s, 1);
+    pokedex_home_move(&s, 1);
+    assert(s.home_sel == POKEDEX_HOME_FACTS);
+    pokedex_enter_from_home(&s, 0);
+    assert(pokedex_is_fact(&s));
+    assert(!pokedex_is_home(&s));
+    int first_fact = s.fact_index;
+    assert(first_fact >= 0 && first_fact < pokedex_fact_count());
+    pokedex_step_fact(&s, 1);
+    assert(s.fact_index == pokedex_wrap_index(first_fact + 1, pokedex_fact_count()));
+    pokedex_step_fact(&s, -1);
+    assert(s.fact_index == first_fact);
+    pokedex_act_t fact_act = pokedex_ok_long(&s);
+    assert(fact_act == POKEDEX_ACT_NONE);
+    assert(pokedex_is_home(&s));
+    assert(!pokedex_is_fact(&s));
+
     const pokedex_entry_t *one = pokedex_entry(1);
     const pokedex_entry_t *pika = pokedex_entry(25);
     const pokedex_entry_t *eevee = pokedex_entry(133);
@@ -66,6 +87,35 @@ int main(void)
     assert(pokedex_stat_total(one) == 318);
     assert(pokedex_stat_total(pika) == 320);
     assert(pika->move_n > 8);
+    assert(one->trivia && one->trivia[0]);
+    assert(strcmp(one->trivia, one->intro) != 0);
+    assert(one->ability_n >= 1);
+    assert(one->ability_zh[0] && one->ability_zh[0][0]);
+    assert(one->ability_intro[0] && one->ability_intro[0][0]);
+    assert(one->height_dm == 7);
+    assert(one->weight_hg == 69);
+    assert(one->catch_rate == 45);
+    assert(one->gender_rate == 1);
+    assert(pika->gender_rate == 4);
+    assert(pokedex_entry(29)->gender_rate == 8);
+    assert(pokedex_entry(32)->gender_rate == 0);
+    assert(pokedex_entry(151)->gender_rate == -1);
+
+    char size[32];
+    char meta[48];
+    assert(pokedex_format_size(one, size, sizeof(size)) > 0);
+    assert(strcmp(size, "0.7m  6.9kg") == 0);
+    assert(pokedex_format_meta(one, meta, sizeof(meta)) > 0);
+    assert(strcmp(meta, "雄87% 雌13%") == 0);
+    assert(strstr(meta, "捕获") == NULL);
+    assert(pokedex_format_meta(pokedex_entry(151), meta, sizeof(meta)) > 0);
+    assert(strcmp(meta, "无性别") == 0);
+    assert(pokedex_fact_count() >= 100);
+    const char *fact0 = pokedex_fact(0);
+    assert(fact0 && fact0[0]);
+    assert(strcmp(pokedex_fact((uint32_t)pokedex_fact_count()), fact0) == 0);
+    assert(strcmp(pokedex_fact_at(0), fact0) == 0);
+    assert(strcmp(pokedex_fact_at(pokedex_fact_count()), fact0) == 0);
 
     pokedex_matchup_t m;
     pokedex_matchup(one->type_a, one->type_b, &m);

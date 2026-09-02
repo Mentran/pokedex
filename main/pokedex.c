@@ -1,6 +1,7 @@
 // pokedex.c —— 图鉴翻页状态机,与 LVGL / ESP-IDF 解耦,供主机测试和固件共用。
 #include "pokedex.h"
 
+#include <stdio.h>
 #include <string.h>
 
 static int wrap(int value, int count)
@@ -45,6 +46,8 @@ void pokedex_init(pokedex_state_t *s)
     s->id = 1;
     s->tab = POKEDEX_TAB_COVER;
     s->last_random_id = 0;
+    s->fact_index = 0;
+    s->last_fact_index = -1;
 }
 
 void pokedex_home_move(pokedex_state_t *s, int delta)
@@ -61,6 +64,21 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
         return;
     }
     s->tab = POKEDEX_TAB_COVER;
+    if (s->home_sel == POKEDEX_HOME_FACTS) {
+        int n = pokedex_fact_count();
+        if (n <= 0) {
+            s->fact_index = 0;
+        } else {
+            int pick = (int)(rng % (uint32_t)n);
+            if (s->last_fact_index >= 0 && s->last_fact_index < n && pick == s->last_fact_index) {
+                pick = wrap(pick + 1, n);
+            }
+            s->fact_index = pick;
+            s->last_fact_index = pick;
+        }
+        s->screen = POKEDEX_SCREEN_FACT;
+        return;
+    }
     if (s->home_sel == POKEDEX_HOME_RANDOM) {
         s->id = pokedex_pick_random(POKEDEX_COUNT, s->last_random_id, rng);
         s->last_random_id = s->id;
@@ -79,6 +97,20 @@ void pokedex_step_id(pokedex_state_t *s, int delta)
     s->tab = POKEDEX_TAB_COVER;
 }
 
+void pokedex_step_fact(pokedex_state_t *s, int delta)
+{
+    if (s->screen != POKEDEX_SCREEN_FACT) {
+        return;
+    }
+    int n = pokedex_fact_count();
+    if (n <= 0) {
+        s->fact_index = 0;
+        return;
+    }
+    s->fact_index = wrap(s->fact_index + delta, n);
+    s->last_fact_index = s->fact_index;
+}
+
 void pokedex_next_tab(pokedex_state_t *s)
 {
     if (s->screen != POKEDEX_SCREEN_ENTRY) {
@@ -89,12 +121,13 @@ void pokedex_next_tab(pokedex_state_t *s)
 
 pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
 {
-    if (s->screen != POKEDEX_SCREEN_ENTRY) {
+    if (s->screen == POKEDEX_SCREEN_HOME) {
         return POKEDEX_ACT_NONE;
     }
-    pokedex_act_t act = (s->tab == POKEDEX_TAB_COVER)
-        ? POKEDEX_ACT_PLAY_CRY
-        : POKEDEX_ACT_NONE;
+    pokedex_act_t act = POKEDEX_ACT_NONE;
+    if (s->screen == POKEDEX_SCREEN_ENTRY && s->tab == POKEDEX_TAB_COVER) {
+        act = POKEDEX_ACT_PLAY_CRY;
+    }
     s->screen = POKEDEX_SCREEN_HOME;
     s->tab = POKEDEX_TAB_COVER;
     return act;
@@ -103,6 +136,11 @@ pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
 int pokedex_is_home(const pokedex_state_t *s)
 {
     return s->screen == POKEDEX_SCREEN_HOME;
+}
+
+int pokedex_is_fact(const pokedex_state_t *s)
+{
+    return s->screen == POKEDEX_SCREEN_FACT;
 }
 
 static const pokedex_entry_t s_entries[POKEDEX_COUNT] = {
@@ -237,4 +275,63 @@ void pokedex_matchup(const char *type_a, const char *type_b, pokedex_matchup_t *
             push_name(out->hit_half, 0, &out->hit_half_n, s_type_zh[def], 0);
         }
     }
+}
+
+#include "pokedex_facts.inc"
+
+int pokedex_format_size(const pokedex_entry_t *e, char *dst, size_t n)
+{
+    if (!e || !dst || n == 0) {
+        return 0;
+    }
+    return snprintf(
+        dst,
+        n,
+        "%u.%um  %u.%ukg",
+        (unsigned)(e->height_dm / 10),
+        (unsigned)(e->height_dm % 10),
+        (unsigned)(e->weight_hg / 10),
+        (unsigned)(e->weight_hg % 10));
+}
+
+int pokedex_format_meta(const pokedex_entry_t *e, char *dst, size_t n)
+{
+    if (!e || !dst || n == 0) {
+        return 0;
+    }
+    if (e->gender_rate < 0) {
+        return snprintf(dst, n, "无性别");
+    }
+    if (e->gender_rate == 0) {
+        return snprintf(dst, n, "雄100%%");
+    }
+    if (e->gender_rate >= 8) {
+        return snprintf(dst, n, "雌100%%");
+    }
+    unsigned female = ((unsigned)e->gender_rate * 100u + 4u) / 8u;
+    unsigned male = 100u - female;
+    return snprintf(dst, n, "雄%u%% 雌%u%%", male, female);
+}
+
+int pokedex_fact_count(void)
+{
+    return (int)(sizeof(s_facts) / sizeof(s_facts[0]));
+}
+
+const char *pokedex_fact_at(int index)
+{
+    int n = pokedex_fact_count();
+    if (n <= 0) {
+        return "";
+    }
+    return s_facts[wrap(index, n)];
+}
+
+const char *pokedex_fact(uint32_t rng)
+{
+    int n = pokedex_fact_count();
+    if (n <= 0) {
+        return "";
+    }
+    return pokedex_fact_at((int)(rng % (uint32_t)n));
 }

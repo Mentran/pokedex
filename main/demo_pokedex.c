@@ -32,10 +32,12 @@ static lv_obj_t *s_home_cards[POKEDEX_HOME_COUNT];
 static uint8_t s_sprite_rgb[POKEDEX_SPRITE_BYTES];
 static lv_image_dsc_t s_sprite_dsc;
 static int s_cry_for_id;
+static lv_obj_t *s_matchup_scroll;
 
 static const char *s_home_titles[POKEDEX_HOME_COUNT] = {
-    "顺序查看",
-    "随机查看",
+    "图鉴浏览",
+    "随机遇见",
+    "宝可梦小知识",
 };
 
 static const char *s_stat_name[] = {
@@ -113,6 +115,7 @@ static void wipe(void)
         for (int i = 0; i < POKEDEX_HOME_COUNT; i++) {
             s_home_cards[i] = NULL;
         }
+        s_matchup_scroll = NULL;
     }
 }
 
@@ -177,15 +180,20 @@ static void add_tabs(lv_obj_t *lcd, int active)
     }
 }
 
-static void add_type_chip(lv_obj_t *parent, const char *name, int x, int y)
+static void add_type_chip_at(lv_obj_t *parent, const char *name, int x, int y, int w, int h)
 {
     if (!name || !name[0]) {
         return;
     }
-    lv_obj_t *chip = box(parent, x, y, 56, 20, type_color(name), 4);
-    lv_obj_t *text = zh_at(chip, name, DEX_CHIP_INK, 0, 1);
-    lv_obj_set_width(text, 56);
+    lv_obj_t *chip = box(parent, x, y, w, h, type_color(name), 4);
+    lv_obj_t *text = zh_at(chip, name, DEX_CHIP_INK, 0, (h > 18) ? 1 : 0);
+    lv_obj_set_width(text, w);
     lv_obj_set_style_text_align(text, LV_TEXT_ALIGN_CENTER, 0);
+}
+
+static void add_type_chip(lv_obj_t *parent, const char *name, int x, int y)
+{
+    add_type_chip_at(parent, name, x, y, 56, 20);
 }
 
 static void paint_home_sel(void)
@@ -206,70 +214,127 @@ static void paint_home_sel(void)
 }
 
 static void show_home(void);
+static void show_fact(void);
 static void show_entry(void);
 
 static void show_home(void)
 {
     lv_obj_t *lcd = make_shell();
-    zh_at(lcd, "KANTO  001-151", DEX_INK_DIM, 18, 10);
-    box(lcd, 90, 32, 28, 28, 0xC62828, LV_RADIUS_CIRCLE);
-    box(lcd, 98, 40, 12, 12, DEX_WHITE, LV_RADIUS_CIRCLE);
-    box(lcd, 102, 44, 4, 4, DEX_BLACK, LV_RADIUS_CIRCLE);
+    lv_obj_t *title = zh_at(lcd, "宝可梦图鉴", DEX_INK, 0, 10);
+    lv_obj_set_width(title, 208);
+    lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_t *sub = zh_at(lcd, "第一世代151只", DEX_INK_DIM, 0, 32);
+    lv_obj_set_width(sub, 208);
+    lv_obj_set_style_text_align(sub, LV_TEXT_ALIGN_CENTER, 0);
 
     for (int i = 0; i < POKEDEX_HOME_COUNT; i++) {
-        s_home_cards[i] = box(lcd, 18, 70 + i * 52, 172, 44, 0xA5D6A7, 6);
+        s_home_cards[i] = box(lcd, 12, 58 + i * 44, 184, 38, 0xA5D6A7, 6);
         lv_obj_set_style_border_width(s_home_cards[i], 1, 0);
         lv_obj_set_style_border_color(s_home_cards[i], lv_color_hex(DEX_INK), 0);
-        lv_obj_t *text = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 12);
-        lv_obj_set_width(text, 172);
-        lv_obj_set_style_text_align(text, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_t *name = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 9);
+        lv_obj_set_width(name, 184);
+        lv_obj_set_style_text_align(name, LV_TEXT_ALIGN_CENTER, 0);
     }
-    label_at(lcd, "UP/DOWN  OK", &lv_font_montserrat_14, DEX_INK_DIM, 40, 174);
     paint_home_sel();
     lv_screen_load(s_scr);
+}
+
+static void show_fact(void)
+{
+    lv_obj_t *lcd = make_shell();
+    lv_obj_t *title = zh_at(lcd, "宝可梦小知识", DEX_INK, 0, 10);
+    lv_obj_set_width(title, 208);
+    lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
+
+    lv_obj_t *panel = box(lcd, 8, 40, 192, 140, 0xA5D6A7, 6);
+    lv_obj_t *body = zh_at(panel, pokedex_fact_at(s_state.fact_index), DEX_INK, 10, 12);
+    lv_obj_set_width(body, 172);
+    lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
+    lv_screen_load(s_scr);
+}
+
+static int utf8_chars(const char *text)
+{
+    int n = 0;
+    if (!text) {
+        return 0;
+    }
+    while (*text) {
+        unsigned char c = (unsigned char)*text;
+        if ((c & 0xC0) != 0x80) {
+            n++;
+        }
+        text++;
+    }
+    return n;
+}
+
+static int match_chip_w(const char *name)
+{
+    int n = utf8_chars(name);
+    if (n <= 1) {
+        return 28;
+    }
+    if (n == 2) {
+        return 44;
+    }
+    return 52;
 }
 
 static int add_type_list(lv_obj_t *lcd, int y, const char *title,
                          const char **names, const uint8_t *mul, int n, int want)
 {
-    char buf[192];
-    int used = snprintf(buf, sizeof(buf), "%s", title);
     int listed = 0;
-    for (int i = 0; i < n && used < (int)sizeof(buf) - 8; i++) {
+    for (int i = 0; i < n; i++) {
         if (mul && want && mul[i] != want) {
             continue;
         }
-        used += snprintf(buf + used, sizeof(buf) - (size_t)used, " %s", names[i]);
         listed++;
     }
     if (!listed) {
         return y;
     }
-    lv_obj_t *line = zh_at(lcd, buf, DEX_INK, 6, y);
-    lv_obj_set_width(line, 196);
-    lv_label_set_long_mode(line, LV_LABEL_LONG_WRAP);
-    lv_obj_update_layout(line);
-    return y + (int)lv_obj_get_height(line) + 2;
+
+    const int chip_h = 18;
+    const int gap = 2;
+    const int label_w = 28;
+    int x = label_w;
+    int row_y = y;
+    label_at(lcd, title, &lv_font_montserrat_14, DEX_INK_DIM, 2, y + 1);
+    for (int i = 0; i < n; i++) {
+        if (mul && want && mul[i] != want) {
+            continue;
+        }
+        int w = match_chip_w(names[i]);
+        if (x + w > 206) {
+            x = label_w;
+            row_y += chip_h + gap;
+        }
+        add_type_chip_at(lcd, names[i], x, row_y, w, chip_h);
+        x += w + gap;
+    }
+    return row_y + chip_h + 3;
 }
 
 static int add_matchup_page(lv_obj_t *lcd, const pokedex_entry_t *e)
 {
     pokedex_matchup_t m;
     pokedex_matchup(e->type_a, e->type_b, &m);
-    int y = 4;
-    zh_at(lcd, "被打", DEX_INK_DIM, 6, y);
+    int y = 2;
+    zh_at(lcd, "被打", DEX_INK, 6, y);
     y += 18;
     y = add_type_list(lcd, y, "4x", m.weak, m.weak_x, m.weak_n, 40);
     y = add_type_list(lcd, y, "2x", m.weak, m.weak_x, m.weak_n, 20);
+    y = add_type_list(lcd, y, "0", m.immune, 0, m.immune_n, 0);
     y = add_type_list(lcd, y, "1/2", m.resist, m.resist_x, m.resist_n, 5);
     y = add_type_list(lcd, y, "1/4", m.resist, m.resist_x, m.resist_n, 2);
-    y = add_type_list(lcd, y, "0", m.immune, 0, m.immune_n, 0);
-    y += 4;
-    zh_at(lcd, "打出", DEX_INK_DIM, 6, y);
+    y += 6;
+    zh_at(lcd, "打出", DEX_INK, 6, y);
     y += 18;
     y = add_type_list(lcd, y, "2x", m.hit2, 0, m.hit2_n, 0);
-    y = add_type_list(lcd, y, "1/2", m.hit_half, 0, m.hit_half_n, 0);
     y = add_type_list(lcd, y, "0", m.hit0, 0, m.hit0_n, 0);
+    y = add_type_list(lcd, y, "1/2", m.hit_half, 0, m.hit_half_n, 0);
+    box(lcd, 0, y, 1, 1, DEX_LCD, 0);
     return y;
 }
 
@@ -280,11 +345,11 @@ static void add_stat_row(lv_obj_t *parent, int y, const char *name, int value)
     if (fill < 1 && value > 0) {
         fill = 1;
     }
-    lv_obj_t *track = box(parent, 48, y + 4, 118, 10, 0xA5D6A7, 0);
+    lv_obj_t *track = box(parent, 48, y + 4, 118, 8, 0xA5D6A7, 0);
     lv_obj_set_style_border_width(track, 1, 0);
     lv_obj_set_style_border_color(track, lv_color_hex(DEX_INK), 0);
     if (fill > 0) {
-        box(track, 0, 0, fill, 10, DEX_YELLOW, 0);
+        box(track, 0, 0, fill, 8, DEX_YELLOW, 0);
     }
     lv_obj_t *num = label_at(parent, "", &lv_font_montserrat_14, DEX_INK, 170, y);
     lv_label_set_text_fmt(num, "%d", value);
@@ -330,25 +395,51 @@ static void show_entry(void)
         zh_at(lcd, e->zh, DEX_INK, 96, 36);
         label_at(lcd, e->en, &lv_font_montserrat_14, DEX_INK_DIM, 96, 58);
         zh_at(lcd, e->category, DEX_INK_DIM, 8, 96);
-        add_type_chip(lcd, e->type_a, 8, 120);
+        add_type_chip(lcd, e->type_a, 8, 118);
         if (e->type_b[0]) {
-            add_type_chip(lcd, e->type_b, 72, 120);
+            add_type_chip(lcd, e->type_b, 72, 118);
         }
+        char size[32];
+        char meta[48];
+        pokedex_format_size(e, size, sizeof(size));
+        pokedex_format_meta(e, meta, sizeof(meta));
+        zh_at(lcd, size, DEX_INK, 8, 142);
+        lv_obj_t *meta_line = zh_at(lcd, meta, DEX_INK_DIM, 8, 160);
+        lv_obj_set_width(meta_line, 192);
         maybe_play_cover_cry(s_state.id);
     } else if (s_state.tab == POKEDEX_TAB_BIO) {
-        zh_at(lcd, e->zh, DEX_INK, 8, 6);
-        lv_obj_t *body = zh_at(lcd, e->intro, DEX_INK, 8, 30);
+        lv_obj_t *body = zh_at(lcd, e->intro, DEX_INK, 8, 6);
         lv_obj_set_width(body, 192);
         lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
+        lv_obj_update_layout(body);
+        int y = 6 + (int)lv_obj_get_height(body) + 8;
+        if (e->trivia && e->trivia[0] && strcmp(e->trivia, e->intro) != 0 && y < 160) {
+            lv_obj_t *extra = zh_at(lcd, e->trivia, DEX_INK_DIM, 8, y);
+            lv_obj_set_width(extra, 192);
+            lv_label_set_long_mode(extra, LV_LABEL_LONG_WRAP);
+        }
     } else if (s_state.tab == POKEDEX_TAB_STATS) {
         const uint8_t values[] = {
             e->hp, e->atk, e->def_, e->spa, e->spd, e->spe,
         };
         for (int i = 0; i < 6; i++) {
-            add_stat_row(lcd, 8 + i * 26, s_stat_name[i], values[i]);
+            add_stat_row(lcd, 2 + i * 16, s_stat_name[i], values[i]);
         }
-        lv_obj_t *sum = zh_at(lcd, "", DEX_INK, 6, 164);
+        lv_obj_t *sum = zh_at(lcd, "", DEX_INK, 6, 98);
         lv_label_set_text_fmt(sum, "合计 %d", pokedex_stat_total(e));
+        int y = 116;
+        for (int i = 0; i < e->ability_n && i < POKEDEX_ABILITY_MAX && y < 170; i++) {
+            lv_obj_t *name = zh_at(lcd, "", DEX_INK, 6, y);
+            lv_label_set_text_fmt(name, "特性：%s", e->ability_zh[i] ? e->ability_zh[i] : "");
+            y += 16;
+            if (e->ability_intro[i] && e->ability_intro[i][0]) {
+                lv_obj_t *intro = zh_at(lcd, e->ability_intro[i], DEX_INK_DIM, 6, y);
+                lv_obj_set_width(intro, 196);
+                lv_label_set_long_mode(intro, LV_LABEL_LONG_WRAP);
+                lv_obj_update_layout(intro);
+                y += (int)lv_obj_get_height(intro) + 4;
+            }
+        }
     } else if (s_state.tab == POKEDEX_TAB_MOVES) {
         if (e->move_n <= 0) {
             zh_at(lcd, "-", DEX_INK, 8, 8);
@@ -365,7 +456,13 @@ static void show_entry(void)
             }
         }
     } else if (s_state.tab == POKEDEX_TAB_MATCHUP) {
-        add_matchup_page(lcd, e);
+        s_matchup_scroll = box(lcd, 0, 0, 208, 176, DEX_LCD, 0);
+        lv_obj_add_flag(s_matchup_scroll, LV_OBJ_FLAG_SCROLLABLE);
+        lv_obj_remove_flag(s_matchup_scroll, LV_OBJ_FLAG_SCROLL_CHAIN);
+        lv_obj_set_scroll_dir(s_matchup_scroll, LV_DIR_VER);
+        lv_obj_set_scrollbar_mode(s_matchup_scroll, LV_SCROLLBAR_MODE_AUTO);
+        lv_obj_set_style_pad_bottom(s_matchup_scroll, 8, 0);
+        add_matchup_page(s_matchup_scroll, e);
     } else if (e->evo_n <= 1) {
         lv_obj_t *none = zh_at(lcd, "不会进化", DEX_INK, 0, 80);
         lv_obj_set_width(none, 208);
@@ -389,6 +486,8 @@ static void render(void)
 {
     if (pokedex_is_home(&s_state)) {
         show_home();
+    } else if (pokedex_is_fact(&s_state)) {
+        show_fact();
     } else {
         show_entry();
     }
@@ -407,6 +506,26 @@ void demo_pokedex_exit(void)
     pokedex_media_stop_cry();
     pokedex_media_deinit();
     wipe();
+}
+
+static int matchup_scroll(int dir)
+{
+    if (!s_matchup_scroll || s_state.tab != POKEDEX_TAB_MATCHUP) {
+        return 0;
+    }
+    lv_obj_update_layout(s_matchup_scroll);
+    if (dir < 0) {
+        if (lv_obj_get_scroll_top(s_matchup_scroll) <= 0) {
+            return 0;
+        }
+        lv_obj_scroll_by(s_matchup_scroll, 0, 32, LV_ANIM_OFF);
+        return 1;
+    }
+    if (lv_obj_get_scroll_bottom(s_matchup_scroll) <= 0) {
+        return 0;
+    }
+    lv_obj_scroll_by(s_matchup_scroll, 0, -32, LV_ANIM_OFF);
+    return 1;
 }
 
 void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
@@ -439,6 +558,21 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
             s_cry_for_id = 0;
             render();
         }
+        return;
+    }
+    if (pokedex_is_fact(&s_state)) {
+        if (btn == BSP_BTN_UP) {
+            pokedex_step_fact(&s_state, -1);
+            render();
+        } else if (btn == BSP_BTN_DOWN || btn == BSP_BTN_OK) {
+            pokedex_step_fact(&s_state, 1);
+            render();
+        }
+        return;
+    }
+    if (s_state.tab == POKEDEX_TAB_MATCHUP &&
+        (btn == BSP_BTN_UP || btn == BSP_BTN_DOWN) &&
+        matchup_scroll(btn == BSP_BTN_UP ? -1 : 1)) {
         return;
     }
     if (btn == BSP_BTN_UP) {

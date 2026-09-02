@@ -14,6 +14,7 @@ SOURCES = [
     ROOT / "main/pokedex.c",
     ROOT / "main/demo_pokedex.c",
     ROOT / "assets/pokedex/gen1/catalog.json",
+    ROOT / "assets/pokedex/gen1/facts.json",
 ]
 OUTPUT = ROOT / "main/font_pokedex_16.c"
 FONT_URL = (

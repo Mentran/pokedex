@@ -1,22 +1,26 @@
 #pragma once
 
+#include <stddef.h>
 #include <stdint.h>
 
 #define POKEDEX_COUNT 151
 #define POKEDEX_TAB_COUNT 6
-#define POKEDEX_HOME_COUNT 2
+#define POKEDEX_HOME_COUNT 3
 #define POKEDEX_MOVE_MAX 24
 #define POKEDEX_EVO_MAX 8
 #define POKEDEX_MATCH_MAX 18
+#define POKEDEX_ABILITY_MAX 2
 
 typedef enum {
     POKEDEX_SCREEN_HOME = 0,
     POKEDEX_SCREEN_ENTRY,
+    POKEDEX_SCREEN_FACT,
 } pokedex_screen_t;
 
 typedef enum {
     POKEDEX_HOME_BROWSE = 0,
     POKEDEX_HOME_RANDOM = 1,
+    POKEDEX_HOME_FACTS = 2,
 } pokedex_home_t;
 
 typedef enum {
@@ -39,6 +43,8 @@ typedef struct {
     int id;
     pokedex_tab_t tab;
     int last_random_id;
+    int fact_index;
+    int last_fact_index;
 } pokedex_state_t;
 
 typedef struct {
@@ -48,6 +54,14 @@ typedef struct {
     const char *type_a;
     const char *type_b;
     const char *intro;
+    const char *trivia;
+    uint8_t height_dm;
+    uint16_t weight_hg;
+    uint8_t catch_rate;
+    int8_t gender_rate;
+    uint8_t ability_n;
+    const char *ability_zh[POKEDEX_ABILITY_MAX];
+    const char *ability_intro[POKEDEX_ABILITY_MAX];
     uint8_t hp;
     uint8_t atk;
     uint8_t def_;
@@ -64,12 +78,14 @@ typedef struct {
 
 void pokedex_init(pokedex_state_t *s);
 int pokedex_is_home(const pokedex_state_t *s);
+int pokedex_is_fact(const pokedex_state_t *s);
 const pokedex_entry_t *pokedex_entry(int id);
 
 void pokedex_home_move(pokedex_state_t *s, int delta);
 void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng);
 
 void pokedex_step_id(pokedex_state_t *s, int delta);
+void pokedex_step_fact(pokedex_state_t *s, int delta);
 void pokedex_next_tab(pokedex_state_t *s);
 pokedex_act_t pokedex_ok_long(pokedex_state_t *s);
 
@@ -96,3 +112,8 @@ typedef struct {
 } pokedex_matchup_t;
 
 void pokedex_matchup(const char *type_a, const char *type_b, pokedex_matchup_t *out);
+int pokedex_format_size(const pokedex_entry_t *e, char *dst, size_t n);
+int pokedex_format_meta(const pokedex_entry_t *e, char *dst, size_t n);
+int pokedex_fact_count(void);
+const char *pokedex_fact_at(int index);
+const char *pokedex_fact(uint32_t rng);
