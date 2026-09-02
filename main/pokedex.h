@@ -45,6 +45,7 @@ typedef struct {
     int last_random_id;
     int fact_index;
     int last_fact_index;
+    int zoomed;
 } pokedex_state_t;
 
 typedef struct {
@@ -87,6 +88,8 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng);
 void pokedex_step_id(pokedex_state_t *s, int delta);
 void pokedex_step_fact(pokedex_state_t *s, int delta);
 void pokedex_next_tab(pokedex_state_t *s);
+void pokedex_toggle_zoom(pokedex_state_t *s);
+int pokedex_is_zoomed(const pokedex_state_t *s);
 pokedex_act_t pokedex_ok_long(pokedex_state_t *s);
 
 int pokedex_wrap_id(int id, int count);

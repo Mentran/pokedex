@@ -45,8 +45,23 @@ int main(void)
     }
     assert(s.tab == POKEDEX_TAB_COVER);
 
+    assert(!pokedex_is_zoomed(&s));
+    pokedex_toggle_zoom(&s);
+    assert(pokedex_is_zoomed(&s));
+    pokedex_toggle_zoom(&s);
+    assert(!pokedex_is_zoomed(&s));
+    pokedex_toggle_zoom(&s);
+    pokedex_step_id(&s, 1);
+    assert(s.id == 1);
+    assert(pokedex_is_zoomed(&s));
+    pokedex_next_tab(&s);
+    assert(!pokedex_is_zoomed(&s));
+    assert(s.tab == POKEDEX_TAB_BIO);
+    pokedex_toggle_zoom(&s);
+    assert(!pokedex_is_zoomed(&s));
     pokedex_ok_long(&s);
     assert(pokedex_is_home(&s));
+    assert(!pokedex_is_zoomed(&s));
 
     pokedex_home_move(&s, 1);
     pokedex_enter_from_home(&s, 24);

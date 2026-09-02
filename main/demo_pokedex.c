@@ -367,6 +367,55 @@ static void maybe_play_cover_cry(int id)
     pokedex_media_play_cry(id);
 }
 
+static void show_zoom(void)
+{
+    const pokedex_entry_t *e = pokedex_entry(s_state.id);
+    wipe();
+    s_scr = lv_obj_create(NULL);
+    lv_obj_remove_flag(s_scr, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_add_flag(s_scr, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
+    lv_obj_set_style_bg_color(s_scr, lv_color_hex(DEX_BLACK), 0);
+    lv_obj_set_style_bg_opa(s_scr, LV_OPA_COVER, 0);
+    lv_obj_set_style_border_width(s_scr, 0, 0);
+    lv_obj_set_style_pad_all(s_scr, 0, 0);
+
+    if (!e) {
+        zh_at(s_scr, "?", DEX_WHITE, 112, 152);
+        lv_screen_load(s_scr);
+        return;
+    }
+
+    lv_obj_t *num = label_at(s_scr, "", &lv_font_montserrat_20, DEX_WHITE, 0, 8);
+    lv_obj_set_width(num, 240);
+    lv_obj_set_style_text_align(num, LV_TEXT_ALIGN_CENTER, 0);
+    lv_label_set_text_fmt(num, "No.%03d", s_state.id);
+
+    bool got = pokedex_media_load_sprite(s_state.id, s_sprite_rgb, &s_sprite_dsc);
+    if (got) {
+        lv_obj_t *img = lv_image_create(s_scr);
+        lv_image_set_src(img, &s_sprite_dsc);
+        lv_image_set_antialias(img, false);
+        lv_image_set_pivot(img, POKEDEX_SPRITE_W / 2, POKEDEX_SPRITE_H / 2);
+        lv_image_set_scale(img, 256 * 3);
+        lv_obj_add_flag(img, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
+        lv_obj_set_pos(img, 120 - POKEDEX_SPRITE_W / 2, 160 - POKEDEX_SPRITE_H / 2);
+    } else {
+        lv_obj_t *miss = box(s_scr, 40, 80, 160, 160, DEX_YELLOW, 8);
+        lv_obj_t *soon = zh_at(miss, "暂无图片", DEX_INK, 0, 72);
+        lv_obj_set_width(soon, 160);
+        lv_obj_set_style_text_align(soon, LV_TEXT_ALIGN_CENTER, 0);
+    }
+
+    lv_obj_t *name = zh_at(s_scr, e->zh, DEX_WHITE, 0, 284);
+    lv_obj_set_width(name, 240);
+    lv_obj_set_style_text_align(name, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_t *hint = zh_at(s_scr, "还原", DEX_YELLOW, 0, 302);
+    lv_obj_set_width(hint, 240);
+    lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
+    maybe_play_cover_cry(s_state.id);
+    lv_screen_load(s_scr);
+}
+
 static void show_entry(void)
 {
     const pokedex_entry_t *e = pokedex_entry(s_state.id);
@@ -394,6 +443,7 @@ static void show_entry(void)
         lv_label_set_text_fmt(num, "No.%03d", s_state.id);
         zh_at(lcd, e->zh, DEX_INK, 96, 36);
         label_at(lcd, e->en, &lv_font_montserrat_14, DEX_INK_DIM, 96, 58);
+        zh_at(lcd, "双击放大", DEX_INK_DIM, 96, 78);
         zh_at(lcd, e->category, DEX_INK_DIM, 8, 96);
         add_type_chip(lcd, e->type_a, 8, 118);
         if (e->type_b[0]) {
@@ -488,6 +538,8 @@ static void render(void)
         show_home();
     } else if (pokedex_is_fact(&s_state)) {
         show_fact();
+    } else if (pokedex_is_zoomed(&s_state)) {
+        show_zoom();
     } else {
         show_entry();
     }
@@ -543,6 +595,13 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
         render();
         return;
     }
+    if (ev == BSP_BTN_DOUBLE && btn == BSP_BTN_OK &&
+        !pokedex_is_home(&s_state) && !pokedex_is_fact(&s_state) &&
+        s_state.tab == POKEDEX_TAB_COVER) {
+        pokedex_toggle_zoom(&s_state);
+        render();
+        return;
+    }
     if (ev != BSP_BTN_CLICK) {
         return;
     }
@@ -586,7 +645,11 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
         pokedex_step_id(&s_state, 1);
         render();
     } else if (btn == BSP_BTN_OK) {
-        pokedex_next_tab(&s_state);
+        if (pokedex_is_zoomed(&s_state)) {
+            pokedex_toggle_zoom(&s_state);
+        } else {
+            pokedex_next_tab(&s_state);
+        }
         render();
     }
 }

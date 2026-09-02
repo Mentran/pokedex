@@ -55,3 +55,7 @@ The moves page lists every red/blue (then yellow / FR/LG) level-up move, not a l
 ## 2026-09-02 — Extra fields stay on existing pages
 
 Height and weight sit on cover with gender ratio. Catch rate stays in the catalog but is not shown. Ability names plus flavor sit on stats, labeled as abilities. The second dex sentence sits on bio when it is not a duplicate of intro. World facts are a third home item with a dedicated screen: enter on a random sentence, then Up / Down walks the pool without showing an index or count. Move power and move flavor stay out.
+
+## 2026-09-02 — Cover double-click zooms the sprite
+
+Cover OK click still opens Bio. Double-click OK toggles a 3x nearest-neighbor fullscreen sprite; OK click restores. Up / Down while zoomed keep the large view and change the id.

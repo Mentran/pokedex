@@ -17,6 +17,7 @@
   differs from the first. The stats page labels abilities explicitly. Matchup
   types use colored chips on one page; Up / Down scrolls when the list overflows. World facts are a dedicated home item with at least
   100 sentences and no visible index. Move power and move flavor stay omitted.
+  Cover double-click OK zooms the sprite to 3x fullscreen; OK click restores.
 - Made mini-program BLE install compatibility a template-level invariant: fixed
   protected `cardid`/Recovery partitions, retained the five-second UP-key
   Recovery boot hook, and added CI validation for merged-image structure,

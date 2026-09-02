@@ -87,6 +87,8 @@ Home
   Random  ----+    Up / Down : previous / next id
                    (on Matchup: scroll overflow first, then change id)
                    OK click  : Cover -> Bio -> Stats -> Moves -> Matchup -> Evo -> Cover
+                               (while zoomed, restores the cover)
+                   OK double : on Cover, toggle a 3x fullscreen sprite
                    OK long   : play cry when on Cover, then return home
   Facts   ----+--> Fact
                    Up / Down : previous / next world fact
@@ -102,7 +104,7 @@ Three keys cannot search by name in V1. Sequential and random cover the request.
 
 Title bar is the red dex bezel. Content sits in the green inner LCD.
 
-**Cover:** number, 80 x 80 sprite, Chinese name, English name, one or two type chips, category, height/weight, and gender ratio. Opening cover plays the cry.
+**Cover:** number, 80 x 80 sprite, Chinese name, English name, one or two type chips, category, height/weight, and gender ratio. Opening cover plays the cry. Double-click OK zooms the sprite to a 3x nearest-neighbor fullscreen; OK click restores. OK click on Cover still opens Bio.
 
 **Bio:** one wrapped paragraph. If a second distinct sentence exists, it follows.
 

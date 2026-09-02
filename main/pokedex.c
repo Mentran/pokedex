@@ -48,6 +48,7 @@ void pokedex_init(pokedex_state_t *s)
     s->last_random_id = 0;
     s->fact_index = 0;
     s->last_fact_index = -1;
+    s->zoomed = 0;
 }
 
 void pokedex_home_move(pokedex_state_t *s, int delta)
@@ -64,6 +65,7 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
         return;
     }
     s->tab = POKEDEX_TAB_COVER;
+    s->zoomed = 0;
     if (s->home_sel == POKEDEX_HOME_FACTS) {
         int n = pokedex_fact_count();
         if (n <= 0) {
@@ -116,6 +118,7 @@ void pokedex_next_tab(pokedex_state_t *s)
     if (s->screen != POKEDEX_SCREEN_ENTRY) {
         return;
     }
+    s->zoomed = 0;
     s->tab = (pokedex_tab_t)wrap((int)s->tab + 1, POKEDEX_TAB_COUNT);
 }
 
@@ -130,7 +133,22 @@ pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
     }
     s->screen = POKEDEX_SCREEN_HOME;
     s->tab = POKEDEX_TAB_COVER;
+    s->zoomed = 0;
     return act;
+}
+
+void pokedex_toggle_zoom(pokedex_state_t *s)
+{
+    if (!s || s->screen != POKEDEX_SCREEN_ENTRY || s->tab != POKEDEX_TAB_COVER) {
+        return;
+    }
+    s->zoomed = !s->zoomed;
+}
+
+int pokedex_is_zoomed(const pokedex_state_t *s)
+{
+    return s && s->screen == POKEDEX_SCREEN_ENTRY &&
+           s->tab == POKEDEX_TAB_COVER && s->zoomed;
 }
 
 int pokedex_is_home(const pokedex_state_t *s)
