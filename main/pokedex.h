@@ -3,10 +3,11 @@
 #include <stdint.h>
 
 #define POKEDEX_COUNT 151
-#define POKEDEX_TAB_COUNT 5
+#define POKEDEX_TAB_COUNT 6
 #define POKEDEX_HOME_COUNT 2
-#define POKEDEX_MOVE_MAX 8
+#define POKEDEX_MOVE_MAX 24
 #define POKEDEX_EVO_MAX 8
+#define POKEDEX_MATCH_MAX 18
 
 typedef enum {
     POKEDEX_SCREEN_HOME = 0,
@@ -23,6 +24,7 @@ typedef enum {
     POKEDEX_TAB_BIO,
     POKEDEX_TAB_STATS,
     POKEDEX_TAB_MOVES,
+    POKEDEX_TAB_MATCHUP,
     POKEDEX_TAB_EVO,
 } pokedex_tab_t;
 
@@ -74,3 +76,23 @@ pokedex_act_t pokedex_ok_long(pokedex_state_t *s);
 int pokedex_wrap_id(int id, int count);
 int pokedex_wrap_index(int index, int count);
 int pokedex_pick_random(int count, int avoid, uint32_t rng);
+int pokedex_stat_total(const pokedex_entry_t *e);
+
+typedef struct {
+    const char *weak[POKEDEX_MATCH_MAX];
+    uint8_t weak_x[POKEDEX_MATCH_MAX];
+    int weak_n;
+    const char *resist[POKEDEX_MATCH_MAX];
+    uint8_t resist_x[POKEDEX_MATCH_MAX];
+    int resist_n;
+    const char *immune[POKEDEX_MATCH_MAX];
+    int immune_n;
+    const char *hit2[POKEDEX_MATCH_MAX];
+    int hit2_n;
+    const char *hit_half[POKEDEX_MATCH_MAX];
+    int hit_half_n;
+    const char *hit0[POKEDEX_MATCH_MAX];
+    int hit0_n;
+} pokedex_matchup_t;
+
+void pokedex_matchup(const char *type_a, const char *type_b, pokedex_matchup_t *out);

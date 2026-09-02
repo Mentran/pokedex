@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "assets" / "pokedex" / "gen1" / "catalog.json"
 OUT = ROOT / "main" / "pokedex_catalog.inc"
-MOVE_MAX = 8
+MOVE_MAX = 24
 EVO_MAX = 8
 
 

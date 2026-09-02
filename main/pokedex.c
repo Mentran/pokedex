@@ -1,6 +1,8 @@
 // pokedex.c —— 图鉴翻页状态机,与 LVGL / ESP-IDF 解耦,供主机测试和固件共用。
 #include "pokedex.h"
 
+#include <string.h>
+
 static int wrap(int value, int count)
 {
     if (count <= 0) {
@@ -113,4 +115,126 @@ const pokedex_entry_t *pokedex_entry(int id)
         return 0;
     }
     return &s_entries[id - 1];
+}
+
+int pokedex_stat_total(const pokedex_entry_t *e)
+{
+    if (!e) {
+        return 0;
+    }
+    return (int)e->hp + e->atk + e->def_ + e->spa + e->spd + e->spe;
+}
+
+enum {
+    T_NOR, T_FIR, T_WAT, T_ELE, T_GRA, T_ICE, T_FIG, T_POI, T_GRO,
+    T_FLY, T_PSY, T_BUG, T_ROC, T_GHO, T_DRA, T_DAR, T_STE, T_FAI, T_COUNT
+};
+
+#define N_ 10
+#define H_ 5
+#define S_ 20
+#define Z_ 0
+
+static const char *s_type_zh[T_COUNT] = {
+    "一般", "火", "水", "电", "草", "冰", "格斗", "毒", "地面",
+    "飞行", "超能力", "虫", "岩石", "幽灵", "龙", "恶", "钢", "妖精",
+};
+
+/* chart[atk][def]: 0 / 0.5 / 1 / 2 in tenths. */
+static const uint8_t s_chart[T_COUNT][T_COUNT] = {
+    /*         NOR FIR WAT ELE GRA ICE FIG POI GRO FLY PSY BUG ROC GHO DRA DAR STE FAI */
+    /* NOR */ { N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, H_, Z_, N_, N_, H_, N_ },
+    /* FIR */ { N_, H_, H_, N_, S_, S_, N_, N_, N_, N_, N_, S_, H_, N_, H_, N_, S_, N_ },
+    /* WAT */ { N_, S_, H_, N_, H_, N_, N_, N_, S_, N_, N_, N_, S_, N_, H_, N_, N_, N_ },
+    /* ELE */ { N_, N_, S_, H_, H_, N_, N_, N_, Z_, S_, N_, N_, N_, N_, H_, N_, N_, N_ },
+    /* GRA */ { N_, H_, S_, N_, H_, N_, N_, H_, S_, H_, N_, H_, S_, N_, H_, N_, H_, N_ },
+    /* ICE */ { N_, H_, H_, N_, S_, H_, N_, N_, S_, S_, N_, N_, N_, N_, S_, N_, H_, N_ },
+    /* FIG */ { S_, N_, N_, N_, N_, S_, N_, H_, N_, H_, H_, H_, S_, Z_, N_, S_, S_, H_ },
+    /* POI */ { N_, N_, N_, N_, S_, N_, N_, H_, H_, N_, N_, N_, H_, H_, N_, N_, Z_, S_ },
+    /* GRO */ { N_, S_, N_, S_, H_, N_, N_, S_, N_, Z_, N_, H_, S_, N_, N_, N_, S_, N_ },
+    /* FLY */ { N_, N_, N_, H_, S_, N_, S_, N_, N_, N_, N_, S_, H_, N_, N_, N_, H_, N_ },
+    /* PSY */ { N_, N_, N_, N_, N_, N_, S_, S_, N_, N_, H_, N_, N_, N_, N_, Z_, H_, N_ },
+    /* BUG */ { N_, H_, N_, N_, S_, N_, H_, H_, N_, H_, S_, N_, N_, H_, N_, S_, H_, H_ },
+    /* ROC */ { N_, S_, N_, N_, N_, S_, H_, N_, H_, S_, N_, S_, N_, N_, N_, N_, H_, N_ },
+    /* GHO */ { Z_, N_, N_, N_, N_, N_, N_, N_, N_, N_, S_, N_, N_, S_, N_, H_, N_, N_ },
+    /* DRA */ { N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, N_, S_, N_, H_, Z_ },
+    /* DAR */ { N_, N_, N_, N_, N_, N_, H_, N_, N_, N_, S_, N_, N_, S_, N_, H_, N_, H_ },
+    /* STE */ { N_, H_, H_, H_, N_, S_, N_, N_, N_, N_, N_, N_, S_, N_, N_, N_, H_, S_ },
+    /* FAI */ { N_, H_, N_, N_, N_, N_, S_, H_, N_, N_, N_, N_, N_, N_, S_, S_, H_, N_ },
+};
+
+static int type_index(const char *name)
+{
+    if (!name || !name[0]) {
+        return -1;
+    }
+    for (int i = 0; i < T_COUNT; i++) {
+        if (strcmp(s_type_zh[i], name) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+static int def_mul(int atk, int def_a, int def_b)
+{
+    int m = s_chart[atk][def_a];
+    if (def_b >= 0) {
+        m = m * s_chart[atk][def_b] / 10;
+    }
+    return m;
+}
+
+static int off_mul(int atk_a, int atk_b, int def)
+{
+    int m = s_chart[atk_a][def];
+    if (atk_b >= 0) {
+        int other = s_chart[atk_b][def];
+        if (other > m) {
+            m = other;
+        }
+    }
+    return m;
+}
+
+static void push_name(const char **dst, uint8_t *mul, int *n, const char *name, uint8_t x)
+{
+    if (*n >= POKEDEX_MATCH_MAX) {
+        return;
+    }
+    dst[*n] = name;
+    if (mul) {
+        mul[*n] = x;
+    }
+    *n += 1;
+}
+
+void pokedex_matchup(const char *type_a, const char *type_b, pokedex_matchup_t *out)
+{
+    memset(out, 0, sizeof(*out));
+    int a = type_index(type_a);
+    int b = type_index(type_b);
+    if (a < 0) {
+        return;
+    }
+    for (int atk = 0; atk < T_COUNT; atk++) {
+        int m = def_mul(atk, a, b);
+        if (m >= 20) {
+            push_name(out->weak, out->weak_x, &out->weak_n, s_type_zh[atk], (uint8_t)m);
+        } else if (m == 0) {
+            push_name(out->immune, 0, &out->immune_n, s_type_zh[atk], 0);
+        } else if (m < 10) {
+            push_name(out->resist, out->resist_x, &out->resist_n, s_type_zh[atk], (uint8_t)m);
+        }
+    }
+    for (int def = 0; def < T_COUNT; def++) {
+        int m = off_mul(a, b, def);
+        if (m >= 20) {
+            push_name(out->hit2, 0, &out->hit2_n, s_type_zh[def], 0);
+        } else if (m == 0) {
+            push_name(out->hit0, 0, &out->hit0_n, s_type_zh[def], 0);
+        } else if (m < 10) {
+            push_name(out->hit_half, 0, &out->hit_half_n, s_type_zh[def], 0);
+        }
+    }
 }

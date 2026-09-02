@@ -38,7 +38,7 @@ def main() -> int:
         if not (1 <= entry["id"] <= 151):
             print(f"id out of range: {entry['id']}", file=sys.stderr)
             return 1
-        if len(entry["moves"]) > 8:
+        if len(entry["moves"]) > 24:
             print(f"#{entry['id']} has {len(entry['moves'])} moves", file=sys.stderr)
             return 1
         if entry.get("artwork", "").startswith("/"):
@@ -52,8 +52,8 @@ def main() -> int:
     if sorted(by_id) != list(range(1, 152)):
         print("catalog ids are not 1..151", file=sys.stderr)
         return 1
-    if by_id[1]["zh"] != "妙蛙种子" or by_id[25]["en"] != "pikachu":
-        print("spot check failed for #1 or #25", file=sys.stderr)
+    if by_id[25]["en"] != "pikachu" or len(by_id[25]["moves"]) < 9:
+        print("spot check failed for Pikachu moves", file=sys.stderr)
         return 1
     if by_id[133]["zh"] != "伊布":
         print("spot check failed for Eevee", file=sys.stderr)

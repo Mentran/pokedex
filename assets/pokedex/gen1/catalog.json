@@ -27,6 +27,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 7,
+          "en": "leech-seed",
+          "zh": "寄生种子"
+        },
+        {
           "level": 13,
           "en": "vine-whip",
           "zh": "藤鞭"
@@ -113,6 +128,21 @@
         "spe": 60
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "leech-seed",
+          "zh": "寄生种子"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 13,
           "en": "vine-whip",
@@ -202,6 +232,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "leech-seed",
+          "zh": "寄生种子"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
           "en": "vine-whip",
           "zh": "藤鞭"
         },
@@ -286,6 +331,26 @@
         "spe": 65
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 9,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 13,
+          "en": "metal-claw",
+          "zh": "金属爪"
+        },
         {
           "level": 15,
           "en": "leer",
@@ -372,6 +437,26 @@
         "spe": 80
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 13,
+          "en": "metal-claw",
+          "zh": "金属爪"
+        },
         {
           "level": 15,
           "en": "leer",
@@ -460,6 +545,36 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "heat-wave",
+          "zh": "热风"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "metal-claw",
+          "zh": "金属爪"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
           "level": 20,
           "en": "smokescreen",
           "zh": "烟幕"
@@ -545,6 +660,21 @@
         "spe": 43
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 8,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
         {
           "level": 15,
           "en": "water-gun",
@@ -632,6 +762,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
           "level": 15,
           "en": "water-gun",
           "zh": "水枪"
@@ -717,6 +862,21 @@
         "spe": 78
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
         {
           "level": 1,
           "en": "water-gun",
@@ -911,6 +1071,16 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 15,
+          "en": "poison-powder",
+          "zh": "毒粉"
+        },
         {
           "level": 16,
           "en": "stun-spore",
@@ -1197,6 +1367,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "gust",
+          "zh": "起风"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -1285,6 +1460,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "gust",
+          "zh": "起风"
+        },
+        {
+          "level": 1,
           "en": "sand-attack",
           "zh": "泼沙"
         },
@@ -1371,6 +1551,11 @@
         "spe": 101
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "gust",
+          "zh": "起风"
+        },
         {
           "level": 1,
           "en": "quick-attack",
@@ -1541,6 +1726,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -1620,6 +1810,11 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
         {
           "level": 1,
           "en": "peck",
@@ -1783,6 +1978,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "wrap",
+          "zh": "紧束"
+        },
+        {
+          "level": 10,
+          "en": "poison-sting",
+          "zh": "毒针"
+        },
+        {
           "level": 17,
           "en": "bite",
           "zh": "咬住"
@@ -1864,6 +2074,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "poison-sting",
+          "zh": "毒针"
+        },
+        {
+          "level": 1,
+          "en": "wrap",
+          "zh": "紧束"
+        },
+        {
           "level": 17,
           "en": "bite",
           "zh": "咬住"
@@ -1943,6 +2168,26 @@
         "spe": 90
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "thunder-shock",
+          "zh": "电击"
+        },
+        {
+          "level": 6,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 9,
+          "en": "thunder-wave",
+          "zh": "电磁波"
+        },
         {
           "level": 15,
           "en": "double-team",
@@ -2094,6 +2339,11 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
           "level": 6,
           "en": "defense-curl",
           "zh": "变圆"
@@ -2175,6 +2425,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "defense-curl",
+          "zh": "变圆"
+        },
+        {
+          "level": 1,
           "en": "sand-attack",
           "zh": "泼沙"
         },
@@ -2254,6 +2509,21 @@
         "spe": 41
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 8,
+          "en": "scratch",
+          "zh": "抓"
+        },
         {
           "level": 14,
           "en": "poison-sting",
@@ -2341,6 +2611,21 @@
         "spe": 56
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 14,
           "en": "poison-sting",
@@ -2512,6 +2797,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
           "level": 8,
           "en": "horn-attack",
           "zh": "角撞"
@@ -2598,6 +2898,21 @@
         "spe": 65
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "horn-attack",
+          "zh": "角撞"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
         {
           "level": 1,
           "en": "tackle",
@@ -2774,6 +3089,31 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "pound",
+          "zh": "拍击"
+        },
+        {
+          "level": 5,
+          "en": "encore",
+          "zh": "再来一次"
+        },
+        {
+          "level": 13,
+          "en": "sing",
+          "zh": "唱歌"
+        },
+        {
+          "level": 17,
+          "en": "follow-me",
+          "zh": "看我嘛"
+        },
+        {
           "level": 18,
           "en": "double-slap",
           "zh": "连环巴掌"
@@ -2914,6 +3254,21 @@
         "spe": 65
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 16,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
         {
           "level": 17,
           "en": "will-o-wisp",
@@ -3072,6 +3427,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "sing",
+          "zh": "唱歌"
+        },
+        {
+          "level": 9,
+          "en": "pound",
+          "zh": "拍击"
+        },
+        {
+          "level": 14,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
           "level": 19,
           "en": "defense-curl",
           "zh": "变圆"
@@ -3215,6 +3585,16 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "leech-life",
+          "zh": "吸血"
+        },
+        {
+          "level": 6,
+          "en": "astonish",
+          "zh": "惊吓"
+        },
+        {
           "level": 10,
           "en": "supersonic",
           "zh": "超音波"
@@ -3297,6 +3677,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "astonish",
+          "zh": "惊吓"
+        },
+        {
+          "level": 1,
+          "en": "bite",
+          "zh": "咬住"
+        },
+        {
+          "level": 1,
+          "en": "leech-life",
+          "zh": "吸血"
+        },
+        {
+          "level": 1,
           "en": "screech",
           "zh": "刺耳声"
         },
@@ -3376,6 +3771,11 @@
         "spe": 30
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "absorb",
+          "zh": "吸取"
+        },
         {
           "level": 7,
           "en": "sweet-scent",
@@ -3463,6 +3863,11 @@
         "spe": 40
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "absorb",
+          "zh": "吸取"
+        },
         {
           "level": 1,
           "en": "poison-powder",
@@ -3639,6 +4044,11 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
           "level": 13,
           "en": "poison-powder",
           "zh": "毒粉"
@@ -3722,6 +4132,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "leech-life",
+          "zh": "吸血"
+        },
+        {
+          "level": 1,
           "en": "poison-powder",
           "zh": "毒粉"
         },
@@ -3802,6 +4217,21 @@
         "spe": 45
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "foresight",
+          "zh": "识破"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 11,
           "en": "supersonic",
@@ -3886,6 +4316,31 @@
       "moves": [
         {
           "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "foresight",
+          "zh": "识破"
+        },
+        {
+          "level": 1,
+          "en": "leech-life",
+          "zh": "吸血"
+        },
+        {
+          "level": 1,
+          "en": "poison-powder",
+          "zh": "毒粉"
+        },
+        {
+          "level": 1,
           "en": "silver-wind",
           "zh": "银色旋风"
         },
@@ -3965,6 +4420,16 @@
         "spe": 95
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 9,
+          "en": "magnitude",
+          "zh": "震级"
+        },
         {
           "level": 15,
           "en": "growl",
@@ -4047,6 +4512,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "dig",
+          "zh": "挖洞"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 1,
+          "en": "tri-attack",
+          "zh": "三重攻击"
+        },
+        {
           "level": 9,
           "en": "magnitude",
           "zh": "震级"
@@ -4127,6 +4612,16 @@
         "spe": 90
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
         {
           "level": 12,
           "en": "bite",
@@ -4210,6 +4705,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "bite",
+          "zh": "咬住"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
           "en": "scratch",
           "zh": "抓"
         },
@@ -4289,6 +4794,11 @@
         "spe": 55
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
         {
           "level": 1,
           "en": "water-sport",
@@ -4372,6 +4882,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
           "en": "scratch",
           "zh": "抓"
         },
@@ -4451,6 +4966,21 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 9,
+          "en": "low-kick",
+          "zh": "踢倒"
+        },
         {
           "level": 15,
           "en": "karate-chop",
@@ -4534,6 +5064,26 @@
       "moves": [
         {
           "level": 1,
+          "en": "fury-swipes",
+          "zh": "乱抓"
+        },
+        {
+          "level": 1,
+          "en": "karate-chop",
+          "zh": "空手劈"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "low-kick",
+          "zh": "踢倒"
+        },
+        {
+          "level": 1,
           "en": "scratch",
           "zh": "抓"
         },
@@ -4613,6 +5163,16 @@
         "spe": 60
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "bite",
+          "zh": "咬住"
+        },
+        {
+          "level": 1,
+          "en": "roar",
+          "zh": "吼叫"
+        },
         {
           "level": 18,
           "en": "ember",
@@ -4771,6 +5331,11 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
+        {
           "level": 16,
           "en": "hypnosis",
           "zh": "催眠术"
@@ -4857,6 +5422,11 @@
         "spe": 90
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
         {
           "level": 1,
           "en": "hypnosis",
@@ -5076,6 +5646,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "kinesis",
+          "zh": "折弯汤匙"
+        },
+        {
+          "level": 1,
           "en": "teleport",
           "zh": "瞬间移动"
         },
@@ -5161,6 +5746,21 @@
         "spe": 120
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "kinesis",
+          "zh": "折弯汤匙"
+        },
         {
           "level": 1,
           "en": "teleport",
@@ -5249,6 +5849,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "karate-chop",
+          "zh": "空手劈"
+        },
+        {
+          "level": 20,
+          "en": "low-kick",
+          "zh": "踢倒"
+        },
+        {
+          "level": 22,
+          "en": "foresight",
+          "zh": "识破"
+        },
+        {
+          "level": 25,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
           "level": 25,
           "en": "revenge",
           "zh": "报复"
@@ -5335,6 +5955,26 @@
         "spe": 45
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "karate-chop",
+          "zh": "空手劈"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "low-kick",
+          "zh": "踢倒"
+        },
+        {
+          "level": 22,
+          "en": "foresight",
+          "zh": "识破"
+        },
         {
           "level": 25,
           "en": "revenge",
@@ -5423,6 +6063,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "karate-chop",
+          "zh": "空手劈"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "low-kick",
+          "zh": "踢倒"
+        },
+        {
+          "level": 22,
+          "en": "foresight",
+          "zh": "识破"
+        },
+        {
           "level": 25,
           "en": "revenge",
           "zh": "报复"
@@ -5509,6 +6169,16 @@
         "spe": 40
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growth",
+          "zh": "生长"
+        },
+        {
+          "level": 1,
+          "en": "vine-whip",
+          "zh": "藤鞭"
+        },
         {
           "level": 13,
           "en": "wrap",
@@ -5598,6 +6268,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "growth",
+          "zh": "生长"
+        },
+        {
+          "level": 1,
+          "en": "vine-whip",
+          "zh": "藤鞭"
+        },
+        {
+          "level": 1,
           "en": "wrap",
           "zh": "紧束"
         },
@@ -5683,6 +6363,21 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "acid",
+          "zh": "溶解液"
+        },
+        {
+          "level": 1,
+          "en": "razor-leaf",
+          "zh": "飞叶快刀"
+        },
+        {
+          "level": 1,
+          "en": "sleep-powder",
+          "zh": "催眠粉"
+        },
         {
           "level": 1,
           "en": "spit-up",
@@ -5772,6 +6467,16 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "acid",
+          "zh": "溶解液"
+        },
+        {
+          "level": 7,
+          "en": "supersonic",
+          "zh": "超音波"
+        },
+        {
           "level": 13,
           "en": "wrap",
           "zh": "紧束"
@@ -5855,6 +6560,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "acid",
+          "zh": "溶解液"
+        },
+        {
+          "level": 1,
+          "en": "supersonic",
+          "zh": "超音波"
+        },
+        {
+          "level": 1,
           "en": "wrap",
           "zh": "紧束"
         },
@@ -5935,6 +6650,26 @@
         "spe": 20
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 6,
+          "en": "mud-sport",
+          "zh": "玩泥巴"
+        },
+        {
+          "level": 11,
+          "en": "defense-curl",
+          "zh": "变圆"
+        },
+        {
+          "level": 16,
+          "en": "magnitude",
+          "zh": "震级"
+        },
         {
           "level": 16,
           "en": "rock-throw",
@@ -6024,6 +6759,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "defense-curl",
+          "zh": "变圆"
+        },
+        {
+          "level": 1,
+          "en": "mud-sport",
+          "zh": "玩泥巴"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 16,
+          "en": "magnitude",
+          "zh": "震级"
+        },
+        {
           "level": 16,
           "en": "rock-throw",
           "zh": "落石"
@@ -6112,6 +6867,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "defense-curl",
+          "zh": "变圆"
+        },
+        {
+          "level": 1,
+          "en": "mud-sport",
+          "zh": "玩泥巴"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 16,
+          "en": "magnitude",
+          "zh": "震级"
+        },
+        {
           "level": 16,
           "en": "rock-throw",
           "zh": "落石"
@@ -6199,6 +6974,16 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
           "level": 30,
           "en": "tail-whip",
           "zh": "摇尾巴"
@@ -6279,6 +7064,21 @@
         "spe": 105
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
         {
           "level": 1,
           "en": "stomp",
@@ -6363,6 +7163,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "curse",
+          "zh": "诅咒"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
           "en": "yawn",
           "zh": "哈欠"
         },
@@ -6443,6 +7258,26 @@
         "spe": 30
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "curse",
+          "zh": "诅咒"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "headbutt",
+          "zh": "头锤"
+        },
         {
           "level": 1,
           "en": "tackle",
@@ -6526,6 +7361,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "metal-sound",
+          "zh": "金属音"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 21,
+          "en": "sonic-boom",
+          "zh": "音爆"
+        },
+        {
           "level": 25,
           "en": "thunder-shock",
           "zh": "电击"
@@ -6607,6 +7457,26 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "metal-sound",
+          "zh": "金属音"
+        },
+        {
+          "level": 1,
+          "en": "sonic-boom",
+          "zh": "音爆"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 1,
+          "en": "thunder-shock",
+          "zh": "电击"
+        },
         {
           "level": 26,
           "en": "spark",
@@ -6690,6 +7560,16 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
+        {
+          "level": 1,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
+        {
           "level": 7,
           "en": "leer",
           "zh": "瞪眼"
@@ -6765,6 +7645,11 @@
         "spe": 75
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
         {
           "level": 9,
           "en": "pursuit",
@@ -6847,6 +7732,11 @@
         "spe": 110
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "fury-attack",
+          "zh": "乱击"
+        },
         {
           "level": 1,
           "en": "growl",
@@ -7012,6 +7902,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "aurora-beam",
+          "zh": "极光束"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
           "en": "headbutt",
           "zh": "头锤"
         },
@@ -7091,6 +7991,16 @@
         "spe": 25
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "pound",
+          "zh": "拍击"
+        },
         {
           "level": 30,
           "en": "poison-gas",
@@ -7174,6 +8084,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "poison-gas",
+          "zh": "毒瓦斯"
+        },
+        {
+          "level": 1,
           "en": "pound",
           "zh": "拍击"
         },
@@ -7253,6 +8173,11 @@
         "spe": 40
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 1,
           "en": "withdraw",
@@ -7412,6 +8337,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "confuse-ray",
+          "zh": "奇异之光"
+        },
+        {
+          "level": 1,
+          "en": "lick",
+          "zh": "舌舔"
+        },
+        {
+          "level": 1,
+          "en": "night-shade",
+          "zh": "黑夜魔影"
+        },
+        {
           "level": 8,
           "en": "spite",
           "zh": "怨恨"
@@ -7499,6 +8439,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "confuse-ray",
+          "zh": "奇异之光"
+        },
+        {
+          "level": 1,
+          "en": "lick",
+          "zh": "舌舔"
+        },
+        {
+          "level": 1,
+          "en": "night-shade",
+          "zh": "黑夜魔影"
+        },
+        {
+          "level": 1,
+          "en": "spite",
+          "zh": "怨恨"
+        },
+        {
           "level": 13,
           "en": "curse",
           "zh": "诅咒"
@@ -7585,6 +8545,26 @@
         "spe": 110
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "confuse-ray",
+          "zh": "奇异之光"
+        },
+        {
+          "level": 1,
+          "en": "lick",
+          "zh": "舌舔"
+        },
+        {
+          "level": 1,
+          "en": "night-shade",
+          "zh": "黑夜魔影"
+        },
+        {
+          "level": 1,
+          "en": "spite",
+          "zh": "怨恨"
+        },
         {
           "level": 13,
           "en": "curse",
@@ -7674,6 +8654,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "screech",
+          "zh": "刺耳声"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 15,
+          "en": "bind",
+          "zh": "绑紧"
+        },
+        {
+          "level": 19,
+          "en": "rock-throw",
+          "zh": "落石"
+        },
+        {
           "level": 25,
           "en": "rage",
           "zh": "愤怒"
@@ -7748,6 +8748,21 @@
         "spe": 42
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "hypnosis",
+          "zh": "催眠术"
+        },
+        {
+          "level": 1,
+          "en": "pound",
+          "zh": "拍击"
+        },
+        {
+          "level": 12,
+          "en": "disable",
+          "zh": "定身法"
+        },
         {
           "level": 17,
           "en": "confusion",
@@ -7831,6 +8846,26 @@
       "moves": [
         {
           "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "hypnosis",
+          "zh": "催眠术"
+        },
+        {
+          "level": 1,
+          "en": "nightmare",
+          "zh": "恶梦"
+        },
+        {
+          "level": 1,
           "en": "pound",
           "zh": "拍击"
         },
@@ -7910,6 +8945,16 @@
         "spe": 50
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
         {
           "level": 20,
           "en": "vice-grip",
@@ -7993,6 +9038,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "bubble",
+          "zh": "泡沫"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "metal-claw",
+          "zh": "金属爪"
+        },
+        {
+          "level": 1,
           "en": "vice-grip",
           "zh": "夹住"
         },
@@ -8072,6 +9132,21 @@
         "spe": 100
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "charge",
+          "zh": "充电"
+        },
+        {
+          "level": 1,
+          "en": "screech",
+          "zh": "刺耳声"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 17,
           "en": "sonic-boom",
@@ -8155,6 +9230,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "charge",
+          "zh": "充电"
+        },
+        {
+          "level": 1,
+          "en": "screech",
+          "zh": "刺耳声"
+        },
+        {
+          "level": 1,
+          "en": "sonic-boom",
+          "zh": "音爆"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -8234,6 +9324,16 @@
         "spe": 40
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "barrage",
+          "zh": "投球"
+        },
+        {
+          "level": 1,
+          "en": "hypnosis",
+          "zh": "催眠术"
+        },
         {
           "level": 1,
           "en": "uproar",
@@ -8382,6 +9482,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "bone-club",
+          "zh": "骨棒"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 13,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 18,
+          "en": "headbutt",
+          "zh": "头锤"
+        },
+        {
           "level": 25,
           "en": "leer",
           "zh": "瞪眼"
@@ -8464,6 +9584,26 @@
       "moves": [
         {
           "level": 1,
+          "en": "bone-club",
+          "zh": "骨棒"
+        },
+        {
+          "level": 1,
+          "en": "focus-energy",
+          "zh": "聚气"
+        },
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
           "en": "tail-whip",
           "zh": "摇尾巴"
         },
@@ -8543,6 +9683,31 @@
         "spe": 87
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "double-kick",
+          "zh": "二连踢"
+        },
+        {
+          "level": 1,
+          "en": "meditate",
+          "zh": "瑜伽姿势"
+        },
+        {
+          "level": 1,
+          "en": "revenge",
+          "zh": "报复"
+        },
+        {
+          "level": 20,
+          "en": "brick-break",
+          "zh": "劈瓦"
+        },
+        {
+          "level": 31,
+          "en": "mind-reader",
+          "zh": "心之眼"
+        },
         {
           "level": 33,
           "en": "rolling-kick",
@@ -8624,6 +9789,26 @@
         "spe": 76
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "agility",
+          "zh": "高速移动"
+        },
+        {
+          "level": 1,
+          "en": "comet-punch",
+          "zh": "连续拳"
+        },
+        {
+          "level": 1,
+          "en": "revenge",
+          "zh": "报复"
+        },
+        {
+          "level": 13,
+          "en": "pursuit",
+          "zh": "追打"
+        },
         {
           "level": 20,
           "en": "mach-punch",
@@ -8707,6 +9892,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "lick",
+          "zh": "舌舔"
+        },
+        {
+          "level": 1,
+          "en": "supersonic",
+          "zh": "超音波"
+        },
+        {
+          "level": 1,
           "en": "wrap",
           "zh": "紧束"
         },
@@ -8780,6 +9975,16 @@
         "spe": 35
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "poison-gas",
+          "zh": "毒瓦斯"
+        },
+        {
+          "level": 1,
+          "en": "smog",
+          "zh": "浊雾"
+        },
         {
           "level": 1,
           "en": "tackle",
@@ -8863,6 +10068,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "poison-gas",
+          "zh": "毒瓦斯"
+        },
+        {
+          "level": 1,
+          "en": "sludge",
+          "zh": "污泥攻击"
+        },
+        {
+          "level": 1,
           "en": "smog",
           "zh": "浊雾"
         },
@@ -8943,6 +10158,21 @@
         "spe": 25
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "horn-attack",
+          "zh": "角撞"
+        },
+        {
+          "level": 24,
+          "en": "scary-face",
+          "zh": "鬼面"
+        },
+        {
+          "level": 29,
+          "en": "rock-blast",
+          "zh": "岩石爆击"
+        },
         {
           "level": 30,
           "en": "stomp",
@@ -9027,6 +10257,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "fury-attack",
+          "zh": "乱击"
+        },
+        {
+          "level": 1,
+          "en": "horn-attack",
+          "zh": "角撞"
+        },
+        {
+          "level": 1,
+          "en": "stomp",
+          "zh": "踩踏"
+        },
+        {
+          "level": 1,
           "en": "tail-whip",
           "zh": "摇尾巴"
         },
@@ -9107,6 +10352,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "double-slap",
+          "zh": "连环巴掌"
+        },
+        {
+          "level": 1,
+          "en": "pound",
+          "zh": "拍击"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 9,
+          "en": "refresh",
+          "zh": "焕然一新"
+        },
+        {
           "level": 13,
           "en": "soft-boiled",
           "zh": "生蛋"
@@ -9182,6 +10447,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "bind",
+          "zh": "绑紧"
+        },
+        {
+          "level": 1,
+          "en": "constrict",
+          "zh": "缠绕"
+        },
+        {
+          "level": 1,
+          "en": "ingrain",
+          "zh": "扎根"
+        },
+        {
+          "level": 29,
+          "en": "absorb",
+          "zh": "吸取"
+        },
+        {
           "level": 29,
           "en": "vine-whip",
           "zh": "藤鞭"
@@ -9256,6 +10541,16 @@
         "spe": 90
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "comet-punch",
+          "zh": "连续拳"
+        },
+        {
+          "level": 1,
+          "en": "rage",
+          "zh": "愤怒"
+        },
         {
           "level": 19,
           "en": "fake-out",
@@ -9494,6 +10789,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 1,
+          "en": "water-sport",
+          "zh": "玩水"
+        },
+        {
           "level": 19,
           "en": "supersonic",
           "zh": "超音波"
@@ -9576,6 +10886,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
+        {
+          "level": 1,
+          "en": "supersonic",
+          "zh": "超音波"
+        },
+        {
+          "level": 1,
+          "en": "tail-whip",
+          "zh": "摇尾巴"
+        },
+        {
+          "level": 1,
           "en": "water-sport",
           "zh": "玩水"
         },
@@ -9655,6 +10980,26 @@
         "spe": 85
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 10,
+          "en": "rapid-spin",
+          "zh": "高速旋转"
+        },
+        {
+          "level": 17,
+          "en": "water-gun",
+          "zh": "水枪"
+        },
+        {
+          "level": 19,
+          "en": "camouflage",
+          "zh": "保护色"
+        },
         {
           "level": 22,
           "en": "harden",
@@ -9815,6 +11160,46 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "barrier",
+          "zh": "屏障"
+        },
+        {
+          "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 19,
+          "en": "reflect",
+          "zh": "反射壁"
+        },
+        {
+          "level": 22,
+          "en": "magical-leaf",
+          "zh": "魔法叶"
+        },
+        {
+          "level": 23,
+          "en": "light-screen",
+          "zh": "光墙"
+        },
+        {
+          "level": 26,
+          "en": "encore",
+          "zh": "再来一次"
+        },
+        {
+          "level": 29,
+          "en": "psybeam",
+          "zh": "幻象光线"
+        },
+        {
+          "level": 31,
+          "en": "double-slap",
+          "zh": "连环巴掌"
+        },
+        {
           "level": 33,
           "en": "recycle",
           "zh": "回收利用"
@@ -9890,6 +11275,21 @@
         "spe": 105
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
+          "level": 11,
+          "en": "pursuit",
+          "zh": "追打"
+        },
+        {
+          "level": 16,
+          "en": "false-swipe",
+          "zh": "点到为止"
+        },
         {
           "level": 17,
           "en": "leer",
@@ -9967,6 +11367,26 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "lovely-kiss",
+          "zh": "恶魔之吻"
+        },
+        {
+          "level": 1,
+          "en": "pound",
+          "zh": "拍击"
+        },
+        {
+          "level": 1,
+          "en": "powder-snow",
+          "zh": "细雪"
+        },
+        {
+          "level": 18,
+          "en": "lick",
+          "zh": "舌舔"
+        },
+        {
           "level": 23,
           "en": "double-slap",
           "zh": "连环巴掌"
@@ -10042,6 +11462,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
           "en": "quick-attack",
           "zh": "电光一闪"
         },
@@ -10114,6 +11539,11 @@
         "spe": 93
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
         {
           "level": 33,
           "en": "sunny-day",
@@ -10190,6 +11620,21 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "vice-grip",
+          "zh": "夹住"
+        },
+        {
+          "level": 21,
+          "en": "bind",
+          "zh": "绑紧"
+        },
+        {
+          "level": 25,
+          "en": "revenge",
+          "zh": "报复"
+        },
+        {
           "level": 25,
           "en": "seismic-toss",
           "zh": "地球上投"
@@ -10264,6 +11709,26 @@
         "spe": 110
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 8,
+          "en": "horn-attack",
+          "zh": "角撞"
+        },
+        {
+          "level": 13,
+          "en": "scary-face",
+          "zh": "鬼面"
+        },
+        {
+          "level": 19,
+          "en": "pursuit",
+          "zh": "追打"
+        },
         {
           "level": 21,
           "en": "stomp",
@@ -10396,6 +11861,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "bite",
+          "zh": "咬住"
+        },
+        {
+          "level": 1,
+          "en": "dragon-rage",
+          "zh": "龙之怒"
+        },
+        {
+          "level": 1,
           "en": "hydro-pump",
           "zh": "水炮"
         },
@@ -10476,6 +11951,26 @@
         "spe": 60
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "growl",
+          "zh": "叫声"
+        },
+        {
+          "level": 1,
+          "en": "water-gun",
+          "zh": "水枪"
+        },
+        {
+          "level": 16,
+          "en": "sing",
+          "zh": "唱歌"
+        },
+        {
+          "level": 20,
+          "en": "mist",
+          "zh": "白雾"
+        },
         {
           "level": 25,
           "en": "body-slam",
@@ -10592,6 +12087,16 @@
       "moves": [
         {
           "level": 1,
+          "en": "helping-hand",
+          "zh": "帮助"
+        },
+        {
+          "level": 1,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -10682,6 +12187,26 @@
         "spe": 65
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "helping-hand",
+          "zh": "帮助"
+        },
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
+          "level": 1,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
         {
           "level": 1,
           "en": "water-gun",
@@ -10776,6 +12301,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "helping-hand",
+          "zh": "帮助"
+        },
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
+          "level": 1,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -10866,6 +12406,26 @@
         "spe": 65
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "helping-hand",
+          "zh": "帮助"
+        },
+        {
+          "level": 1,
+          "en": "quick-attack",
+          "zh": "电光一闪"
+        },
+        {
+          "level": 1,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
         {
           "level": 1,
           "en": "tackle",
@@ -10961,6 +12521,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "conversion",
+          "zh": "纹理"
+        },
+        {
+          "level": 1,
+          "en": "conversion-2",
+          "zh": "纹理２"
+        },
+        {
+          "level": 1,
+          "en": "sharpen",
+          "zh": "棱角化"
+        },
+        {
+          "level": 1,
           "en": "tackle",
           "zh": "撞击"
         },
@@ -11035,6 +12610,26 @@
         "spe": 35
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "constrict",
+          "zh": "缠绕"
+        },
+        {
+          "level": 1,
+          "en": "water-gun",
+          "zh": "水枪"
+        },
+        {
+          "level": 1,
+          "en": "withdraw",
+          "zh": "缩入壳中"
+        },
+        {
+          "level": 13,
+          "en": "bite",
+          "zh": "咬住"
+        },
         {
           "level": 25,
           "en": "mud-shot",
@@ -11119,6 +12714,26 @@
       "moves": [
         {
           "level": 1,
+          "en": "bite",
+          "zh": "咬住"
+        },
+        {
+          "level": 1,
+          "en": "constrict",
+          "zh": "缠绕"
+        },
+        {
+          "level": 1,
+          "en": "horn-attack",
+          "zh": "角撞"
+        },
+        {
+          "level": 1,
+          "en": "water-gun",
+          "zh": "水枪"
+        },
+        {
+          "level": 1,
           "en": "withdraw",
           "zh": "缩入壳中"
         },
@@ -11199,6 +12814,26 @@
         "spe": 55
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "harden",
+          "zh": "变硬"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 25,
+          "en": "mud-shot",
+          "zh": "泥巴射击"
+        },
+        {
+          "level": 31,
+          "en": "sand-attack",
+          "zh": "泼沙"
+        },
         {
           "level": 34,
           "en": "absorb",
@@ -11281,6 +12916,31 @@
         "spe": 80
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "absorb",
+          "zh": "吸取"
+        },
+        {
+          "level": 1,
+          "en": "fury-cutter",
+          "zh": "连斩"
+        },
+        {
+          "level": 1,
+          "en": "harden",
+          "zh": "变硬"
+        },
+        {
+          "level": 1,
+          "en": "scratch",
+          "zh": "抓"
+        },
+        {
+          "level": 25,
+          "en": "mud-shot",
+          "zh": "泥巴射击"
+        },
         {
           "level": 31,
           "en": "sand-attack",
@@ -11439,6 +13099,46 @@
       },
       "moves": [
         {
+          "level": 1,
+          "en": "amnesia",
+          "zh": "瞬间失忆"
+        },
+        {
+          "level": 1,
+          "en": "headbutt",
+          "zh": "头锤"
+        },
+        {
+          "level": 1,
+          "en": "rest",
+          "zh": "睡觉"
+        },
+        {
+          "level": 1,
+          "en": "tackle",
+          "zh": "撞击"
+        },
+        {
+          "level": 9,
+          "en": "defense-curl",
+          "zh": "变圆"
+        },
+        {
+          "level": 13,
+          "en": "belly-drum",
+          "zh": "腹鼓"
+        },
+        {
+          "level": 21,
+          "en": "yawn",
+          "zh": "哈欠"
+        },
+        {
+          "level": 29,
+          "en": "snore",
+          "zh": "打鼾"
+        },
+        {
           "level": 35,
           "en": "body-slam",
           "zh": "泰山压顶"
@@ -11513,6 +13213,16 @@
         "spe": 85
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "gust",
+          "zh": "起风"
+        },
+        {
+          "level": 1,
+          "en": "ice-beam",
+          "zh": "冰冻光束"
+        },
         {
           "level": 1,
           "en": "peck",
@@ -11590,6 +13300,11 @@
       "moves": [
         {
           "level": 1,
+          "en": "drill-peck",
+          "zh": "啄钻"
+        },
+        {
+          "level": 1,
           "en": "peck",
           "zh": "啄"
         },
@@ -11665,6 +13380,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "ember",
+          "zh": "火花"
+        },
+        {
+          "level": 1,
+          "en": "fire-spin",
+          "zh": "火焰旋涡"
+        },
+        {
+          "level": 1,
+          "en": "peck",
+          "zh": "啄"
+        },
+        {
+          "level": 1,
           "en": "wing-attack",
           "zh": "翅膀攻击"
         },
@@ -11737,6 +13467,16 @@
         "spe": 50
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "wrap",
+          "zh": "紧束"
+        },
         {
           "level": 10,
           "en": "thunder-wave",
@@ -11823,6 +13563,16 @@
         "spe": 70
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "thunder-wave",
+          "zh": "电磁波"
+        },
         {
           "level": 1,
           "en": "twister",
@@ -11912,6 +13662,21 @@
       "moves": [
         {
           "level": 1,
+          "en": "agility",
+          "zh": "高速移动"
+        },
+        {
+          "level": 1,
+          "en": "leer",
+          "zh": "瞪眼"
+        },
+        {
+          "level": 1,
+          "en": "thunder-wave",
+          "zh": "电磁波"
+        },
+        {
+          "level": 1,
           "en": "twister",
           "zh": "龙卷风"
         },
@@ -11996,6 +13761,21 @@
         "spe": 130
       },
       "moves": [
+        {
+          "level": 1,
+          "en": "confusion",
+          "zh": "念力"
+        },
+        {
+          "level": 1,
+          "en": "disable",
+          "zh": "定身法"
+        },
+        {
+          "level": 1,
+          "en": "psychic",
+          "zh": "精神强念"
+        },
         {
           "level": 1,
           "en": "swift",

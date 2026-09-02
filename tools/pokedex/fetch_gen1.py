@@ -140,8 +140,6 @@ def level_up_moves(pokemon: dict) -> list[tuple[int, str, str]]:
             )
         )
     rows.sort(key=lambda item: (item[0], item[1]))
-    if len(rows) > 8:
-        rows = rows[-8:]
     return rows
 
 

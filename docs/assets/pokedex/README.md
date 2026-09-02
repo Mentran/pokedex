@@ -85,7 +85,7 @@ Home
                   Up / Down : previous / next id (Browse wraps 1..151;
                               Random also wraps, and OK long-press on
                               Cover is reserved for cry + home)
-                  OK click  : Cover -> Bio -> Stats -> Moves -> Evo -> Cover
+                  OK click  : Cover -> Bio -> Stats -> Moves -> Matchup -> Evo -> Cover
                   OK long   : play cry when on Cover, then return home
 ```
 
@@ -101,9 +101,11 @@ Title bar is the red dex bezel. Content sits in the green inner LCD.
 
 **Bio:** category plus one wrapped paragraph. If a second distinct sentence exists, it follows.
 
-**Stats:** six bars, values 1-255 scaled to a 100 px track.
+**Stats:** six bars, values 1-255 scaled to a 100 px track, plus the six-stat total.
 
-**Moves:** up to eight Chinese move names, with level if known.
+**Moves:** every Generation I level-up move, with the learn level.
+
+**Matchup:** defending 4x / 2x / 1/2 / 1/4 / 0, and attacking 2x / 1/2 / 0, using the modern type chart.
 
 **Evolution:** a vertical chain of Chinese names and the condition between them. Single-stage Pokemon show "does not evolve".
 

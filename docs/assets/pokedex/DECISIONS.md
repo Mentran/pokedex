@@ -47,3 +47,7 @@ Three keys cannot type. Sequential browse plus random covers the requested inter
 ## 2026-09-02 — Handheld dex chrome, 80x80 split sprites
 
 After the text build confirmed the key flow, the UI became a red handheld dex instead of the template sky/grass. Sprites are 80x80 RGB565 split into `sprites1.bin` / `sprites2.bin` so no SPIFFS file exceeds about half the partition. Cries stay legacy OGG to IMA-ADPCM. Provisioned badges must use segmented `idf.py flash`; do not write a merged `full.bin` that contains `pokedexfs` from `0x0`.
+
+## 2026-09-02 — Full level-up moves and modern matchups
+
+The moves page lists every red/blue (then yellow / FR/LG) level-up move, not a late-game slice of eight. Stats show the six-stat total. The extra matchup page uses the modern type chart because the catalog already stores modern types such as Fairy and Steel.

@@ -8,6 +8,7 @@
 #include "esp_random.h"
 #include "lvgl.h"
 
+#include <stdio.h>
 #include <string.h>
 
 #define FONT_ZH (&font_pokedex_16)
@@ -52,6 +53,7 @@ static const dex_type_t s_types[] = {
     { "格斗", 0xC03028 }, { "毒", 0xA040A0 }, { "地面", 0xE0C068 },
     { "飞行", 0xA890F0 }, { "超能力", 0xF85888 }, { "虫", 0xA8B820 },
     { "岩石", 0xB8A038 }, { "幽灵", 0x705898 }, { "龙", 0x7038F8 },
+    { "恶", 0x705848 }, { "钢", 0xB8B8D0 }, { "妖精", 0xEE99AC },
 };
 
 bool demo_pokedex_is_home(void)
@@ -163,9 +165,10 @@ static lv_obj_t *make_shell(void)
 
 static void add_tabs(lv_obj_t *lcd, int active)
 {
-    int total = 5 * 10 + 4 * 6;
+    int n = POKEDEX_TAB_COUNT;
+    int total = n * 10 + (n - 1) * 6;
     int x = (208 - total) / 2;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < n; i++) {
         uint32_t color = (i == active) ? DEX_YELLOW : 0x81C784;
         int size = (i == active) ? 10 : 8;
         int oy = (i == active) ? 184 : 185;
@@ -224,6 +227,50 @@ static void show_home(void)
     label_at(lcd, "UP/DOWN  OK", &lv_font_montserrat_14, DEX_INK_DIM, 40, 174);
     paint_home_sel();
     lv_screen_load(s_scr);
+}
+
+static int add_type_list(lv_obj_t *lcd, int y, const char *title,
+                         const char **names, const uint8_t *mul, int n, int want)
+{
+    char buf[192];
+    int used = snprintf(buf, sizeof(buf), "%s", title);
+    int listed = 0;
+    for (int i = 0; i < n && used < (int)sizeof(buf) - 8; i++) {
+        if (mul && want && mul[i] != want) {
+            continue;
+        }
+        used += snprintf(buf + used, sizeof(buf) - (size_t)used, " %s", names[i]);
+        listed++;
+    }
+    if (!listed) {
+        return y;
+    }
+    lv_obj_t *line = zh_at(lcd, buf, DEX_INK, 6, y);
+    lv_obj_set_width(line, 196);
+    lv_label_set_long_mode(line, LV_LABEL_LONG_WRAP);
+    lv_obj_update_layout(line);
+    return y + (int)lv_obj_get_height(line) + 2;
+}
+
+static int add_matchup_page(lv_obj_t *lcd, const pokedex_entry_t *e)
+{
+    pokedex_matchup_t m;
+    pokedex_matchup(e->type_a, e->type_b, &m);
+    int y = 4;
+    zh_at(lcd, "被打", DEX_INK_DIM, 6, y);
+    y += 18;
+    y = add_type_list(lcd, y, "4x", m.weak, m.weak_x, m.weak_n, 40);
+    y = add_type_list(lcd, y, "2x", m.weak, m.weak_x, m.weak_n, 20);
+    y = add_type_list(lcd, y, "1/2", m.resist, m.resist_x, m.resist_n, 5);
+    y = add_type_list(lcd, y, "1/4", m.resist, m.resist_x, m.resist_n, 2);
+    y = add_type_list(lcd, y, "0", m.immune, 0, m.immune_n, 0);
+    y += 4;
+    zh_at(lcd, "打出", DEX_INK_DIM, 6, y);
+    y += 18;
+    y = add_type_list(lcd, y, "2x", m.hit2, 0, m.hit2_n, 0);
+    y = add_type_list(lcd, y, "1/2", m.hit_half, 0, m.hit_half_n, 0);
+    y = add_type_list(lcd, y, "0", m.hit0, 0, m.hit0_n, 0);
+    return y;
 }
 
 static void add_stat_row(lv_obj_t *parent, int y, const char *name, int value)
@@ -300,15 +347,25 @@ static void show_entry(void)
         for (int i = 0; i < 6; i++) {
             add_stat_row(lcd, 8 + i * 26, s_stat_name[i], values[i]);
         }
+        lv_obj_t *sum = zh_at(lcd, "", DEX_INK, 6, 164);
+        lv_label_set_text_fmt(sum, "合计 %d", pokedex_stat_total(e));
     } else if (s_state.tab == POKEDEX_TAB_MOVES) {
         if (e->move_n <= 0) {
             zh_at(lcd, "-", DEX_INK, 8, 8);
         } else {
-            for (int i = 0; i < e->move_n && i < 8; i++) {
-                lv_obj_t *row = zh_at(lcd, "", DEX_INK, 8, 6 + i * 22);
-                lv_label_set_text_fmt(row, "Lv.%d  %s", e->move_lv[i], e->move_zh[i]);
+            int cols = (e->move_n > 10) ? 2 : 1;
+            int rows = (e->move_n + cols - 1) / cols;
+            for (int i = 0; i < e->move_n && i < POKEDEX_MOVE_MAX; i++) {
+                int col = i / rows;
+                int row = i % rows;
+                int x = (cols == 1) ? 8 : (6 + col * 100);
+                lv_obj_t *line = zh_at(lcd, "", DEX_INK, x, 4 + row * 16);
+                lv_obj_set_width(line, cols == 1 ? 192 : 96);
+                lv_label_set_text_fmt(line, "%d %s", e->move_lv[i], e->move_zh[i]);
             }
         }
+    } else if (s_state.tab == POKEDEX_TAB_MATCHUP) {
+        add_matchup_page(lcd, e);
     } else if (e->evo_n <= 1) {
         lv_obj_t *none = zh_at(lcd, "不会进化", DEX_INK, 0, 80);
         lv_obj_set_width(none, 208);

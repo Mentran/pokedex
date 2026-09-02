@@ -41,7 +41,7 @@ See [docs/assets/pokedex/README.md](docs/assets/pokedex/README.md) for the flash
 | Key | Home | Entry |
 | --- | --- | --- |
 | Up / Down | Browse or Random | Previous / next Pokemon |
-| OK click | Open the selected mode | Next info page (cover, bio, stats, moves, evolution) |
+| OK click | Open the selected mode | Next info page (cover, bio, stats, moves, matchup, evolution) |
 | OK long-press | — | Back to home. On the cover page, also plays the cry |
 
 ## Project files

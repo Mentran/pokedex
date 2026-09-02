@@ -63,6 +63,32 @@ int main(void)
     assert(pika && strcmp(pika->en, "pikachu") == 0);
     assert(eevee && strcmp(eevee->en, "eevee") == 0);
     assert(helix && helix->type_a[0] != '\0');
+    assert(pokedex_stat_total(one) == 318);
+    assert(pokedex_stat_total(pika) == 320);
+    assert(pika->move_n > 8);
+
+    pokedex_matchup_t m;
+    pokedex_matchup(one->type_a, one->type_b, &m);
+    int saw_fire = 0, saw_water = 0, saw_fairy = 0, saw_quarter = 0;
+    for (int i = 0; i < m.weak_n; i++) {
+        if (strcmp(m.weak[i], "火") == 0) {
+            saw_fire = 1;
+        }
+    }
+    for (int i = 0; i < m.resist_n; i++) {
+        if (strcmp(m.resist[i], "草") == 0 && m.resist_x[i] == 2) {
+            saw_quarter = 1;
+        }
+    }
+    for (int i = 0; i < m.hit2_n; i++) {
+        if (strcmp(m.hit2[i], "水") == 0) {
+            saw_water = 1;
+        }
+        if (strcmp(m.hit2[i], "妖精") == 0) {
+            saw_fairy = 1;
+        }
+    }
+    assert(saw_fire && saw_water && saw_fairy && saw_quarter);
     assert(pokedex_entry(0) == 0);
     assert(pokedex_entry(152) == 0);
     return 0;
