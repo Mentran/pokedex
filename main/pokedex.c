@@ -271,6 +271,19 @@ const pokedex_entry_t *pokedex_entry(int id)
     return &s_entries[id - 1];
 }
 
+int pokedex_has_trivia(const pokedex_entry_t *e)
+{
+    return e && e->trivia && e->trivia[0] && strcmp(e->trivia, e->intro) != 0;
+}
+
+const char *pokedex_trivia_text(const pokedex_entry_t *e)
+{
+    if (pokedex_has_trivia(e)) {
+        return e->trivia;
+    }
+    return "目前没有更多记录。";
+}
+
 int pokedex_stat_total(const pokedex_entry_t *e)
 {
     if (!e) {

@@ -42,7 +42,9 @@ int main(void)
 
     pokedex_next_tab(&s);
     assert(s.tab == POKEDEX_TAB_BIO);
-    for (int i = 0; i < POKEDEX_TAB_COUNT - 1; i++) {
+    pokedex_next_tab(&s);
+    assert(s.tab == POKEDEX_TAB_TRIVIA);
+    for (int i = 0; i < POKEDEX_TAB_COUNT - 2; i++) {
         pokedex_next_tab(&s);
     }
     assert(s.tab == POKEDEX_TAB_COVER);
@@ -126,6 +128,8 @@ int main(void)
     assert(s.tab == POKEDEX_TAB_COVER);
     pokedex_next_tab(&s);
     assert(s.tab == POKEDEX_TAB_BIO);
+    pokedex_next_tab(&s);
+    assert(s.tab == POKEDEX_TAB_TRIVIA);
     pokedex_step_id(&s, 1, 0);
     assert(s.id == 1);
     assert(pokedex_is_guess(&s));
@@ -151,6 +155,10 @@ int main(void)
     assert(pika->move_n > 8);
     assert(one->trivia && one->trivia[0]);
     assert(strcmp(one->trivia, one->intro) != 0);
+    assert(pokedex_has_trivia(one));
+    assert(strcmp(pokedex_trivia_text(one), one->trivia) == 0);
+    assert(!pokedex_has_trivia(pokedex_entry(151)));
+    assert(pokedex_trivia_text(pokedex_entry(151))[0] != '\0');
     assert(one->ability_n >= 1);
     assert(one->ability_zh[0] && one->ability_zh[0][0]);
     assert(one->ability_intro[0] && one->ability_intro[0][0]);

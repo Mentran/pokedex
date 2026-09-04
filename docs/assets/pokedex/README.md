@@ -57,7 +57,8 @@ Catalog text and cries come from PokeAPI.
 | --- | --- | --- |
 | National id, English name | PokeAPI `/pokemon/{id}` | Stable ids 1-151 |
 | Chinese name, category | PokeAPI `/pokemon-species/{id}` `zh-hans` | Compiled into the catalog |
-| Bio | PokeAPI `zh-hans` flavor text, one sentence | Second sentence is trivia on the bio page if it differs |
+| Bio | PokeAPI `zh-hans` flavor text, one sentence | Bio page keeps the first sentence |
+| Trivia | Second flavor sentence for that species | Own tab; empty note if missing |
 | Types | PokeAPI types, mapped to Chinese labels | At most two |
 | Height / weight | PokeAPI `height` (dm), `weight` (hg) | Shown on cover as meters and kilograms |
 | Catch / gender | PokeAPI `capture_rate`, `gender_rate` | Catch rate is stored; cover shows gender only (`-1` genderless, `0..8` female eighths) |
@@ -81,7 +82,7 @@ Home
   Browse  ----+--> Entry (always starts on Cover)
   Random  ----+    Up / Down : previous / next id
                    (on Matchup: scroll overflow first, then change id)
-                   OK click  : Cover -> Bio -> Stats -> Moves -> Matchup -> Evo -> Cover
+                   OK click  : Cover -> Bio -> Trivia -> Stats -> Moves -> Matchup -> Evo -> Cover
                                (while zoomed, restores the cover)
                    OK double : on Cover, toggle a 3x fullscreen sprite
                    OK long   : play cry when on Cover, then return home
@@ -89,7 +90,7 @@ Home
                    OK click  : reveal this species' dex entry
                    Up / Down : next silhouette (not the next dex page)
                    OK long   : return home
-  Oak's lecture ----+--> Lecture (full text, small portrait in a bottom corner)
+  Oak's lecture ----+--> Lecture (full text, upper-body portrait in a bottom corner)
                    Enter and Up/Down reroll the speaker
                    (Oak / Ash / Brock / Misty / Gary)
                    Up / Down : previous / next world fact
@@ -107,7 +108,9 @@ Title bar is the red dex bezel. Content sits in the green inner LCD.
 
 **Cover:** number, 80 x 80 sprite, Chinese name, English name, one or two type chips, category, height/weight, and gender ratio. Opening cover plays the cry. Double-click OK zooms the sprite to a 3x nearest-neighbor fullscreen; OK click restores. OK click on Cover still opens Bio.
 
-**Bio:** one wrapped paragraph. If a second distinct sentence exists, it follows.
+**Bio:** one wrapped paragraph.
+
+**Trivia:** the second dex sentence when it differs from the bio; otherwise a short empty note. This is per-species, not the Oak's lecture pool.
 
 **Stats:** six compact bars, the six-stat total, then modern ability names prefixed with an explicit label, plus intros.
 

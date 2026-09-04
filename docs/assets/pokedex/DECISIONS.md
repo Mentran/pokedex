@@ -6,7 +6,7 @@
 
 ## 2026-09-04 — Who am I, BGM, three boot scenes
 
-Home gains Who am I: a black silhouette, OK reveals the dex, Up/Down draws the next silhouette. Boot is one Gengar-vs-Nidorino scene for about 4 seconds, skippable; staging follows the cover art (Gengar left, Nidorino right). BGM starts after home at codec volume 40; cries play at 60. Lecture portraits are about 68px in the bottom-left or bottom-right of the text panel.
+Home gains Who am I: a black silhouette, OK reveals the dex, Up/Down draws the next silhouette. Boot is one Gengar-vs-Nidorino scene for about 4 seconds, skippable; staging follows the cover art (Gengar left, Nidorino right) on the same LCD green as the dex, with no fade-to-white. BGM starts after home at codec volume 40; cries play at 60. Lecture portraits are upper-body crops at 80px in the bottom-left or bottom-right of the text panel.
 
 ## 2026-09-04 — Official art for boot and lecture
 
@@ -66,7 +66,7 @@ The moves page lists every red/blue (then yellow / FR/LG) level-up move, not a l
 
 ## 2026-09-02 — Extra fields stay on existing pages
 
-Height and weight sit on cover with gender ratio. Catch rate stays in the catalog but is not shown. Ability names plus flavor sit on stats, labeled as abilities. The second dex sentence sits on bio when it is not a duplicate of intro. World facts are a third home item with a dedicated screen: enter on a random sentence, then Up / Down walks the pool without showing an index or count. Move power and move flavor stay out.
+Height and weight sit on cover with gender ratio. Catch rate stays in the catalog but is not shown. Ability names plus flavor sit on stats, labeled as abilities. The second dex sentence sits on its own Trivia tab when it differs from the intro. Species without a second sentence show a short empty note. World facts remain Oak's lecture, a shared pool not tied to the current id.
 
 ## 2026-09-02 — Cover double-click zooms the sprite
 

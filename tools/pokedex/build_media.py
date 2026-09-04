@@ -124,21 +124,11 @@ def art_png(pid: int) -> Path:
 
 def convert_sprite(src: Path, dest: Path) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
-    # Flatten transparency onto the dex LCD green so RGB565 has no black holes.
-    filt = (
-        f"color=c=0xC8E6C9:s={SPRITE_W}x{SPRITE_H}:d=1[bg];"
-        f"[0:v]scale={SPRITE_W}:{SPRITE_H}:force_original_aspect_ratio=decrease"
-        f":flags=lanczos,format=rgba[fg];"
-        f"[bg][fg]overlay=(W-w)/2:(H-h)/2:format=auto"
-    )
-    subprocess.check_call(
-        [
-            "ffmpeg", "-y", "-loglevel", "error",
-            "-i", str(src), "-filter_complex", filt,
-            "-frames:v", "1", "-pix_fmt", "rgb565le",
-            "-f", "rawvideo", str(dest),
-        ]
-    )
+    # Official art stores white RGB on transparent pixels; knock that fringe
+    # before lanczos so the 80x80 does not get a white halo on the LCD green.
+    from rgba_prep import pack_sprite
+
+    dest.write_bytes(pack_sprite(src, SPRITE_W, SPRITE_H))
 
 
 def write_sprite_pack(path: Path, first_id: int, count: int, tmp: Path) -> None:
@@ -216,12 +206,18 @@ def main() -> int:
         action="store_true",
         help="write empty packs without ffmpeg or network",
     )
+    parser.add_argument(
+        "--sprites-only",
+        action="store_true",
+        help="rebuild sprite packs without touching cries.bin",
+    )
     args = parser.parse_args()
     if args.placeholder:
         build_placeholder()
         return 0
     build_sprites()
-    build_cries()
+    if not args.sprites_only:
+        build_cries()
     return 0
 
 

@@ -29,8 +29,8 @@
 static pokedex_state_t s_state;
 static lv_obj_t *s_scr;
 static lv_obj_t *s_home_cards[POKEDEX_HOME_COUNT];
-static uint8_t s_sprite_rgb[POKEDEX_SPRITE_BYTES];
-static uint8_t s_sprite_rgb2[POKEDEX_SPRITE_BYTES];
+static uint8_t s_sprite_rgb[POKEDEX_SPRITE_RGB565A8_BYTES];
+static uint8_t s_sprite_rgb2[POKEDEX_SPRITE_RGB565A8_BYTES];
 static lv_image_dsc_t s_sprite_dsc;
 static lv_image_dsc_t s_sprite_dsc2;
 static int s_cry_for_id;
@@ -44,9 +44,9 @@ static lv_obj_t *s_boot_shadow_l;
 static lv_obj_t *s_boot_shadow_r;
 static lv_obj_t *s_boot_flash;
 
-/* 红蓝开场节奏，站位跟封面立绘朝向：耿鬼在左往右扑，尼多力诺在右往左冲。 */
-#define BOOT_BG        0xEDEBE4
-#define BOOT_FLOOR     0xD8D4CA
+/* 红蓝开场节奏，站位跟封面立绘朝向：耿鬼在左往右扑，尼多力诺在右往左冲。
+ * 场地用图鉴绿屏，立绘已铺在同一块绿上，不再铺一层奶油白。 */
+#define BOOT_BG        DEX_LCD
 #define BOOT_FRAMES    24
 #define BOOT_MS        170
 #define BOOT_GX        40
@@ -94,11 +94,11 @@ static const boot_pose_t s_boot_pose[BOOT_FRAMES] = {
     { BOOT_GX + 14, BOOT_GY + 8,  BOOT_NX - 8, BOOT_NY - 10, 256, 256, 0 },
     { BOOT_GX + 4,  BOOT_GY - 4,  BOOT_NX,     BOOT_NY,      256, 256, 0 },
     { BOOT_GX,      BOOT_GY,      BOOT_NX,     BOOT_NY,      256, 256, 0 },
-    /* 20-23 淡出到白 */
-    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256,  70 },
-    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 140 },
-    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 210 },
-    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 255 },
+    /* 20-23 落地站住，直接切首页，不再淡成白屏 */
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 0 },
 };
 
 static const char *s_home_titles[POKEDEX_HOME_COUNT] = {
@@ -203,25 +203,6 @@ static void rekey_lcd_fill(uint8_t *buf, uint32_t to_hex)
     }
 }
 
-static lv_obj_t *dex_img(lv_obj_t *parent, lv_image_dsc_t *dsc, int x, int y)
-{
-    lv_obj_t *img = lv_image_create(parent);
-    lv_image_set_src(img, dsc);
-    lv_image_set_antialias(img, false);
-    lv_obj_set_pos(img, x, y);
-    return img;
-}
-
-static lv_obj_t *boot_poke(lv_obj_t *parent, uint8_t *buf, lv_image_dsc_t *dsc,
-                           int id, int x, int y, uint32_t key)
-{
-    if (!pokedex_media_load_sprite(id, buf, dsc)) {
-        return NULL;
-    }
-    rekey_lcd_fill(buf, key);
-    return dex_img(parent, dsc, x, y);
-}
-
 static uint8_t s_sil_mark[(POKEDEX_SPRITE_W * POKEDEX_SPRITE_H + 7) / 8];
 
 static int sil_get(int i)
@@ -234,13 +215,11 @@ static void sil_set(int i)
     s_sil_mark[i >> 3] |= (uint8_t)(1u << (i & 7));
 }
 
-static void sprite_silhouette(uint8_t *buf)
+static void mark_edge_fill(const uint16_t *p)
 {
-    uint16_t *p = (uint16_t *)buf;
     const int w = POKEDEX_SPRITE_W;
     const int h = POKEDEX_SPRITE_H;
     const int n = w * h;
-    uint16_t ink = 0;
     int x, y, i, changed;
 
     memset(s_sil_mark, 0, sizeof(s_sil_mark));
@@ -279,12 +258,62 @@ static void sprite_silhouette(uint8_t *buf)
             }
         }
     }
+}
 
+static void sprite_silhouette(uint8_t *buf)
+{
+    uint16_t *p = (uint16_t *)buf;
+    const int n = POKEDEX_SPRITE_W * POKEDEX_SPRITE_H;
+    int i;
+
+    mark_edge_fill(p);
     for (i = 0; i < n; i++) {
         if (!sil_get(i)) {
-            p[i] = ink;
+            p[i] = 0;
         }
     }
+}
+
+/* Cover pack is opaque RGB565 on LCD green. Boot overlap then paints one
+ * 80x80 square over the other. Punch an A8 hole in the connected fill. */
+static void boot_knockout(uint8_t *buf, lv_image_dsc_t *dsc)
+{
+    uint16_t *p = (uint16_t *)buf;
+    uint8_t *alpha = buf + POKEDEX_SPRITE_BYTES;
+    const int n = POKEDEX_SPRITE_W * POKEDEX_SPRITE_H;
+    int i;
+
+    mark_edge_fill(p);
+    for (i = 0; i < n; i++) {
+        if (sil_get(i)) {
+            p[i] = 0;
+            alpha[i] = 0;
+        } else {
+            alpha[i] = 255;
+        }
+    }
+    dsc->header.cf = LV_COLOR_FORMAT_RGB565A8;
+    dsc->data_size = POKEDEX_SPRITE_RGB565A8_BYTES;
+}
+
+static lv_obj_t *dex_img(lv_obj_t *parent, lv_image_dsc_t *dsc, int x, int y)
+{
+    lv_obj_t *img = lv_image_create(parent);
+    lv_image_set_src(img, dsc);
+    lv_image_set_antialias(img, false);
+    lv_obj_set_pos(img, x, y);
+    return img;
+}
+
+static lv_obj_t *boot_poke(lv_obj_t *parent, uint8_t *buf, lv_image_dsc_t *dsc,
+                           int id, int x, int y, uint32_t key)
+{
+    if (!pokedex_media_load_sprite(id, buf, dsc)) {
+        return NULL;
+    }
+    (void)key;
+    boot_knockout(buf, dsc);
+    return dex_img(parent, dsc, x, y);
 }
 
 static void wipe(void)
@@ -418,7 +447,7 @@ static lv_obj_t *boot_screen(void)
 
 static lv_obj_t *boot_shadow(lv_obj_t *parent, int x, int y, int w, int h, lv_opa_t opa)
 {
-    lv_obj_t *obj = box(parent, x, y, w, h, 0x6B6148, LV_RADIUS_CIRCLE);
+    lv_obj_t *obj = box(parent, x, y, w, h, DEX_INK, LV_RADIUS_CIRCLE);
     lv_obj_set_style_bg_opa(obj, opa, 0);
     return obj;
 }
@@ -480,15 +509,9 @@ static void apply_boot_pose(int frame)
     }
 }
 
-static void boot_paint_field(lv_obj_t *scr)
-{
-    box(scr, 20, 204, 200, 18, BOOT_FLOOR, LV_RADIUS_CIRCLE);
-}
-
 static void show_boot(void)
 {
     lv_obj_t *scr = boot_screen();
-    boot_paint_field(scr);
     s_boot_shadow_l = boot_shadow(scr, BOOT_GX + BOOT_SHADOW_GX, BOOT_SHADOW_GY, 56, 12, 48);
     s_boot_shadow_r = boot_shadow(scr, BOOT_NX + BOOT_SHADOW_NX, BOOT_SHADOW_NY, 64, 14, 90);
     s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 94,
@@ -579,9 +602,8 @@ static void show_fact(void)
     const int paper = 0xF1F8E9;
     const int panel_w = 192;
     const int panel_h = 164;
-    const int portrait = 68;
+    const int portrait = 80;
     const int inset = 2;
-    const int scale = 218;
 
     lv_obj_t *lcd = make_shell();
     lv_obj_t *title = zh_at(lcd, "大木讲堂", DEX_INK, 0, 4);
@@ -591,6 +613,7 @@ static void show_fact(void)
     lv_obj_t *panel = box(lcd, 8, 26, panel_w, panel_h, paper, 6);
     lv_obj_t *body = zh_at(panel, pokedex_fact_at(s_state.fact_index), DEX_INK, 8, 8);
     lv_obj_set_width(body, panel_w - 16);
+    lv_obj_set_height(body, panel_h - portrait - 14);
     lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
 
     if (pokedex_media_load_trainer(s_state.speaker, s_sprite_rgb, &s_sprite_dsc)) {
@@ -600,7 +623,7 @@ static void show_fact(void)
         int y = panel_h - inset - portrait;
         lv_obj_t *img = dex_img(panel, &s_sprite_dsc, x, y);
         lv_image_set_pivot(img, 0, 0);
-        lv_image_set_scale(img, scale);
+        lv_image_set_scale(img, 256);
         lv_obj_add_flag(img, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
         lv_obj_move_foreground(img);
     }
@@ -837,13 +860,13 @@ static void show_entry(void)
         lv_obj_t *body = zh_at(lcd, e->intro, DEX_INK, 8, 6);
         lv_obj_set_width(body, 192);
         lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
-        lv_obj_update_layout(body);
-        int y = 6 + (int)lv_obj_get_height(body) + 8;
-        if (e->trivia && e->trivia[0] && strcmp(e->trivia, e->intro) != 0 && y < 160) {
-            lv_obj_t *extra = zh_at(lcd, e->trivia, DEX_INK_DIM, 8, y);
-            lv_obj_set_width(extra, 192);
-            lv_label_set_long_mode(extra, LV_LABEL_LONG_WRAP);
-        }
+    } else if (s_state.tab == POKEDEX_TAB_TRIVIA) {
+        lv_obj_t *title = zh_at(lcd, "小知识", DEX_INK, 0, 4);
+        lv_obj_set_width(title, 208);
+        lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_t *body = zh_at(lcd, pokedex_trivia_text(e), DEX_INK, 8, 28);
+        lv_obj_set_width(body, 192);
+        lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
     } else if (s_state.tab == POKEDEX_TAB_STATS) {
         const uint8_t values[] = {
             e->hp, e->atk, e->def_, e->spa, e->spd, e->spe,

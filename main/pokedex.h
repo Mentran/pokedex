@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define POKEDEX_COUNT 151
-#define POKEDEX_TAB_COUNT 6
+#define POKEDEX_TAB_COUNT 7
 #define POKEDEX_HOME_COUNT 4
 #define POKEDEX_MOVE_MAX 24
 #define POKEDEX_EVO_MAX 8
@@ -30,6 +30,7 @@ typedef enum {
 typedef enum {
     POKEDEX_TAB_COVER = 0,
     POKEDEX_TAB_BIO,
+    POKEDEX_TAB_TRIVIA,
     POKEDEX_TAB_STATS,
     POKEDEX_TAB_MOVES,
     POKEDEX_TAB_MATCHUP,
@@ -95,6 +96,8 @@ int pokedex_is_guess(const pokedex_state_t *s);
 int pokedex_guess_revealed(const pokedex_state_t *s);
 void pokedex_reveal_guess(pokedex_state_t *s);
 const pokedex_entry_t *pokedex_entry(int id);
+int pokedex_has_trivia(const pokedex_entry_t *e);
+const char *pokedex_trivia_text(const pokedex_entry_t *e);
 
 void pokedex_home_move(pokedex_state_t *s, int delta);
 void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng);
