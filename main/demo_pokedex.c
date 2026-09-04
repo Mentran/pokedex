@@ -36,16 +36,70 @@ static lv_image_dsc_t s_sprite_dsc2;
 static int s_cry_for_id;
 static lv_obj_t *s_matchup_scroll;
 static int s_boot_on;
-static int s_boot_scene;
 static int s_boot_frame;
-static int s_boot_base_y;
 static lv_timer_t *s_boot_timer;
 static lv_obj_t *s_boot_left;
 static lv_obj_t *s_boot_right;
+static lv_obj_t *s_boot_shadow_l;
+static lv_obj_t *s_boot_shadow_r;
+static lv_obj_t *s_boot_flash;
 
-#define BOOT_BG     0x0F380F
-#define BOOT_FRAMES 12
-#define BOOT_MS     140
+/* 红蓝开场节奏，站位跟封面立绘朝向：耿鬼在左往右扑，尼多力诺在右往左冲。 */
+#define BOOT_BG        0xEDEBE4
+#define BOOT_FLOOR     0xD8D4CA
+#define BOOT_FRAMES    24
+#define BOOT_MS        170
+#define BOOT_GX        40
+#define BOOT_GY        124
+#define BOOT_NX        120
+#define BOOT_NY        132
+#define BOOT_SHADOW_GY 210
+#define BOOT_SHADOW_NY 210
+#define BOOT_SHADOW_GX 14
+#define BOOT_SHADOW_NX 12
+
+typedef struct {
+    int16_t gx;
+    int16_t gy;
+    int16_t nx;
+    int16_t ny;
+    uint16_t gscale;
+    uint16_t nscale;
+    uint8_t flash;
+} boot_pose_t;
+
+static const boot_pose_t s_boot_pose[BOOT_FRAMES] = {
+    /* 0-4 入场：按立绘重心落到地面，不要贴边 */
+    { -80, BOOT_GY, 240, BOOT_NY, 256, 256, 0 },
+    { -16, BOOT_GY, 196, BOOT_NY, 256, 256, 0 },
+    {  16, BOOT_GY, 160, BOOT_NY, 256, 256, 0 },
+    {  32, BOOT_GY, 136, BOOT_NY, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 0 },
+    /* 5-9 hip / hop，尼多力诺跳得更高 */
+    { BOOT_GX, BOOT_GY - 4, BOOT_NX, BOOT_NY - 14, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY,     BOOT_NX, BOOT_NY,      256, 256, 0 },
+    { BOOT_GX, BOOT_GY - 5, BOOT_NX, BOOT_NY - 16, 256, 256, 0 },
+    { BOOT_GX, BOOT_GY,     BOOT_NX, BOOT_NY,      256, 256, 0 },
+    { BOOT_GX, BOOT_GY - 2, BOOT_NX, BOOT_NY - 6,  256, 256, 0 },
+    /* 10-13 耿鬼后撤蓄力 */
+    { BOOT_GX - 4, BOOT_GY - 2, BOOT_NX, BOOT_NY,     268, 256, 0 },
+    { BOOT_GX - 8, BOOT_GY - 4, BOOT_NX, BOOT_NY + 2, 276, 256, 0 },
+    { BOOT_GX - 8, BOOT_GY - 4, BOOT_NX, BOOT_NY,     276, 256, 0 },
+    { BOOT_GX - 8, BOOT_GY - 4, BOOT_NX, BOOT_NY,     276, 256, 0 },
+    /* 14-16 闪白，耿鬼右冲，尼多力诺向左上跳开 */
+    { BOOT_GX + 14, BOOT_GY + 8,  BOOT_NX,      BOOT_NY,      256, 256, 255 },
+    { BOOT_GX + 26, BOOT_GY + 16, BOOT_NX - 12, BOOT_NY - 20, 248, 248, 200 },
+    { BOOT_GX + 30, BOOT_GY + 18, BOOT_NX - 20, BOOT_NY - 32, 248, 240,  48 },
+    /* 17-19 落地再轻轻一跳 */
+    { BOOT_GX + 14, BOOT_GY + 8,  BOOT_NX - 8, BOOT_NY - 10, 256, 256, 0 },
+    { BOOT_GX + 4,  BOOT_GY - 4,  BOOT_NX,     BOOT_NY,      256, 256, 0 },
+    { BOOT_GX,      BOOT_GY,      BOOT_NX,     BOOT_NY,      256, 256, 0 },
+    /* 20-23 淡出到白 */
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256,  70 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 140 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 210 },
+    { BOOT_GX, BOOT_GY, BOOT_NX, BOOT_NY, 256, 256, 255 },
+};
 
 static const char *s_home_titles[POKEDEX_HOME_COUNT] = {
     "图鉴浏览",
@@ -244,6 +298,9 @@ static void wipe(void)
         s_matchup_scroll = NULL;
         s_boot_left = NULL;
         s_boot_right = NULL;
+        s_boot_shadow_l = NULL;
+        s_boot_shadow_r = NULL;
+        s_boot_flash = NULL;
     }
 }
 
@@ -359,79 +416,96 @@ static lv_obj_t *boot_screen(void)
     return s_scr;
 }
 
-static void boot_hp(lv_obj_t *scr, int x, int y, int fill)
+static lv_obj_t *boot_shadow(lv_obj_t *parent, int x, int y, int w, int h, lv_opa_t opa)
 {
-    box(scr, x, y, 72, 8, 0x306230, 0);
-    box(scr, x + 1, y + 1, fill, 6, 0x9BBC0F, 0);
+    lv_obj_t *obj = box(parent, x, y, w, h, 0x6B6148, LV_RADIUS_CIRCLE);
+    lv_obj_set_style_bg_opa(obj, opa, 0);
+    return obj;
+}
+
+static void boot_place(lv_obj_t *img, int x, int y, uint16_t scale)
+{
+    if (!img) {
+        return;
+    }
+    lv_obj_set_pos(img, x, y);
+    lv_image_set_scale(img, scale);
+}
+
+static void apply_boot_pose(int frame)
+{
+    const boot_pose_t *p = &s_boot_pose[frame];
+    int air_l = BOOT_GY - p->gy;
+    int air_r = BOOT_NY - p->ny;
+    if (air_l < 0) {
+        air_l = 0;
+    }
+    if (air_r < 0) {
+        air_r = 0;
+    }
+
+    boot_place(s_boot_left, p->gx, p->gy, p->gscale);
+    boot_place(s_boot_right, p->nx, p->ny, p->nscale);
+
+    if (s_boot_shadow_l) {
+        int w = 56 - air_l / 2;
+        int opa = 48 - air_l;
+        if (w < 28) {
+            w = 28;
+        }
+        if (opa < 16) {
+            opa = 16;
+        }
+        lv_obj_set_pos(s_boot_shadow_l, p->gx + BOOT_SHADOW_GX, BOOT_SHADOW_GY);
+        lv_obj_set_width(s_boot_shadow_l, w);
+        lv_obj_set_style_bg_opa(s_boot_shadow_l,
+                                (p->gx + POKEDEX_SPRITE_W < 8) ? LV_OPA_TRANSP : (lv_opa_t)opa, 0);
+    }
+    if (s_boot_shadow_r) {
+        int w = 64 - air_r / 2;
+        int opa = 90 - air_r;
+        if (w < 32) {
+            w = 32;
+        }
+        if (opa < 24) {
+            opa = 24;
+        }
+        lv_obj_set_pos(s_boot_shadow_r, p->nx + BOOT_SHADOW_NX, BOOT_SHADOW_NY);
+        lv_obj_set_width(s_boot_shadow_r, w);
+        lv_obj_set_style_bg_opa(s_boot_shadow_r,
+                                (p->nx > 220) ? LV_OPA_TRANSP : (lv_opa_t)opa, 0);
+    }
+    if (s_boot_flash) {
+        lv_obj_set_style_bg_opa(s_boot_flash, p->flash, 0);
+    }
+}
+
+static void boot_paint_field(lv_obj_t *scr)
+{
+    box(scr, 20, 204, 200, 18, BOOT_FLOOR, LV_RADIUS_CIRCLE);
 }
 
 static void show_boot(void)
 {
     lv_obj_t *scr = boot_screen();
-    s_boot_left = NULL;
-    s_boot_right = NULL;
-    s_boot_base_y = 118;
-    int bob = (s_boot_frame & 1) ? 3 : 0;
-    int flash = (s_boot_frame & 1);
-
-    if (s_boot_scene == 0) {
-        for (int i = 0; i < 8; i++) {
-            box(scr, 16 + i * 26, 214, 24, 8, (i & 1) ? 0x1B5E20 : 0x306230, 0);
-        }
-        box(scr, 32, 206, 176, 6, 0x4E7C4E, 0);
-        box(scr, 40, 128, 56, 10, 0x143214, 4);
-        box(scr, 144, 128, 56, 10, 0x143214, 4);
-        label_at(scr, "HP", &lv_font_montserrat_14, 0x9BBC0F, 24, 44);
-        label_at(scr, "HP", &lv_font_montserrat_14, 0x9BBC0F, 144, 44);
-        boot_hp(scr, 24, 62, 56 - s_boot_frame * 2);
-        boot_hp(scr, 144, 62, 44 + (s_boot_frame % 3));
-        if (flash) {
-            box(scr, 0, 0, 240, 3, 0x9BBC0F, 0);
-            box(scr, 0, 317, 240, 3, 0x9BBC0F, 0);
-        }
-        s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 94,
-                                20, s_boot_base_y - bob, BOOT_BG);
-        s_boot_right = boot_poke(scr, s_sprite_rgb2, &s_sprite_dsc2, 33,
-                                 140, s_boot_base_y + bob, BOOT_BG);
-    } else if (s_boot_scene == 1) {
-        int ring = 36 + s_boot_frame * 10;
-        box(scr, 120 - ring / 2, 150 - ring / 2, ring, ring, 0x1B5E20, LV_RADIUS_CIRCLE);
-        box(scr, 88, 118, 64, 64, 0x143214, LV_RADIUS_CIRCLE);
-        for (int i = 0; i < 22; i++) {
-            box(scr, 0, 18 + i * 14, 240, 2,
-                ((i + s_boot_frame) & 1) ? 0x0A240A : 0x1B5E20, 0);
-        }
-        if (pokedex_media_load_sprite(25, s_sprite_rgb, &s_sprite_dsc)) {
-            rekey_lcd_fill(s_sprite_rgb, BOOT_BG);
-            if (s_boot_frame < 5) {
-                sprite_silhouette(s_sprite_rgb);
-            }
-            s_boot_left = dex_img(scr, &s_sprite_dsc, 80, 110);
-        }
-        if (s_boot_frame >= 6) {
-            label_at(scr, "POKeDEX", &lv_font_montserrat_20, 0x9BBC0F, 70, 48);
-        }
-    } else {
-        if (flash) {
-            box(scr, 0, 0, 240, 320, 0x1B4F1B, 0);
-        }
-        box(scr, 24, 214, 80, 10, 0x306230, 0);
-        box(scr, 136, 214, 80, 10, 0x306230, 0);
-        box(scr, 78, 64, 84, 36, flash ? DEX_YELLOW : DEX_BLACK, 8);
-        label_at(scr, "VS", &lv_font_montserrat_20,
-                 flash ? DEX_BLACK : DEX_YELLOW, 104, 72);
-        for (int i = 0; i < 6; i++) {
-            int px = 20 + ((i * 53 + s_boot_frame * 11) % 200);
-            int py = 40 + ((i * 29) % 40);
-            box(scr, px, py, 4, 4, DEX_YELLOW, LV_RADIUS_CIRCLE);
-        }
-        s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 4,
-                                20, s_boot_base_y - bob, BOOT_BG);
-        s_boot_right = boot_poke(scr, s_sprite_rgb2, &s_sprite_dsc2, 7,
-                                 140, s_boot_base_y + bob, BOOT_BG);
+    boot_paint_field(scr);
+    s_boot_shadow_l = boot_shadow(scr, BOOT_GX + BOOT_SHADOW_GX, BOOT_SHADOW_GY, 56, 12, 48);
+    s_boot_shadow_r = boot_shadow(scr, BOOT_NX + BOOT_SHADOW_NX, BOOT_SHADOW_NY, 64, 14, 90);
+    s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 94,
+                            BOOT_GX, BOOT_GY, BOOT_BG);
+    s_boot_right = boot_poke(scr, s_sprite_rgb2, &s_sprite_dsc2, 33,
+                             BOOT_NX, BOOT_NY, BOOT_BG);
+    if (s_boot_left) {
+        lv_image_set_pivot(s_boot_left, POKEDEX_SPRITE_W / 2, POKEDEX_SPRITE_H);
+        lv_obj_add_flag(s_boot_left, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
     }
-
-    label_at(scr, "OK", &lv_font_montserrat_14, 0x9BBC0F, 108, 292);
+    if (s_boot_right) {
+        lv_image_set_pivot(s_boot_right, POKEDEX_SPRITE_W / 2, POKEDEX_SPRITE_H);
+        lv_obj_add_flag(s_boot_right, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
+    }
+    s_boot_flash = box(scr, 0, 0, 240, 320, 0xFFFFFF, 0);
+    lv_obj_set_style_bg_opa(s_boot_flash, LV_OPA_TRANSP, 0);
+    apply_boot_pose(s_boot_frame);
     lv_screen_load(s_scr);
 }
 
@@ -446,20 +520,7 @@ static void boot_tick(lv_timer_t *timer)
         boot_finish();
         return;
     }
-    if (s_boot_scene == 1) {
-        show_boot();
-        return;
-    }
-    int bob = (s_boot_frame & 1) ? 3 : 0;
-    if (s_boot_left) {
-        lv_obj_set_y(s_boot_left, s_boot_base_y - bob);
-    }
-    if (s_boot_right) {
-        lv_obj_set_y(s_boot_right, s_boot_base_y + bob);
-    }
-    if (s_boot_scene == 2 && (s_boot_frame & 1) == 0) {
-        show_boot();
-    }
+    apply_boot_pose(s_boot_frame);
 }
 
 static void boot_stop_timer(void)
@@ -477,13 +538,14 @@ static void boot_finish(void)
     }
     s_boot_on = 0;
     boot_stop_timer();
+    pokedex_media_start_bgm();
     render();
 }
 
 static void boot_start(uint32_t rng)
 {
+    (void)rng;
     s_boot_on = 1;
-    s_boot_scene = (int)(rng % (uint32_t)POKEDEX_BOOT_SCENE_COUNT);
     s_boot_frame = 0;
     boot_stop_timer();
     show_boot();
@@ -864,7 +926,6 @@ void demo_pokedex_enter(void)
     pokedex_media_init();
     pokedex_init(&s_state);
     s_cry_for_id = 0;
-    pokedex_media_start_bgm();
     boot_start(esp_random());
 }
 

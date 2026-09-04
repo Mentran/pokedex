@@ -73,7 +73,7 @@ Raw downloads land in `assets/pokedex/raw/` and stay gitignored. Packed sprites 
 
 ## Interaction
 
-Boot first plays one of three skippable scenes at random (battle, dex wakeup, rival VS), then opens home. Home has four modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel. While the play is open it loops the 8-bit Pokemon Center BGM from Who Am I at codec volume 40 (about 0.75x tempo); cries play at 60 and briefly interrupt it.
+Boot first plays a skippable Gengar-vs-Nidorino scene for about 4 seconds (Red/Blue intro timing, staged to the cover art), then opens home. Home has four modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel. After home, it loops the 8-bit Pokemon Center BGM from Who Am I at codec volume 40 (about 0.75x tempo); cries play at 60 and briefly interrupt it.
 
 ```text
 Boot (fullscreen, skippable)
