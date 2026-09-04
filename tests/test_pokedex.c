@@ -42,9 +42,7 @@ int main(void)
 
     pokedex_next_tab(&s);
     assert(s.tab == POKEDEX_TAB_BIO);
-    pokedex_next_tab(&s);
-    assert(s.tab == POKEDEX_TAB_TRIVIA);
-    for (int i = 0; i < POKEDEX_TAB_COUNT - 2; i++) {
+    for (int i = 0; i < POKEDEX_TAB_COUNT - 1; i++) {
         pokedex_next_tab(&s);
     }
     assert(s.tab == POKEDEX_TAB_COVER);
@@ -128,8 +126,6 @@ int main(void)
     assert(s.tab == POKEDEX_TAB_COVER);
     pokedex_next_tab(&s);
     assert(s.tab == POKEDEX_TAB_BIO);
-    pokedex_next_tab(&s);
-    assert(s.tab == POKEDEX_TAB_TRIVIA);
     pokedex_step_id(&s, 1, 0);
     assert(s.id == 1);
     assert(pokedex_is_guess(&s));

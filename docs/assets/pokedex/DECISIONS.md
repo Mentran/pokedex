@@ -66,7 +66,7 @@ The moves page lists every red/blue (then yellow / FR/LG) level-up move, not a l
 
 ## 2026-09-02 — Extra fields stay on existing pages
 
-Height and weight sit on cover with gender ratio. Catch rate stays in the catalog but is not shown. Ability names plus flavor sit on stats, labeled as abilities. The second dex sentence sits on its own Trivia tab when it differs from the intro. Species without a second sentence show a short empty note. World facts remain Oak's lecture, a shared pool not tied to the current id.
+Height and weight sit on cover with gender ratio. Catch rate stays in the catalog but is not shown. Ability names plus flavor sit on stats, labeled as abilities. The second dex sentence sits on bio when it is not a duplicate of intro. World facts remain Oak's lecture, a shared pool not tied to the current id.
 
 ## 2026-09-02 — Cover double-click zooms the sprite
 

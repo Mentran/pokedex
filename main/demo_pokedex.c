@@ -860,13 +860,13 @@ static void show_entry(void)
         lv_obj_t *body = zh_at(lcd, e->intro, DEX_INK, 8, 6);
         lv_obj_set_width(body, 192);
         lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
-    } else if (s_state.tab == POKEDEX_TAB_TRIVIA) {
-        lv_obj_t *title = zh_at(lcd, "小知识", DEX_INK, 0, 4);
-        lv_obj_set_width(title, 208);
-        lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
-        lv_obj_t *body = zh_at(lcd, pokedex_trivia_text(e), DEX_INK, 8, 28);
-        lv_obj_set_width(body, 192);
-        lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
+        lv_obj_update_layout(body);
+        int y = 6 + (int)lv_obj_get_height(body) + 8;
+        if (pokedex_has_trivia(e) && y < 160) {
+            lv_obj_t *extra = zh_at(lcd, e->trivia, DEX_INK_DIM, 8, y);
+            lv_obj_set_width(extra, 192);
+            lv_label_set_long_mode(extra, LV_LABEL_LONG_WRAP);
+        }
     } else if (s_state.tab == POKEDEX_TAB_STATS) {
         const uint8_t values[] = {
             e->hp, e->atk, e->def_, e->spa, e->spd, e->spe,

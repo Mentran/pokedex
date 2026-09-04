@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define POKEDEX_COUNT 151
-#define POKEDEX_TAB_COUNT 7
+#define POKEDEX_TAB_COUNT 6
 #define POKEDEX_HOME_COUNT 4
 #define POKEDEX_MOVE_MAX 24
 #define POKEDEX_EVO_MAX 8
@@ -30,7 +30,6 @@ typedef enum {
 typedef enum {
     POKEDEX_TAB_COVER = 0,
     POKEDEX_TAB_BIO,
-    POKEDEX_TAB_TRIVIA,
     POKEDEX_TAB_STATS,
     POKEDEX_TAB_MOVES,
     POKEDEX_TAB_MATCHUP,
