@@ -188,7 +188,7 @@ int main(void)
     assert(strstr(meta, "捕获") == NULL);
     assert(pokedex_format_meta(pokedex_entry(151), meta, sizeof(meta)) > 0);
     assert(strcmp(meta, "无性别") == 0);
-    assert(pokedex_fact_count() >= 100);
+    assert(pokedex_fact_count() >= 220);
     const char *fact0 = pokedex_fact(0);
     assert(fact0 && fact0[0]);
     assert(strcmp(pokedex_fact((uint32_t)pokedex_fact_count()), fact0) == 0);
