@@ -85,9 +85,9 @@ Home
                                (while zoomed, restores the cover)
                    OK double : on Cover, toggle a 3x fullscreen sprite
                    OK long   : play cry when on Cover, then return home
-  Who am I --+--> Silhouette (black outline only)
-                   OK click  : reveal this species' dex entry
-                   Up / Down : next silhouette (not the next dex page)
+  Who am I --+--> Clue (silhouette or dex sentence, picked at random)
+                   OK click  : reveal this species' dex entry (no choices)
+                   Up / Down : next species and a new random clue type
                    OK long   : return home
   Oak's lecture ----+--> Lecture (full text, upper-body portrait in a bottom corner)
                    Enter and Up/Down reroll the speaker
@@ -97,7 +97,7 @@ Home
                    OK long   : return home
 ```
 
-Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Who am I always draws a new silhouette on Up / Down. Lecture picks a random sentence on enter; Up / Down walk the pool. The speaker changes on enter and on every flip; the sentence pool keeps the same wording.
+Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Who am I always draws a new species on Up / Down and randomly chooses silhouette or bio text. Lecture picks a random sentence on enter; Up / Down walk the pool. The speaker changes on enter and on every flip; the sentence pool keeps the same wording.
 
 Three keys cannot search by name in V1. Sequential and random cover the request.
 

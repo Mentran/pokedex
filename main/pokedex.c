@@ -85,6 +85,7 @@ void pokedex_init(pokedex_state_t *s)
     s->random_walk = 0;
     s->guess_mode = 0;
     s->guess_revealed = 0;
+    s->guess_clue = POKEDEX_GUESS_SILHOUETTE;
     s->fact_index = 0;
     s->last_fact_index = -1;
     s->speaker = 0;
@@ -102,6 +103,19 @@ void pokedex_home_move(pokedex_state_t *s, int delta)
     s->home_sel = wrap(s->home_sel + delta, POKEDEX_HOME_COUNT);
 }
 
+static void deal_guess(pokedex_state_t *s, uint32_t rng)
+{
+    s->id = pokedex_pick_random(POKEDEX_COUNT, s->last_random_id, rng);
+    s->last_random_id = s->id;
+    s->guess_mode = 1;
+    s->guess_revealed = 0;
+    s->guess_clue = pokedex_pick_slot(POKEDEX_GUESS_CLUE_COUNT, -1, rng >> 11);
+    s->random_walk = 0;
+    s->zoomed = 0;
+    s->tab = POKEDEX_TAB_COVER;
+    s->screen = POKEDEX_SCREEN_ENTRY;
+}
+
 void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
 {
     if (s->screen != POKEDEX_SCREEN_HOME) {
@@ -111,6 +125,7 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
     s->zoomed = 0;
     s->guess_mode = 0;
     s->guess_revealed = 0;
+    s->guess_clue = POKEDEX_GUESS_SILHOUETTE;
     if (s->home_sel == POKEDEX_HOME_FACTS) {
         int n = pokedex_fact_count();
         if (n <= 0) {
@@ -128,12 +143,7 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
         return;
     }
     if (s->home_sel == POKEDEX_HOME_GUESS) {
-        s->id = pokedex_pick_random(POKEDEX_COUNT, s->last_random_id, rng);
-        s->last_random_id = s->id;
-        s->guess_mode = 1;
-        s->guess_revealed = 0;
-        s->random_walk = 0;
-        s->screen = POKEDEX_SCREEN_ENTRY;
+        deal_guess(s, rng);
         return;
     }
     if (s->home_sel == POKEDEX_HOME_RANDOM) {
@@ -156,10 +166,8 @@ void pokedex_step_id(pokedex_state_t *s, int delta, uint32_t rng)
         s->id = pokedex_pick_random(POKEDEX_COUNT, s->id, rng);
         s->last_random_id = s->id;
     } else if (s->guess_mode) {
-        s->id = pokedex_pick_random(POKEDEX_COUNT, s->id, rng);
-        s->last_random_id = s->id;
-        s->guess_revealed = 0;
-        s->zoomed = 0;
+        deal_guess(s, rng);
+        return;
     } else {
         s->id = pokedex_wrap_id(s->id + delta, POKEDEX_COUNT);
     }
@@ -209,6 +217,7 @@ pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
     s->zoomed = 0;
     s->guess_mode = 0;
     s->guess_revealed = 0;
+    s->guess_clue = POKEDEX_GUESS_SILHOUETTE;
     return act;
 }
 
@@ -230,6 +239,17 @@ int pokedex_is_guess(const pokedex_state_t *s)
 int pokedex_guess_revealed(const pokedex_state_t *s)
 {
     return pokedex_is_guess(s) && s->guess_revealed;
+}
+
+pokedex_guess_clue_t pokedex_guess_clue(const pokedex_state_t *s)
+{
+    if (!pokedex_is_guess(s) || s->guess_revealed) {
+        return POKEDEX_GUESS_SILHOUETTE;
+    }
+    if (s->guess_clue == POKEDEX_GUESS_BIO) {
+        return POKEDEX_GUESS_BIO;
+    }
+    return POKEDEX_GUESS_SILHOUETTE;
 }
 
 void pokedex_toggle_zoom(pokedex_state_t *s)
@@ -282,6 +302,53 @@ const char *pokedex_trivia_text(const pokedex_entry_t *e)
         return e->trivia;
     }
     return "目前没有更多记录。";
+}
+
+static int guess_text_names(const char *text, const char *zh)
+{
+    return text && text[0] && zh && zh[0] && strstr(text, zh) != NULL;
+}
+
+const char *pokedex_guess_bio_text(const pokedex_entry_t *e)
+{
+    static char buf[320];
+    static const char *repl = "这种宝可梦";
+    const char *src;
+    const char *zh;
+    size_t zlen;
+    size_t rlen;
+    size_t o;
+    const char *p;
+
+    if (!e || !e->intro || !e->intro[0]) {
+        return "";
+    }
+    zh = e->zh ? e->zh : "";
+    if (!guess_text_names(e->intro, zh)) {
+        return e->intro;
+    }
+    if (pokedex_has_trivia(e) && !guess_text_names(e->trivia, zh)) {
+        return e->trivia;
+    }
+    src = e->intro;
+    zlen = strlen(zh);
+    rlen = strlen(repl);
+    o = 0;
+    p = src;
+    while (*p && o + 1 < sizeof(buf)) {
+        if (zlen && strncmp(p, zh, zlen) == 0) {
+            if (o + rlen >= sizeof(buf)) {
+                break;
+            }
+            memcpy(buf + o, repl, rlen);
+            o += rlen;
+            p += zlen;
+        } else {
+            buf[o++] = *p++;
+        }
+    }
+    buf[o] = 0;
+    return buf;
 }
 
 int pokedex_stat_total(const pokedex_entry_t *e)

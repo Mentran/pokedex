@@ -812,17 +812,24 @@ static void show_entry(void)
             lv_obj_t *title = zh_at(lcd, "猜猜我是谁", DEX_INK, 0, 8);
             lv_obj_set_width(title, 208);
             lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
-            bool got = pokedex_media_load_sprite(s_state.id, s_sprite_rgb, &s_sprite_dsc);
-            if (got) {
-                sprite_silhouette(s_sprite_rgb);
-                lv_obj_t *img = lv_image_create(lcd);
-                lv_image_set_src(img, &s_sprite_dsc);
-                lv_image_set_antialias(img, false);
-                lv_obj_set_pos(img, 64, 40);
+            if (pokedex_guess_clue(&s_state) == POKEDEX_GUESS_BIO) {
+                lv_obj_t *body = zh_at(lcd, pokedex_guess_bio_text(e), DEX_INK, 8, 36);
+                lv_obj_set_width(body, 192);
+                lv_obj_set_height(body, 118);
+                lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
             } else {
-                box(lcd, 64, 40, 80, 80, DEX_BLACK, 4);
+                bool got = pokedex_media_load_sprite(s_state.id, s_sprite_rgb, &s_sprite_dsc);
+                if (got) {
+                    sprite_silhouette(s_sprite_rgb);
+                    lv_obj_t *img = lv_image_create(lcd);
+                    lv_image_set_src(img, &s_sprite_dsc);
+                    lv_image_set_antialias(img, false);
+                    lv_obj_set_pos(img, 64, 40);
+                } else {
+                    box(lcd, 64, 40, 80, 80, DEX_BLACK, 4);
+                }
             }
-            lv_obj_t *hint = zh_at(lcd, "按确定查看", DEX_INK_DIM, 0, 132);
+            lv_obj_t *hint = zh_at(lcd, "按确定查看", DEX_INK_DIM, 0, 164);
             lv_obj_set_width(hint, 208);
             lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
             lv_screen_load(s_scr);

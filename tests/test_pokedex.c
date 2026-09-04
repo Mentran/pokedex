@@ -121,15 +121,17 @@ int main(void)
     assert(pokedex_is_guess(&s));
     assert(!pokedex_guess_revealed(&s));
     assert(s.id == 25);
+    assert(pokedex_guess_clue(&s) == POKEDEX_GUESS_SILHOUETTE);
     pokedex_next_tab(&s);
     assert(pokedex_guess_revealed(&s));
     assert(s.tab == POKEDEX_TAB_COVER);
     pokedex_next_tab(&s);
     assert(s.tab == POKEDEX_TAB_BIO);
-    pokedex_step_id(&s, 1, 0);
-    assert(s.id == 1);
+    pokedex_step_id(&s, 1, 1u << 11);
+    assert(s.id == pokedex_pick_random(POKEDEX_COUNT, 25, 1u << 11));
     assert(pokedex_is_guess(&s));
     assert(!pokedex_guess_revealed(&s));
+    assert(pokedex_guess_clue(&s) == POKEDEX_GUESS_BIO);
     assert(s.tab == POKEDEX_TAB_COVER);
     pokedex_toggle_zoom(&s);
     assert(!pokedex_is_zoomed(&s));
@@ -137,6 +139,13 @@ int main(void)
     assert(guess_act == POKEDEX_ACT_NONE);
     assert(pokedex_is_home(&s));
     assert(!pokedex_is_guess(&s));
+
+    pokedex_init(&s);
+    pokedex_home_move(&s, 1);
+    pokedex_home_move(&s, 1);
+    pokedex_enter_from_home(&s, 1u << 11);
+    assert(pokedex_is_guess(&s));
+    assert(pokedex_guess_clue(&s) == POKEDEX_GUESS_BIO);
 
     const pokedex_entry_t *one = pokedex_entry(1);
     const pokedex_entry_t *pika = pokedex_entry(25);
@@ -155,6 +164,9 @@ int main(void)
     assert(strcmp(pokedex_trivia_text(one), one->trivia) == 0);
     assert(!pokedex_has_trivia(pokedex_entry(151)));
     assert(pokedex_trivia_text(pokedex_entry(151))[0] != '\0');
+    assert(strcmp(pokedex_guess_bio_text(one), one->intro) == 0);
+    assert(strcmp(pokedex_guess_bio_text(pika), pika->trivia) == 0);
+    assert(strstr(pokedex_guess_bio_text(pokedex_entry(94)), "耿鬼") == NULL);
     assert(one->ability_n >= 1);
     assert(one->ability_zh[0] && one->ability_zh[0][0]);
     assert(one->ability_intro[0] && one->ability_intro[0][0]);

@@ -13,6 +13,7 @@
 #define POKEDEX_SPEAKER_COUNT 5
 #define POKEDEX_BOOT_SCENE_COUNT 1
 #define POKEDEX_CORNER_COUNT 2
+#define POKEDEX_GUESS_CLUE_COUNT 2
 
 typedef enum {
     POKEDEX_SCREEN_HOME = 0,
@@ -37,6 +38,11 @@ typedef enum {
 } pokedex_tab_t;
 
 typedef enum {
+    POKEDEX_GUESS_SILHOUETTE = 0,
+    POKEDEX_GUESS_BIO = 1,
+} pokedex_guess_clue_t;
+
+typedef enum {
     POKEDEX_ACT_NONE = 0,
     POKEDEX_ACT_PLAY_CRY,
 } pokedex_act_t;
@@ -50,6 +56,7 @@ typedef struct {
     int random_walk;
     int guess_mode;
     int guess_revealed;
+    int guess_clue;
     int fact_index;
     int last_fact_index;
     int speaker;
@@ -93,10 +100,12 @@ int pokedex_is_home(const pokedex_state_t *s);
 int pokedex_is_fact(const pokedex_state_t *s);
 int pokedex_is_guess(const pokedex_state_t *s);
 int pokedex_guess_revealed(const pokedex_state_t *s);
+pokedex_guess_clue_t pokedex_guess_clue(const pokedex_state_t *s);
 void pokedex_reveal_guess(pokedex_state_t *s);
 const pokedex_entry_t *pokedex_entry(int id);
 int pokedex_has_trivia(const pokedex_entry_t *e);
 const char *pokedex_trivia_text(const pokedex_entry_t *e);
+const char *pokedex_guess_bio_text(const pokedex_entry_t *e);
 
 void pokedex_home_move(pokedex_state_t *s, int delta);
 void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng);
