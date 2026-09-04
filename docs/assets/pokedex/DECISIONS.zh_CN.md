@@ -10,7 +10,7 @@
 
 ## 2026-09-04 — 开机和大木讲堂改用官方立绘
 
-开机宝可梦用封面同一套 80×80：耿鬼 94、尼多力诺 33、皮卡丘 25、小火龙 4、杰尼龟 7。讲堂人像：大木 `oak-gen3`，小智 `red-lgpe`，小刚 `brock-lgpe`，小霞 `misty-lgpe`，小茂 `blue-lgpe`。Let's Go 没有大木战斗立绘。五张打进 `trainers.bin`，占 pokedexfs。
+开机宝可梦用封面同一套 80×80：耿鬼 94、尼多力诺 33、皮卡丘 25、小火龙 4、杰尼龟 7。讲堂人像：大木 `oak-gen3`，小智 `red-lgpe`，小刚 `brock-lgpe`，小霞 `misty-lgpe`，小茂 `blue-lgpe`。Let's Go 没有大木战斗立绘。五张打进 `trainers.bin`，占 pokedexfs。原先编进固件的 16×16 像素人像和开机小人已经删掉。
 
 ## 2026-09-03 — 开机动画 + 大木讲堂
 

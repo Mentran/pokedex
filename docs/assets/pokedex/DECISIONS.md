@@ -10,7 +10,7 @@ Home gains Who am I: each round is either a black silhouette or a dex sentence (
 
 ## 2026-09-04 — Official art for boot and lecture
 
-Boot Pokémon use the same 80×80 cover sprites: Gengar 94, Nidorino 33, Pikachu 25, Charmander 4, Squirtle 7. Lecture portraits: Oak `oak-gen3`, Ash `red-lgpe`, Brock `brock-lgpe`, Misty `misty-lgpe`, Gary `blue-lgpe`. Let's Go has no Oak battle sprite. The five portraits pack into `trainers.bin` on pokedexfs.
+Boot Pokémon use the same 80×80 cover sprites: Gengar 94, Nidorino 33, Pikachu 25, Charmander 4, Squirtle 7. Lecture portraits: Oak `oak-gen3`, Ash `red-lgpe`, Brock `brock-lgpe`, Misty `misty-lgpe`, Gary `blue-lgpe`. Let's Go has no Oak battle sprite. The five portraits pack into `trainers.bin` on pokedexfs. The old 16×16 firmware pixel sprites are gone.
 
 ## 2026-09-03 — Boot animation and Oak's lecture
 

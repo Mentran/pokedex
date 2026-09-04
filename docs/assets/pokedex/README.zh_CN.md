@@ -128,7 +128,7 @@ main/pokedex_media.c    SPIFFS 挂载、读精灵图、叫声工作任务
 main/demo_pokedex.c     手持图鉴 LVGL 外壳和按键
 main/font_pokedex_16.*  按实际文案子集生成的 16 像素中文字库
 assets/pokedex/gen1/    目录 JSON 和世界小知识池
-assets/pokedex/fs/      打包后的 sprites1/2.bin + cries.bin（gitignore）
+assets/pokedex/fs/      打包后的 sprites1/2.bin + cries.bin + trainers.bin（gitignore）
 tools/pokedex/          抓取、转换、字库、素材打包
 tests/test_pokedex.c    编号循环、随机、页循环、目录解析
 ```
@@ -152,6 +152,9 @@ tools/pokedex/build_media.py
     -> assets/pokedex/fs/sprites1.bin      (编号 1-80，gitignore)
     -> assets/pokedex/fs/sprites2.bin      (编号 81-151，gitignore)
     -> assets/pokedex/fs/cries.bin         (gitignore)
+
+tools/pokedex/build_trainers.py
+    -> assets/pokedex/fs/trainers.bin      (gitignore)
 
 tools/pokedex/gen_font.py
     -> main/font_pokedex_16.c

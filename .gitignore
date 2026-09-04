@@ -10,5 +10,6 @@ assets/pokedex/fs/sprites1.bin
 assets/pokedex/fs/sprites2.bin
 assets/pokedex/fs/cries.bin
 assets/pokedex/fs/trainers.bin
+tools/pokedex/preview*
 __pycache__/
 *.pyc

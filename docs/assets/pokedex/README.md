@@ -129,7 +129,7 @@ main/pokedex_media.c    SPIFFS mount, sprite load, cry worker
 main/demo_pokedex.c     Handheld-dex LVGL chrome, keys
 main/font_pokedex_16.*  Subset CJK font from the actual text corpus
 assets/pokedex/gen1/    Catalog JSON and world-fact pool
-assets/pokedex/fs/      Packed sprites1/2.bin + cries.bin (gitignored)
+assets/pokedex/fs/      Packed sprites1/2.bin + cries.bin + trainers.bin (gitignored)
 tools/pokedex/          Fetch, convert, font, media pack
 tests/test_pokedex.c    Id wrap, random, tab cycle, catalog parse
 ```
@@ -153,6 +153,9 @@ tools/pokedex/build_media.py
     -> assets/pokedex/fs/sprites1.bin      (ids 1-80, gitignore)
     -> assets/pokedex/fs/sprites2.bin      (ids 81-151, gitignore)
     -> assets/pokedex/fs/cries.bin         (gitignore)
+
+tools/pokedex/build_trainers.py
+    -> assets/pokedex/fs/trainers.bin      (gitignore)
 
 tools/pokedex/gen_font.py
     -> main/font_pokedex_16.c

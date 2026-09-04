@@ -9,6 +9,7 @@
 - Boot keeps only the dark contact shadows; the pale green floor ellipse is gone. The second flavor sentence stays on the bio page when it differs from the intro.
 - Who am I randomly deals a silhouette or a dex sentence; OK reveals the entry with no choices. Lecture portraits are upper-body crops at 80px in a bottom corner. Boot is one Gengar-vs-Nidorino scene on the LCD green for about 4 seconds; BGM starts after home at volume 40, cries at 60.
 - Oak's lecture pool grows to 224 original world-fact sentences.
+- Drop unused 16x16 firmware pixel sprites and local preview dumps.
 - Boot Pokémon use the same 80x80 cover sprites. Oak's lecture portraits are oak-gen3 plus Let's Go Red/Brock/Misty/Blue, packed as `trainers.bin`.
 - Boot plays one of five skippable scenes at random. World facts is now Oak's lecture: the speaker rerolls among Oak, Ash, Brock, Misty, and Gary on enter and on every flip.
 - Restyled the Generation I Pokedex as a red handheld dex with 80x80 sprites
