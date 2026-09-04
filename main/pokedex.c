@@ -39,6 +39,42 @@ int pokedex_pick_random(int count, int avoid, uint32_t rng)
     return pick;
 }
 
+int pokedex_pick_slot(int count, int avoid, uint32_t rng)
+{
+    if (count <= 1) {
+        return 0;
+    }
+    int pick = (int)(rng % (uint32_t)count);
+    if (avoid >= 0 && avoid < count && pick == avoid) {
+        pick = wrap(pick + 1, count);
+    }
+    return pick;
+}
+
+static const char *const s_speakers[POKEDEX_SPEAKER_COUNT] = {
+    "大木博士",
+    "小智",
+    "小刚",
+    "小霞",
+    "小茂",
+};
+
+const char *pokedex_speaker_name(int speaker)
+{
+    if (speaker < 0 || speaker >= POKEDEX_SPEAKER_COUNT) {
+        return s_speakers[0];
+    }
+    return s_speakers[speaker];
+}
+
+static void roll_speaker(pokedex_state_t *s, uint32_t rng)
+{
+    s->speaker = pokedex_pick_slot(POKEDEX_SPEAKER_COUNT, s->last_speaker, rng);
+    s->last_speaker = s->speaker;
+    s->portrait_corner = pokedex_pick_slot(POKEDEX_CORNER_COUNT, s->last_portrait_corner, rng >> 8);
+    s->last_portrait_corner = s->portrait_corner;
+}
+
 void pokedex_init(pokedex_state_t *s)
 {
     s->screen = POKEDEX_SCREEN_HOME;
@@ -46,8 +82,15 @@ void pokedex_init(pokedex_state_t *s)
     s->id = 1;
     s->tab = POKEDEX_TAB_COVER;
     s->last_random_id = 0;
+    s->random_walk = 0;
+    s->guess_mode = 0;
+    s->guess_revealed = 0;
     s->fact_index = 0;
     s->last_fact_index = -1;
+    s->speaker = 0;
+    s->last_speaker = -1;
+    s->portrait_corner = 0;
+    s->last_portrait_corner = -1;
     s->zoomed = 0;
 }
 
@@ -66,6 +109,8 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
     }
     s->tab = POKEDEX_TAB_COVER;
     s->zoomed = 0;
+    s->guess_mode = 0;
+    s->guess_revealed = 0;
     if (s->home_sel == POKEDEX_HOME_FACTS) {
         int n = pokedex_fact_count();
         if (n <= 0) {
@@ -78,28 +123,50 @@ void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng)
             s->fact_index = pick;
             s->last_fact_index = pick;
         }
+        roll_speaker(s, rng >> 11);
         s->screen = POKEDEX_SCREEN_FACT;
+        return;
+    }
+    if (s->home_sel == POKEDEX_HOME_GUESS) {
+        s->id = pokedex_pick_random(POKEDEX_COUNT, s->last_random_id, rng);
+        s->last_random_id = s->id;
+        s->guess_mode = 1;
+        s->guess_revealed = 0;
+        s->random_walk = 0;
+        s->screen = POKEDEX_SCREEN_ENTRY;
         return;
     }
     if (s->home_sel == POKEDEX_HOME_RANDOM) {
         s->id = pokedex_pick_random(POKEDEX_COUNT, s->last_random_id, rng);
         s->last_random_id = s->id;
+        s->random_walk = 1;
     } else {
         s->id = 1;
+        s->random_walk = 0;
     }
     s->screen = POKEDEX_SCREEN_ENTRY;
 }
 
-void pokedex_step_id(pokedex_state_t *s, int delta)
+void pokedex_step_id(pokedex_state_t *s, int delta, uint32_t rng)
 {
     if (s->screen != POKEDEX_SCREEN_ENTRY) {
         return;
     }
-    s->id = pokedex_wrap_id(s->id + delta, POKEDEX_COUNT);
+    if (s->random_walk) {
+        s->id = pokedex_pick_random(POKEDEX_COUNT, s->id, rng);
+        s->last_random_id = s->id;
+    } else if (s->guess_mode) {
+        s->id = pokedex_pick_random(POKEDEX_COUNT, s->id, rng);
+        s->last_random_id = s->id;
+        s->guess_revealed = 0;
+        s->zoomed = 0;
+    } else {
+        s->id = pokedex_wrap_id(s->id + delta, POKEDEX_COUNT);
+    }
     s->tab = POKEDEX_TAB_COVER;
 }
 
-void pokedex_step_fact(pokedex_state_t *s, int delta)
+void pokedex_step_fact(pokedex_state_t *s, int delta, uint32_t rng)
 {
     if (s->screen != POKEDEX_SCREEN_FACT) {
         return;
@@ -111,11 +178,16 @@ void pokedex_step_fact(pokedex_state_t *s, int delta)
     }
     s->fact_index = wrap(s->fact_index + delta, n);
     s->last_fact_index = s->fact_index;
+    roll_speaker(s, rng);
 }
 
 void pokedex_next_tab(pokedex_state_t *s)
 {
     if (s->screen != POKEDEX_SCREEN_ENTRY) {
+        return;
+    }
+    if (s->guess_mode && !s->guess_revealed) {
+        pokedex_reveal_guess(s);
         return;
     }
     s->zoomed = 0;
@@ -128,18 +200,44 @@ pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
         return POKEDEX_ACT_NONE;
     }
     pokedex_act_t act = POKEDEX_ACT_NONE;
-    if (s->screen == POKEDEX_SCREEN_ENTRY && s->tab == POKEDEX_TAB_COVER) {
+    if (s->screen == POKEDEX_SCREEN_ENTRY && s->tab == POKEDEX_TAB_COVER &&
+        !(s->guess_mode && !s->guess_revealed)) {
         act = POKEDEX_ACT_PLAY_CRY;
     }
     s->screen = POKEDEX_SCREEN_HOME;
     s->tab = POKEDEX_TAB_COVER;
     s->zoomed = 0;
+    s->guess_mode = 0;
+    s->guess_revealed = 0;
     return act;
+}
+
+void pokedex_reveal_guess(pokedex_state_t *s)
+{
+    if (!s || !s->guess_mode || s->screen != POKEDEX_SCREEN_ENTRY) {
+        return;
+    }
+    s->guess_revealed = 1;
+    s->tab = POKEDEX_TAB_COVER;
+    s->zoomed = 0;
+}
+
+int pokedex_is_guess(const pokedex_state_t *s)
+{
+    return s && s->guess_mode && s->screen == POKEDEX_SCREEN_ENTRY;
+}
+
+int pokedex_guess_revealed(const pokedex_state_t *s)
+{
+    return pokedex_is_guess(s) && s->guess_revealed;
 }
 
 void pokedex_toggle_zoom(pokedex_state_t *s)
 {
     if (!s || s->screen != POKEDEX_SCREEN_ENTRY || s->tab != POKEDEX_TAB_COVER) {
+        return;
+    }
+    if (s->guess_mode && !s->guess_revealed) {
         return;
     }
     s->zoomed = !s->zoomed;

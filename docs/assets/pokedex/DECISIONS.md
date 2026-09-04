@@ -4,6 +4,18 @@
 
 # Decision log
 
+## 2026-09-04 — Who am I, BGM, three boot scenes
+
+Home gains Who am I: a black silhouette, OK reveals the dex, Up/Down draws the next silhouette. Boot keeps battle / wakeup / VS. BGM is the Who Am I Pokemon Center 8-bit loop at codec volume 40; cries play at 60. Lecture portraits are about 68px in the bottom-left or bottom-right of the text panel.
+
+## 2026-09-04 — Official art for boot and lecture
+
+Boot Pokémon use the same 80×80 cover sprites: Gengar 94, Nidorino 33, Pikachu 25, Charmander 4, Squirtle 7. Lecture portraits: Oak `oak-gen3`, Ash `red-lgpe`, Brock `brock-lgpe`, Misty `misty-lgpe`, Gary `blue-lgpe`. Let's Go has no Oak battle sprite. The five portraits pack into `trainers.bin` on pokedexfs.
+
+## 2026-09-03 — Boot animation and Oak's lecture
+
+Boot plays fullscreen before the red shell. One of five original pixel scenes is chosen at random, about 1.5 seconds, skippable with any key. Do not ship the official Red/Green opening. The third home item is Oak's lecture. Speakers are Oak, Ash, Brock, Misty, and Gary; they reroll on enter and on every flip. The sentence pool stays as-is. 16x16 pixels live in firmware, not pokedexfs.
+
 ## 2026-09-02 — Isolated worktree
 
 The idiom-chain play stays on `feature/chengyu-play`. This play uses a second git worktree and `feature/pokemon-pokedex`, branched from upstream `main`. Do not merge the two catalogs.

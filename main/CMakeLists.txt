@@ -11,6 +11,7 @@ idf_component_register(
          "demo_ble.c"
          "demo_low_power.c"
          "pokedex.c"
+         "pokedex_pix.c"
          "pokedex_ima.c"
          "pokedex_media.c"
          "demo_pokedex.c"

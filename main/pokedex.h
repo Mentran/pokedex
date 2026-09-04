@@ -5,11 +5,14 @@
 
 #define POKEDEX_COUNT 151
 #define POKEDEX_TAB_COUNT 6
-#define POKEDEX_HOME_COUNT 3
+#define POKEDEX_HOME_COUNT 4
 #define POKEDEX_MOVE_MAX 24
 #define POKEDEX_EVO_MAX 8
 #define POKEDEX_MATCH_MAX 18
 #define POKEDEX_ABILITY_MAX 2
+#define POKEDEX_SPEAKER_COUNT 5
+#define POKEDEX_BOOT_SCENE_COUNT 3
+#define POKEDEX_CORNER_COUNT 2
 
 typedef enum {
     POKEDEX_SCREEN_HOME = 0,
@@ -20,7 +23,8 @@ typedef enum {
 typedef enum {
     POKEDEX_HOME_BROWSE = 0,
     POKEDEX_HOME_RANDOM = 1,
-    POKEDEX_HOME_FACTS = 2,
+    POKEDEX_HOME_GUESS = 2,
+    POKEDEX_HOME_FACTS = 3,
 } pokedex_home_t;
 
 typedef enum {
@@ -43,8 +47,15 @@ typedef struct {
     int id;
     pokedex_tab_t tab;
     int last_random_id;
+    int random_walk;
+    int guess_mode;
+    int guess_revealed;
     int fact_index;
     int last_fact_index;
+    int speaker;
+    int last_speaker;
+    int portrait_corner;
+    int last_portrait_corner;
     int zoomed;
 } pokedex_state_t;
 
@@ -80,13 +91,18 @@ typedef struct {
 void pokedex_init(pokedex_state_t *s);
 int pokedex_is_home(const pokedex_state_t *s);
 int pokedex_is_fact(const pokedex_state_t *s);
+int pokedex_is_guess(const pokedex_state_t *s);
+int pokedex_guess_revealed(const pokedex_state_t *s);
+void pokedex_reveal_guess(pokedex_state_t *s);
 const pokedex_entry_t *pokedex_entry(int id);
 
 void pokedex_home_move(pokedex_state_t *s, int delta);
 void pokedex_enter_from_home(pokedex_state_t *s, uint32_t rng);
 
-void pokedex_step_id(pokedex_state_t *s, int delta);
-void pokedex_step_fact(pokedex_state_t *s, int delta);
+void pokedex_step_id(pokedex_state_t *s, int delta, uint32_t rng);
+void pokedex_step_fact(pokedex_state_t *s, int delta, uint32_t rng);
+int pokedex_pick_slot(int count, int avoid, uint32_t rng);
+const char *pokedex_speaker_name(int speaker);
 void pokedex_next_tab(pokedex_state_t *s);
 void pokedex_toggle_zoom(pokedex_state_t *s);
 int pokedex_is_zoomed(const pokedex_state_t *s);

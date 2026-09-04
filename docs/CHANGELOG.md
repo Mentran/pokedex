@@ -6,6 +6,9 @@
 
 ## Unreleased
 
+- Who am I: black-silhouette quiz; OK reveals the dex entry, Up/Down draws the next silhouette. Lecture portraits are larger and sit in a bottom corner. Boot keeps battle / wakeup / VS only. Loops the Who Am I 8-bit Pokemon Center BGM at volume 40; cries play at 60.
+- Boot Pokémon use the same 80x80 cover sprites. Oak's lecture portraits are oak-gen3 plus Let's Go Red/Brock/Misty/Blue, packed as `trainers.bin`.
+- Boot plays one of five skippable scenes at random. World facts is now Oak's lecture: the speaker rerolls among Oak, Ash, Brock, Misty, and Gary on enter and on every flip.
 - Restyled the Generation I Pokedex as a red handheld dex with 80x80 sprites
   and IMA-ADPCM cries in the `pokedexfs` partition. Use segmented `idf.py flash`;
   do not write the merged image from `0x0` on a provisioned badge.

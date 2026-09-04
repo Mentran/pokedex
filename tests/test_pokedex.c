@@ -24,6 +24,8 @@ int main(void)
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_RANDOM);
     pokedex_home_move(&s, 1);
+    assert(s.home_sel == POKEDEX_HOME_GUESS);
+    pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_FACTS);
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_BROWSE);
@@ -33,9 +35,9 @@ int main(void)
     assert(s.id == 1);
     assert(s.tab == POKEDEX_TAB_COVER);
 
-    pokedex_step_id(&s, 1);
+    pokedex_step_id(&s, 1, 0);
     assert(s.id == 2);
-    pokedex_step_id(&s, -2);
+    pokedex_step_id(&s, -2, 0);
     assert(s.id == 151);
 
     pokedex_next_tab(&s);
@@ -51,7 +53,7 @@ int main(void)
     pokedex_toggle_zoom(&s);
     assert(!pokedex_is_zoomed(&s));
     pokedex_toggle_zoom(&s);
-    pokedex_step_id(&s, 1);
+    pokedex_step_id(&s, 1, 0);
     assert(s.id == 1);
     assert(pokedex_is_zoomed(&s));
     pokedex_next_tab(&s);
@@ -75,6 +77,17 @@ int main(void)
 
     pokedex_init(&s);
     pokedex_home_move(&s, 1);
+    pokedex_enter_from_home(&s, 24);
+    assert(s.id == 25);
+    assert(s.random_walk);
+    pokedex_step_id(&s, 1, 0);
+    assert(s.id == 1);
+    pokedex_step_id(&s, -1, 1);
+    assert(s.id == pokedex_pick_random(POKEDEX_COUNT, 1, 1));
+
+    pokedex_init(&s);
+    pokedex_home_move(&s, 1);
+    pokedex_home_move(&s, 1);
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_FACTS);
     pokedex_enter_from_home(&s, 0);
@@ -82,14 +95,48 @@ int main(void)
     assert(!pokedex_is_home(&s));
     int first_fact = s.fact_index;
     assert(first_fact >= 0 && first_fact < pokedex_fact_count());
-    pokedex_step_fact(&s, 1);
+    pokedex_step_fact(&s, 1, 1);
     assert(s.fact_index == pokedex_wrap_index(first_fact + 1, pokedex_fact_count()));
-    pokedex_step_fact(&s, -1);
+    int first_speaker = s.speaker;
+    assert(first_speaker >= 0 && first_speaker < POKEDEX_SPEAKER_COUNT);
+    assert(pokedex_speaker_name(first_speaker)[0] != '\0');
+    pokedex_step_fact(&s, -1, 0);
     assert(s.fact_index == first_fact);
+    assert(s.speaker != first_speaker);
+    assert(s.portrait_corner >= 0 && s.portrait_corner < POKEDEX_CORNER_COUNT);
+    assert(strcmp(pokedex_speaker_name(0), "大木博士") == 0);
+    assert(strcmp(pokedex_speaker_name(4), "小茂") == 0);
+    assert(pokedex_pick_slot(5, 0, 0) == 1);
+    assert(pokedex_pick_slot(5, 2, 2) != 2);
     pokedex_act_t fact_act = pokedex_ok_long(&s);
     assert(fact_act == POKEDEX_ACT_NONE);
     assert(pokedex_is_home(&s));
     assert(!pokedex_is_fact(&s));
+
+    pokedex_init(&s);
+    pokedex_home_move(&s, 1);
+    pokedex_home_move(&s, 1);
+    assert(s.home_sel == POKEDEX_HOME_GUESS);
+    pokedex_enter_from_home(&s, 24);
+    assert(pokedex_is_guess(&s));
+    assert(!pokedex_guess_revealed(&s));
+    assert(s.id == 25);
+    pokedex_next_tab(&s);
+    assert(pokedex_guess_revealed(&s));
+    assert(s.tab == POKEDEX_TAB_COVER);
+    pokedex_next_tab(&s);
+    assert(s.tab == POKEDEX_TAB_BIO);
+    pokedex_step_id(&s, 1, 0);
+    assert(s.id == 1);
+    assert(pokedex_is_guess(&s));
+    assert(!pokedex_guess_revealed(&s));
+    assert(s.tab == POKEDEX_TAB_COVER);
+    pokedex_toggle_zoom(&s);
+    assert(!pokedex_is_zoomed(&s));
+    pokedex_act_t guess_act = pokedex_ok_long(&s);
+    assert(guess_act == POKEDEX_ACT_NONE);
+    assert(pokedex_is_home(&s));
+    assert(!pokedex_is_guess(&s));
 
     const pokedex_entry_t *one = pokedex_entry(1);
     const pokedex_entry_t *pika = pokedex_entry(25);

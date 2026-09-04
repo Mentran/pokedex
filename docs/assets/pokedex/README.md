@@ -73,9 +73,10 @@ Raw downloads land in `assets/pokedex/raw/` and stay gitignored. Packed sprites 
 
 ## Interaction
 
-Boot goes straight to a home screen with three modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel.
+Boot first plays one of three skippable scenes at random (battle, dex wakeup, rival VS), then opens home. Home has four modes. This play uses a red handheld-dex shell (hinge, LCD well, speaker grille), not the board-template sky / grass / mascot. Battery sits on the top-right of the red bezel. While the play is open it loops the 8-bit Pokemon Center BGM from Who Am I at codec volume 40 (about 0.75x tempo); cries play at 60 and briefly interrupt it.
 
 ```text
+Boot (fullscreen, skippable)
 Home
   Browse  ----+--> Entry (always starts on Cover)
   Random  ----+    Up / Down : previous / next id
@@ -84,13 +85,19 @@ Home
                                (while zoomed, restores the cover)
                    OK double : on Cover, toggle a 3x fullscreen sprite
                    OK long   : play cry when on Cover, then return home
-  Facts   ----+--> Fact
+  Who am I --+--> Silhouette (black outline only)
+                   OK click  : reveal this species' dex entry
+                   Up / Down : next silhouette (not the next dex page)
+                   OK long   : return home
+  Oak's lecture ----+--> Lecture (full text, small portrait in a bottom corner)
+                   Enter and Up/Down reroll the speaker
+                   (Oak / Ash / Brock / Misty / Gary)
                    Up / Down : previous / next world fact
                    OK click  : next fact
                    OK long   : return home
 ```
 
-Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Facts picks a random sentence on enter, then Up / Down walk the pool without showing an index.
+Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Who am I always draws a new silhouette on Up / Down. Lecture picks a random sentence on enter; Up / Down walk the pool. The speaker changes on enter and on every flip; the sentence pool keeps the same wording.
 
 Three keys cannot search by name in V1. Sequential and random cover the request.
 
@@ -110,12 +117,13 @@ Title bar is the red dex bezel. Content sits in the green inner LCD.
 
 **Evolution:** a vertical chain of Chinese names and the condition between them. Single-stage Pokemon show "does not evolve".
 
-Home is a titled menu: browse the dex, random encounter, and world facts. Facts is a dedicated screen with no index or count, so each page looks like a random draw.
+Home is a titled menu: browse the dex, random encounter, and Oak's lecture. Lecture is a dedicated screen with no index or count, so each page looks like a random draw.
 
 ## Firmware split
 
 ```text
 main/pokedex.c          Host-testable catalog + navigation (no LVGL)
+main/pokedex_media.c    SPIFFS sprites, cries, and lecture portraits
 main/pokedex_ima.c      IMA-ADPCM decoder
 main/pokedex_media.c    SPIFFS mount, sprite load, cry worker
 main/demo_pokedex.c     Handheld-dex LVGL chrome, keys

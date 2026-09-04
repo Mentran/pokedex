@@ -1,4 +1,4 @@
-// demo_pokedex.c —— 手持图鉴外壳 + 封面立绘 + 叫声。按键语义仍走 pokedex.c。
+// demo_pokedex.c —— 开机官方立绘短动画 + 手持图鉴外壳 + 封面立绘 + 叫声。按键语义仍走 pokedex.c。
 #include "demo.h"
 #include "pokedex.h"
 #include "pokedex_ima.h"
@@ -30,14 +30,28 @@ static pokedex_state_t s_state;
 static lv_obj_t *s_scr;
 static lv_obj_t *s_home_cards[POKEDEX_HOME_COUNT];
 static uint8_t s_sprite_rgb[POKEDEX_SPRITE_BYTES];
+static uint8_t s_sprite_rgb2[POKEDEX_SPRITE_BYTES];
 static lv_image_dsc_t s_sprite_dsc;
+static lv_image_dsc_t s_sprite_dsc2;
 static int s_cry_for_id;
 static lv_obj_t *s_matchup_scroll;
+static int s_boot_on;
+static int s_boot_scene;
+static int s_boot_frame;
+static int s_boot_base_y;
+static lv_timer_t *s_boot_timer;
+static lv_obj_t *s_boot_left;
+static lv_obj_t *s_boot_right;
+
+#define BOOT_BG     0x0F380F
+#define BOOT_FRAMES 12
+#define BOOT_MS     140
 
 static const char *s_home_titles[POKEDEX_HOME_COUNT] = {
     "图鉴浏览",
     "随机遇见",
-    "宝可梦小知识",
+    "猜猜我是谁",
+    "大木讲堂",
 };
 
 static const char *s_stat_name[] = {
@@ -60,7 +74,7 @@ static const dex_type_t s_types[] = {
 
 bool demo_pokedex_is_home(void)
 {
-    return pokedex_is_home(&s_state);
+    return !s_boot_on && pokedex_is_home(&s_state);
 }
 
 static uint32_t type_color(const char *name)
@@ -107,6 +121,118 @@ static lv_obj_t *zh_at(lv_obj_t *parent, const char *text, uint32_t color, int x
     return label_at(parent, text, FONT_ZH, color, x, y);
 }
 
+static uint16_t hex565(uint32_t hex)
+{
+    uint32_t r = (hex >> 16) & 0xFF;
+    uint32_t g = (hex >> 8) & 0xFF;
+    uint32_t b = hex & 0xFF;
+    return (uint16_t)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3));
+}
+
+static int is_lcd_fill(uint16_t p)
+{
+    uint32_t r = (p >> 11) & 31;
+    uint32_t g = (p >> 5) & 63;
+    uint32_t b = p & 31;
+    return r >= 22 && r <= 27 && g >= 52 && g <= 60 && b >= 22 && b <= 27;
+}
+
+static void rekey_lcd_fill(uint8_t *buf, uint32_t to_hex)
+{
+    uint16_t to = hex565(to_hex);
+    uint16_t *p = (uint16_t *)buf;
+    int n = POKEDEX_SPRITE_W * POKEDEX_SPRITE_H;
+    for (int i = 0; i < n; i++) {
+        if (is_lcd_fill(p[i])) {
+            p[i] = to;
+        }
+    }
+}
+
+static lv_obj_t *dex_img(lv_obj_t *parent, lv_image_dsc_t *dsc, int x, int y)
+{
+    lv_obj_t *img = lv_image_create(parent);
+    lv_image_set_src(img, dsc);
+    lv_image_set_antialias(img, false);
+    lv_obj_set_pos(img, x, y);
+    return img;
+}
+
+static lv_obj_t *boot_poke(lv_obj_t *parent, uint8_t *buf, lv_image_dsc_t *dsc,
+                           int id, int x, int y, uint32_t key)
+{
+    if (!pokedex_media_load_sprite(id, buf, dsc)) {
+        return NULL;
+    }
+    rekey_lcd_fill(buf, key);
+    return dex_img(parent, dsc, x, y);
+}
+
+static uint8_t s_sil_mark[(POKEDEX_SPRITE_W * POKEDEX_SPRITE_H + 7) / 8];
+
+static int sil_get(int i)
+{
+    return (s_sil_mark[i >> 3] >> (i & 7)) & 1;
+}
+
+static void sil_set(int i)
+{
+    s_sil_mark[i >> 3] |= (uint8_t)(1u << (i & 7));
+}
+
+static void sprite_silhouette(uint8_t *buf)
+{
+    uint16_t *p = (uint16_t *)buf;
+    const int w = POKEDEX_SPRITE_W;
+    const int h = POKEDEX_SPRITE_H;
+    const int n = w * h;
+    uint16_t ink = 0;
+    int x, y, i, changed;
+
+    memset(s_sil_mark, 0, sizeof(s_sil_mark));
+    for (x = 0; x < w; x++) {
+        if (is_lcd_fill(p[x])) {
+            sil_set(x);
+        }
+        if (is_lcd_fill(p[(h - 1) * w + x])) {
+            sil_set((h - 1) * w + x);
+        }
+    }
+    for (y = 0; y < h; y++) {
+        if (is_lcd_fill(p[y * w])) {
+            sil_set(y * w);
+        }
+        if (is_lcd_fill(p[y * w + w - 1])) {
+            sil_set(y * w + w - 1);
+        }
+    }
+
+    changed = 1;
+    while (changed) {
+        changed = 0;
+        for (i = 0; i < n; i++) {
+            int nx, ny;
+            if (sil_get(i) || !is_lcd_fill(p[i])) {
+                continue;
+            }
+            x = i % w;
+            y = i / w;
+            nx = x > 0 && sil_get(i - 1);
+            ny = x + 1 < w && sil_get(i + 1);
+            if (nx || ny || (y > 0 && sil_get(i - w)) || (y + 1 < h && sil_get(i + w))) {
+                sil_set(i);
+                changed = 1;
+            }
+        }
+    }
+
+    for (i = 0; i < n; i++) {
+        if (!sil_get(i)) {
+            p[i] = ink;
+        }
+    }
+}
+
 static void wipe(void)
 {
     if (s_scr) {
@@ -116,6 +242,8 @@ static void wipe(void)
             s_home_cards[i] = NULL;
         }
         s_matchup_scroll = NULL;
+        s_boot_left = NULL;
+        s_boot_right = NULL;
     }
 }
 
@@ -216,22 +344,167 @@ static void paint_home_sel(void)
 static void show_home(void);
 static void show_fact(void);
 static void show_entry(void);
+static void render(void);
+static void boot_finish(void);
+
+static lv_obj_t *boot_screen(void)
+{
+    wipe();
+    s_scr = lv_obj_create(NULL);
+    lv_obj_remove_flag(s_scr, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_style_bg_color(s_scr, lv_color_hex(BOOT_BG), 0);
+    lv_obj_set_style_bg_opa(s_scr, LV_OPA_COVER, 0);
+    lv_obj_set_style_border_width(s_scr, 0, 0);
+    lv_obj_set_style_pad_all(s_scr, 0, 0);
+    return s_scr;
+}
+
+static void boot_hp(lv_obj_t *scr, int x, int y, int fill)
+{
+    box(scr, x, y, 72, 8, 0x306230, 0);
+    box(scr, x + 1, y + 1, fill, 6, 0x9BBC0F, 0);
+}
+
+static void show_boot(void)
+{
+    lv_obj_t *scr = boot_screen();
+    s_boot_left = NULL;
+    s_boot_right = NULL;
+    s_boot_base_y = 118;
+    int bob = (s_boot_frame & 1) ? 3 : 0;
+    int flash = (s_boot_frame & 1);
+
+    if (s_boot_scene == 0) {
+        for (int i = 0; i < 8; i++) {
+            box(scr, 16 + i * 26, 214, 24, 8, (i & 1) ? 0x1B5E20 : 0x306230, 0);
+        }
+        box(scr, 32, 206, 176, 6, 0x4E7C4E, 0);
+        box(scr, 40, 128, 56, 10, 0x143214, 4);
+        box(scr, 144, 128, 56, 10, 0x143214, 4);
+        label_at(scr, "HP", &lv_font_montserrat_14, 0x9BBC0F, 24, 44);
+        label_at(scr, "HP", &lv_font_montserrat_14, 0x9BBC0F, 144, 44);
+        boot_hp(scr, 24, 62, 56 - s_boot_frame * 2);
+        boot_hp(scr, 144, 62, 44 + (s_boot_frame % 3));
+        if (flash) {
+            box(scr, 0, 0, 240, 3, 0x9BBC0F, 0);
+            box(scr, 0, 317, 240, 3, 0x9BBC0F, 0);
+        }
+        s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 94,
+                                20, s_boot_base_y - bob, BOOT_BG);
+        s_boot_right = boot_poke(scr, s_sprite_rgb2, &s_sprite_dsc2, 33,
+                                 140, s_boot_base_y + bob, BOOT_BG);
+    } else if (s_boot_scene == 1) {
+        int ring = 36 + s_boot_frame * 10;
+        box(scr, 120 - ring / 2, 150 - ring / 2, ring, ring, 0x1B5E20, LV_RADIUS_CIRCLE);
+        box(scr, 88, 118, 64, 64, 0x143214, LV_RADIUS_CIRCLE);
+        for (int i = 0; i < 22; i++) {
+            box(scr, 0, 18 + i * 14, 240, 2,
+                ((i + s_boot_frame) & 1) ? 0x0A240A : 0x1B5E20, 0);
+        }
+        if (pokedex_media_load_sprite(25, s_sprite_rgb, &s_sprite_dsc)) {
+            rekey_lcd_fill(s_sprite_rgb, BOOT_BG);
+            if (s_boot_frame < 5) {
+                sprite_silhouette(s_sprite_rgb);
+            }
+            s_boot_left = dex_img(scr, &s_sprite_dsc, 80, 110);
+        }
+        if (s_boot_frame >= 6) {
+            label_at(scr, "POKeDEX", &lv_font_montserrat_20, 0x9BBC0F, 70, 48);
+        }
+    } else {
+        if (flash) {
+            box(scr, 0, 0, 240, 320, 0x1B4F1B, 0);
+        }
+        box(scr, 24, 214, 80, 10, 0x306230, 0);
+        box(scr, 136, 214, 80, 10, 0x306230, 0);
+        box(scr, 78, 64, 84, 36, flash ? DEX_YELLOW : DEX_BLACK, 8);
+        label_at(scr, "VS", &lv_font_montserrat_20,
+                 flash ? DEX_BLACK : DEX_YELLOW, 104, 72);
+        for (int i = 0; i < 6; i++) {
+            int px = 20 + ((i * 53 + s_boot_frame * 11) % 200);
+            int py = 40 + ((i * 29) % 40);
+            box(scr, px, py, 4, 4, DEX_YELLOW, LV_RADIUS_CIRCLE);
+        }
+        s_boot_left = boot_poke(scr, s_sprite_rgb, &s_sprite_dsc, 4,
+                                20, s_boot_base_y - bob, BOOT_BG);
+        s_boot_right = boot_poke(scr, s_sprite_rgb2, &s_sprite_dsc2, 7,
+                                 140, s_boot_base_y + bob, BOOT_BG);
+    }
+
+    label_at(scr, "OK", &lv_font_montserrat_14, 0x9BBC0F, 108, 292);
+    lv_screen_load(s_scr);
+}
+
+static void boot_tick(lv_timer_t *timer)
+{
+    (void)timer;
+    if (!s_boot_on) {
+        return;
+    }
+    s_boot_frame++;
+    if (s_boot_frame >= BOOT_FRAMES) {
+        boot_finish();
+        return;
+    }
+    if (s_boot_scene == 1) {
+        show_boot();
+        return;
+    }
+    int bob = (s_boot_frame & 1) ? 3 : 0;
+    if (s_boot_left) {
+        lv_obj_set_y(s_boot_left, s_boot_base_y - bob);
+    }
+    if (s_boot_right) {
+        lv_obj_set_y(s_boot_right, s_boot_base_y + bob);
+    }
+    if (s_boot_scene == 2 && (s_boot_frame & 1) == 0) {
+        show_boot();
+    }
+}
+
+static void boot_stop_timer(void)
+{
+    if (s_boot_timer) {
+        lv_timer_delete(s_boot_timer);
+        s_boot_timer = NULL;
+    }
+}
+
+static void boot_finish(void)
+{
+    if (!s_boot_on) {
+        return;
+    }
+    s_boot_on = 0;
+    boot_stop_timer();
+    render();
+}
+
+static void boot_start(uint32_t rng)
+{
+    s_boot_on = 1;
+    s_boot_scene = (int)(rng % (uint32_t)POKEDEX_BOOT_SCENE_COUNT);
+    s_boot_frame = 0;
+    boot_stop_timer();
+    show_boot();
+    s_boot_timer = lv_timer_create(boot_tick, BOOT_MS, NULL);
+}
 
 static void show_home(void)
 {
     lv_obj_t *lcd = make_shell();
-    lv_obj_t *title = zh_at(lcd, "宝可梦图鉴", DEX_INK, 0, 10);
+    lv_obj_t *title = zh_at(lcd, "宝可梦图鉴", DEX_INK, 0, 4);
     lv_obj_set_width(title, 208);
     lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
-    lv_obj_t *sub = zh_at(lcd, "第一世代151只", DEX_INK_DIM, 0, 32);
+    lv_obj_t *sub = zh_at(lcd, "第一世代151只", DEX_INK_DIM, 0, 24);
     lv_obj_set_width(sub, 208);
     lv_obj_set_style_text_align(sub, LV_TEXT_ALIGN_CENTER, 0);
 
     for (int i = 0; i < POKEDEX_HOME_COUNT; i++) {
-        s_home_cards[i] = box(lcd, 12, 58 + i * 44, 184, 38, 0xA5D6A7, 6);
+        s_home_cards[i] = box(lcd, 12, 46 + i * 36, 184, 32, 0xA5D6A7, 6);
         lv_obj_set_style_border_width(s_home_cards[i], 1, 0);
         lv_obj_set_style_border_color(s_home_cards[i], lv_color_hex(DEX_INK), 0);
-        lv_obj_t *name = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 9);
+        lv_obj_t *name = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 6);
         lv_obj_set_width(name, 184);
         lv_obj_set_style_text_align(name, LV_TEXT_ALIGN_CENTER, 0);
     }
@@ -241,15 +514,34 @@ static void show_home(void)
 
 static void show_fact(void)
 {
+    const int paper = 0xF1F8E9;
+    const int panel_w = 192;
+    const int panel_h = 164;
+    const int portrait = 68;
+    const int inset = 2;
+    const int scale = 218;
+
     lv_obj_t *lcd = make_shell();
-    lv_obj_t *title = zh_at(lcd, "宝可梦小知识", DEX_INK, 0, 10);
+    lv_obj_t *title = zh_at(lcd, "大木讲堂", DEX_INK, 0, 4);
     lv_obj_set_width(title, 208);
     lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
 
-    lv_obj_t *panel = box(lcd, 8, 40, 192, 140, 0xA5D6A7, 6);
-    lv_obj_t *body = zh_at(panel, pokedex_fact_at(s_state.fact_index), DEX_INK, 10, 12);
-    lv_obj_set_width(body, 172);
+    lv_obj_t *panel = box(lcd, 8, 26, panel_w, panel_h, paper, 6);
+    lv_obj_t *body = zh_at(panel, pokedex_fact_at(s_state.fact_index), DEX_INK, 8, 8);
+    lv_obj_set_width(body, panel_w - 16);
     lv_label_set_long_mode(body, LV_LABEL_LONG_WRAP);
+
+    if (pokedex_media_load_trainer(s_state.speaker, s_sprite_rgb, &s_sprite_dsc)) {
+        rekey_lcd_fill(s_sprite_rgb, paper);
+        int right = s_state.portrait_corner & 1;
+        int x = right ? (panel_w - inset - portrait) : inset;
+        int y = panel_h - inset - portrait;
+        lv_obj_t *img = dex_img(panel, &s_sprite_dsc, x, y);
+        lv_image_set_pivot(img, 0, 0);
+        lv_image_set_scale(img, scale);
+        lv_obj_add_flag(img, LV_OBJ_FLAG_OVERFLOW_VISIBLE);
+        lv_obj_move_foreground(img);
+    }
     lv_screen_load(s_scr);
 }
 
@@ -360,6 +652,9 @@ static void maybe_play_cover_cry(int id)
     if (s_state.tab != POKEDEX_TAB_COVER) {
         return;
     }
+    if (pokedex_is_guess(&s_state) && !pokedex_guess_revealed(&s_state)) {
+        return;
+    }
     if (s_cry_for_id == id) {
         return;
     }
@@ -428,6 +723,26 @@ static void show_entry(void)
     }
 
     if (s_state.tab == POKEDEX_TAB_COVER) {
+        if (pokedex_is_guess(&s_state) && !pokedex_guess_revealed(&s_state)) {
+            lv_obj_t *title = zh_at(lcd, "猜猜我是谁", DEX_INK, 0, 8);
+            lv_obj_set_width(title, 208);
+            lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
+            bool got = pokedex_media_load_sprite(s_state.id, s_sprite_rgb, &s_sprite_dsc);
+            if (got) {
+                sprite_silhouette(s_sprite_rgb);
+                lv_obj_t *img = lv_image_create(lcd);
+                lv_image_set_src(img, &s_sprite_dsc);
+                lv_image_set_antialias(img, false);
+                lv_obj_set_pos(img, 64, 40);
+            } else {
+                box(lcd, 64, 40, 80, 80, DEX_BLACK, 4);
+            }
+            lv_obj_t *hint = zh_at(lcd, "按确定查看", DEX_INK_DIM, 0, 132);
+            lv_obj_set_width(hint, 208);
+            lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
+            lv_screen_load(s_scr);
+            return;
+        }
         bool got = pokedex_media_load_sprite(s_state.id, s_sprite_rgb, &s_sprite_dsc);
         if (got) {
             lv_obj_t *img = lv_image_create(lcd);
@@ -443,7 +758,6 @@ static void show_entry(void)
         lv_label_set_text_fmt(num, "No.%03d", s_state.id);
         zh_at(lcd, e->zh, DEX_INK, 96, 36);
         label_at(lcd, e->en, &lv_font_montserrat_14, DEX_INK_DIM, 96, 58);
-        zh_at(lcd, "双击放大", DEX_INK_DIM, 96, 78);
         zh_at(lcd, e->category, DEX_INK_DIM, 8, 96);
         add_type_chip(lcd, e->type_a, 8, 118);
         if (e->type_b[0]) {
@@ -550,11 +864,15 @@ void demo_pokedex_enter(void)
     pokedex_media_init();
     pokedex_init(&s_state);
     s_cry_for_id = 0;
-    render();
+    pokedex_media_start_bgm();
+    boot_start(esp_random());
 }
 
 void demo_pokedex_exit(void)
 {
+    s_boot_on = 0;
+    boot_stop_timer();
+    pokedex_media_stop_bgm();
     pokedex_media_stop_cry();
     pokedex_media_deinit();
     wipe();
@@ -582,6 +900,10 @@ static int matchup_scroll(int dir)
 
 void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
 {
+    if (s_boot_on) {
+        boot_finish();
+        return;
+    }
     if (ev == BSP_BTN_LONG && btn == BSP_BTN_OK) {
         int id = s_state.id;
         pokedex_act_t act = pokedex_ok_long(&s_state);
@@ -597,7 +919,8 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
     }
     if (ev == BSP_BTN_DOUBLE && btn == BSP_BTN_OK &&
         !pokedex_is_home(&s_state) && !pokedex_is_fact(&s_state) &&
-        s_state.tab == POKEDEX_TAB_COVER) {
+        s_state.tab == POKEDEX_TAB_COVER &&
+        !(pokedex_is_guess(&s_state) && !pokedex_guess_revealed(&s_state))) {
         pokedex_toggle_zoom(&s_state);
         render();
         return;
@@ -621,15 +944,16 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
     }
     if (pokedex_is_fact(&s_state)) {
         if (btn == BSP_BTN_UP) {
-            pokedex_step_fact(&s_state, -1);
+            pokedex_step_fact(&s_state, -1, esp_random());
             render();
         } else if (btn == BSP_BTN_DOWN || btn == BSP_BTN_OK) {
-            pokedex_step_fact(&s_state, 1);
+            pokedex_step_fact(&s_state, 1, esp_random());
             render();
         }
         return;
     }
-    if (s_state.tab == POKEDEX_TAB_MATCHUP &&
+    if (!pokedex_is_guess(&s_state) &&
+        s_state.tab == POKEDEX_TAB_MATCHUP &&
         (btn == BSP_BTN_UP || btn == BSP_BTN_DOWN) &&
         matchup_scroll(btn == BSP_BTN_UP ? -1 : 1)) {
         return;
@@ -637,12 +961,12 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
     if (btn == BSP_BTN_UP) {
         pokedex_media_stop_cry();
         s_cry_for_id = 0;
-        pokedex_step_id(&s_state, -1);
+        pokedex_step_id(&s_state, -1, esp_random());
         render();
     } else if (btn == BSP_BTN_DOWN) {
         pokedex_media_stop_cry();
         s_cry_for_id = 0;
-        pokedex_step_id(&s_state, 1);
+        pokedex_step_id(&s_state, 1, esp_random());
         render();
     } else if (btn == BSP_BTN_OK) {
         if (pokedex_is_zoomed(&s_state)) {
