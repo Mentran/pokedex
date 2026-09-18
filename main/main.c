@@ -1,9 +1,9 @@
-// main/main.c —— 开机进入第一世代图鉴;长按确定在首页回 BSP 菜单。
+// main/main.c —— 开机进入第一世代图鉴;图鉴自己处理长按确定。
 //
 // 按键语义(全局统一):
 //   上/下 短按   菜单中=移动选中项;演示页中=该页自定义
 //   确定  短按   菜单中=进入选中项;演示页中=该页自定义
-//   确定  长按   图鉴在首页时回菜单,条目页回图鉴首页;其他演示页回菜单
+//   确定  长按   图鉴首页打开音量亮度;条目/讲堂回图鉴首页;其他演示页回菜单
 #include "bsp_i2c.h"
 #include "bsp_display.h"
 #include "bsp_button.h"
@@ -79,13 +79,9 @@ static void on_key(bsp_btn_t btn, bsp_btn_ev_t ev, void *user) {
     if (!bsp_lvgl_lock(500)) return;
 
     if (s_active >= 0) {
-        if (btn == BSP_BTN_OK && ev == BSP_BTN_LONG) {
-            if (s_active == 0 && !demo_pokedex_is_home()) {
-                DEMOS[s_active].key(btn, ev);
-            } else {
-                DEMOS[s_active].exit();
-                enter_menu();
-            }
+        if (btn == BSP_BTN_OK && ev == BSP_BTN_LONG && s_active != 0) {
+            DEMOS[s_active].exit();
+            enter_menu();
         } else {
             DEMOS[s_active].key(btn, ev);
         }

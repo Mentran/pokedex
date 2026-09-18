@@ -93,6 +93,7 @@ void pokedex_init(pokedex_state_t *s)
     s->portrait_corner = 0;
     s->last_portrait_corner = -1;
     s->zoomed = 0;
+    s->settings_sel = POKEDEX_SET_VOLUME;
 }
 
 void pokedex_home_move(pokedex_state_t *s, int delta)
@@ -205,6 +206,13 @@ void pokedex_next_tab(pokedex_state_t *s)
 pokedex_act_t pokedex_ok_long(pokedex_state_t *s)
 {
     if (s->screen == POKEDEX_SCREEN_HOME) {
+        s->screen = POKEDEX_SCREEN_SETTINGS;
+        s->settings_sel = POKEDEX_SET_VOLUME;
+        s->zoomed = 0;
+        return POKEDEX_ACT_NONE;
+    }
+    if (s->screen == POKEDEX_SCREEN_SETTINGS) {
+        s->screen = POKEDEX_SCREEN_HOME;
         return POKEDEX_ACT_NONE;
     }
     pokedex_act_t act = POKEDEX_ACT_NONE;
@@ -277,6 +285,27 @@ int pokedex_is_home(const pokedex_state_t *s)
 int pokedex_is_fact(const pokedex_state_t *s)
 {
     return s->screen == POKEDEX_SCREEN_FACT;
+}
+
+int pokedex_is_settings(const pokedex_state_t *s)
+{
+    return s && s->screen == POKEDEX_SCREEN_SETTINGS;
+}
+
+void pokedex_settings_toggle(pokedex_state_t *s)
+{
+    if (!pokedex_is_settings(s)) {
+        return;
+    }
+    s->settings_sel = wrap(s->settings_sel + 1, POKEDEX_SETTINGS_COUNT);
+}
+
+int pokedex_settings_sel(const pokedex_state_t *s)
+{
+    if (!pokedex_is_settings(s)) {
+        return POKEDEX_SET_VOLUME;
+    }
+    return s->settings_sel;
 }
 
 static const pokedex_entry_t s_entries[POKEDEX_COUNT] = {

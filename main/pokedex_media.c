@@ -23,6 +23,7 @@ static const char *TAG = "pokedex_media";
 #define SPRITE_PACK2    "/dex/sprites2.bin"
 #define TRAINERS_PATH   "/dex/trainers.bin"
 #define CRIES_PATH      "/dex/cries.bin"
+#define VOL_DEFAULT     40
 
 static bool s_fs;
 static TaskHandle_t s_task;
@@ -31,12 +32,11 @@ static volatile uint32_t s_gen;
 static volatile int s_bgm_on;
 static uint32_t s_bgm_t;
 static uint8_t s_packed[CRY_PACKED_MAX];
+static uint8_t s_user_vol = VOL_DEFAULT;
 
 #define BGM_RATE          8000
 #define BGM_TEMPO         81
 #define BGM_LOOP_BEATS    8
-#define BGM_VOL           40
-#define CRY_VOL           60
 #define BGM_LEAD_AMP      1800
 #define BGM_BASS_AMP      900
 
@@ -173,6 +173,34 @@ void pokedex_media_play_cry(int id)
     }
 }
 
+static uint8_t vol_bgm(void)
+{
+    return s_user_vol;
+}
+
+static uint8_t vol_cry(void)
+{
+    if (s_user_vol == 0) {
+        return 0;
+    }
+    int v = (int)s_user_vol + 20;
+    return v > 100 ? 100 : (uint8_t)v;
+}
+
+void pokedex_media_set_volume(uint8_t percent)
+{
+    if (percent > 100) {
+        percent = 100;
+    }
+    s_user_vol = percent;
+    bsp_audio_set_volume(vol_bgm());
+}
+
+uint8_t pokedex_media_volume(void)
+{
+    return s_user_vol;
+}
+
 void pokedex_media_stop_cry(void)
 {
     s_play_id = 0;
@@ -238,7 +266,7 @@ static void play_one(int id, uint32_t gen)
         ESP_LOGW(TAG, "audio format failed");
         return;
     }
-    bsp_audio_set_volume(CRY_VOL);
+    bsp_audio_set_volume(vol_cry());
     int16_t pcm[CRY_CHUNK];
     while (gen == s_gen) {
         int n = pokedex_ima_next(&st, s_packed, (size_t)packed_len, pcm, CRY_CHUNK);
@@ -303,7 +331,7 @@ static void pokedex_media_task(void *arg)
             s_play_id = 0;
             play_one(id, gen);
             if (s_bgm_on) {
-                bsp_audio_set_volume(BGM_VOL);
+                bsp_audio_set_volume(vol_bgm());
             }
             continue;
         }
@@ -312,7 +340,7 @@ static void pokedex_media_task(void *arg)
                 vTaskDelay(pdMS_TO_TICKS(50));
                 continue;
             }
-            bsp_audio_set_volume(BGM_VOL);
+            bsp_audio_set_volume(vol_bgm());
             play_bgm_chunk();
             continue;
         }

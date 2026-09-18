@@ -5,7 +5,10 @@
 #include "pokedex_media.h"
 #include "font_pokedex_16.h"
 #include "bsp_battery.h"
+#include "bsp_display.h"
 #include "esp_random.h"
+#include "nvs.h"
+#include "nvs_flash.h"
 #include "lvgl.h"
 
 #include <stdio.h>
@@ -427,7 +430,90 @@ static void paint_home_sel(void)
     }
 }
 
+#define PREF_NS         "pokedex"
+#define PREF_VOL_KEY    "vol"
+#define PREF_BL_KEY     "bl"
+#define PREF_VOL_DEF    40
+#define PREF_BL_DEF     100
+#define PREF_STEP       10
+#define PREF_BL_MIN     10
+
+static uint8_t s_vol = PREF_VOL_DEF;
+static uint8_t s_bl = PREF_BL_DEF;
+
+static uint8_t clamp_step(int value, int lo, int hi)
+{
+    if (value < lo) {
+        value = lo;
+    }
+    if (value > hi) {
+        value = hi;
+    }
+    return (uint8_t)((value / PREF_STEP) * PREF_STEP);
+}
+
+static void prefs_apply(void)
+{
+    pokedex_media_set_volume(s_vol);
+    bsp_display_backlight(s_bl);
+}
+
+static void prefs_save(void)
+{
+    nvs_handle_t h;
+    if (nvs_open(PREF_NS, NVS_READWRITE, &h) != ESP_OK) {
+        return;
+    }
+    nvs_set_u8(h, PREF_VOL_KEY, s_vol);
+    nvs_set_u8(h, PREF_BL_KEY, s_bl);
+    nvs_commit(h);
+    nvs_close(h);
+}
+
+static void prefs_load(void)
+{
+    esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        nvs_flash_erase();
+        nvs_flash_init();
+    }
+    s_vol = PREF_VOL_DEF;
+    s_bl = PREF_BL_DEF;
+    nvs_handle_t h;
+    if (nvs_open(PREF_NS, NVS_READONLY, &h) != ESP_OK) {
+        prefs_apply();
+        return;
+    }
+    uint8_t v = 0;
+    if (nvs_get_u8(h, PREF_VOL_KEY, &v) == ESP_OK) {
+        s_vol = clamp_step(v, 0, 100);
+    }
+    if (nvs_get_u8(h, PREF_BL_KEY, &v) == ESP_OK) {
+        s_bl = clamp_step(v, PREF_BL_MIN, 100);
+        if (s_bl < PREF_BL_MIN) {
+            s_bl = PREF_BL_MIN;
+        }
+    }
+    nvs_close(h);
+    prefs_apply();
+}
+
+static void prefs_nudge(int delta)
+{
+    if (pokedex_settings_sel(&s_state) == POKEDEX_SET_BACKLIGHT) {
+        s_bl = clamp_step((int)s_bl + delta * PREF_STEP, PREF_BL_MIN, 100);
+        if (s_bl < PREF_BL_MIN) {
+            s_bl = PREF_BL_MIN;
+        }
+    } else {
+        s_vol = clamp_step((int)s_vol + delta * PREF_STEP, 0, 100);
+    }
+    prefs_apply();
+    prefs_save();
+}
+
 static void show_home(void);
+static void show_settings(void);
 static void show_fact(void);
 static void show_entry(void);
 static void render(void);
@@ -586,14 +672,54 @@ static void show_home(void)
     lv_obj_set_style_text_align(sub, LV_TEXT_ALIGN_CENTER, 0);
 
     for (int i = 0; i < POKEDEX_HOME_COUNT; i++) {
-        s_home_cards[i] = box(lcd, 12, 46 + i * 36, 184, 32, 0xA5D6A7, 6);
+        s_home_cards[i] = box(lcd, 12, 44 + i * 34, 184, 30, 0xA5D6A7, 6);
         lv_obj_set_style_border_width(s_home_cards[i], 1, 0);
         lv_obj_set_style_border_color(s_home_cards[i], lv_color_hex(DEX_INK), 0);
-        lv_obj_t *name = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 6);
+        lv_obj_t *name = zh_at(s_home_cards[i], s_home_titles[i], DEX_INK, 0, 5);
         lv_obj_set_width(name, 184);
         lv_obj_set_style_text_align(name, LV_TEXT_ALIGN_CENTER, 0);
     }
     paint_home_sel();
+    lv_obj_t *hint = zh_at(lcd, "长按确定 音量亮度", DEX_INK_DIM, 0, 180);
+    lv_obj_set_width(hint, 208);
+    lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
+    lv_screen_load(s_scr);
+}
+
+static void show_settings(void)
+{
+    static const char *names[] = { "音量", "亮度" };
+    const uint8_t values[] = { s_vol, s_bl };
+    int sel = pokedex_settings_sel(&s_state);
+    lv_obj_t *lcd = make_shell();
+    lv_obj_t *title = zh_at(lcd, "音量亮度", DEX_INK, 0, 4);
+    lv_obj_set_width(title, 208);
+    lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, 0);
+
+    for (int i = 0; i < POKEDEX_SETTINGS_COUNT; i++) {
+        bool on = sel == i;
+        lv_obj_t *card = box(lcd, 12, 36 + i * 62, 184, 54,
+                             on ? 0xFFF59D : 0xA5D6A7, 6);
+        lv_obj_set_style_border_width(card, on ? 3 : 1, 0);
+        lv_obj_set_style_border_color(
+            card, lv_color_hex(on ? DEX_YELLOW : DEX_INK), 0);
+        zh_at(card, names[i], DEX_INK, 8, 4);
+        int fill = values[i] * 118 / 100;
+        lv_obj_t *track = box(card, 8, 28, 118, 10, 0x81C784, 0);
+        lv_obj_set_style_border_width(track, 1, 0);
+        lv_obj_set_style_border_color(track, lv_color_hex(DEX_INK), 0);
+        if (fill > 0) {
+            box(track, 0, 0, fill, 10, DEX_YELLOW, 0);
+        }
+        lv_obj_t *num = label_at(card, "", &lv_font_montserrat_14, DEX_INK, 132, 24);
+        lv_label_set_text_fmt(num, "%d", values[i]);
+    }
+    lv_obj_t *hint = zh_at(lcd, "确定切换  上下调节", DEX_INK_DIM, 0, 164);
+    lv_obj_set_width(hint, 208);
+    lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_t *back = zh_at(lcd, "长按确定返回", DEX_INK_DIM, 0, 180);
+    lv_obj_set_width(back, 208);
+    lv_obj_set_style_text_align(back, LV_TEXT_ALIGN_CENTER, 0);
     lv_screen_load(s_scr);
 }
 
@@ -942,6 +1068,8 @@ static void render(void)
 {
     if (pokedex_is_home(&s_state)) {
         show_home();
+    } else if (pokedex_is_settings(&s_state)) {
+        show_settings();
     } else if (pokedex_is_fact(&s_state)) {
         show_fact();
     } else if (pokedex_is_zoomed(&s_state)) {
@@ -954,6 +1082,7 @@ static void render(void)
 void demo_pokedex_enter(void)
 {
     pokedex_media_init();
+    prefs_load();
     pokedex_init(&s_state);
     s_cry_for_id = 0;
     boot_start(esp_random());
@@ -1010,6 +1139,7 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
     }
     if (ev == BSP_BTN_DOUBLE && btn == BSP_BTN_OK &&
         !pokedex_is_home(&s_state) && !pokedex_is_fact(&s_state) &&
+        !pokedex_is_settings(&s_state) &&
         s_state.tab == POKEDEX_TAB_COVER &&
         !(pokedex_is_guess(&s_state) && !pokedex_guess_revealed(&s_state))) {
         pokedex_toggle_zoom(&s_state);
@@ -1017,6 +1147,19 @@ void demo_pokedex_key(bsp_btn_t btn, bsp_btn_ev_t ev)
         return;
     }
     if (ev != BSP_BTN_CLICK) {
+        return;
+    }
+    if (pokedex_is_settings(&s_state)) {
+        if (btn == BSP_BTN_UP) {
+            prefs_nudge(1);
+            render();
+        } else if (btn == BSP_BTN_DOWN) {
+            prefs_nudge(-1);
+            render();
+        } else if (btn == BSP_BTN_OK) {
+            pokedex_settings_toggle(&s_state);
+            render();
+        }
         return;
     }
     if (pokedex_is_home(&s_state)) {

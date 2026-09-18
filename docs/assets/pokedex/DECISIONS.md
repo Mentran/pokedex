@@ -4,6 +4,10 @@
 
 # Decision log
 
+## 2026-09-05 — Volume and backlight on home long-press
+
+Long-press OK on home opens a two-row settings page instead of leaving for the BSP demo menu. OK switches between volume and backlight; Up / Down change the selected value by 10. Cries stay 20 louder than BGM until the cap. Values persist in NVS.
+
 ## 2026-09-04 — Who am I, BGM, three boot scenes
 
 Home gains Who am I: each round is either a black silhouette or a dex sentence (name stripped if it appears). OK reveals the dex with no answer choices; Up/Down deals a new species and randomly picks the clue type again. Boot is one Gengar-vs-Nidorino scene for about 4 seconds, skippable; staging follows the cover art (Gengar left, Nidorino right) on the same LCD green as the dex, with no fade-to-white. BGM starts after home at codec volume 40; cries play at 60. Lecture portraits are upper-body crops at 80px in the bottom-left or bottom-right of the text panel.

@@ -30,6 +30,15 @@ int main(void)
     pokedex_home_move(&s, 1);
     assert(s.home_sel == POKEDEX_HOME_BROWSE);
 
+    pokedex_ok_long(&s);
+    assert(pokedex_is_settings(&s));
+    assert(pokedex_settings_sel(&s) == POKEDEX_SET_VOLUME);
+    pokedex_settings_toggle(&s);
+    assert(pokedex_settings_sel(&s) == POKEDEX_SET_BACKLIGHT);
+    pokedex_ok_long(&s);
+    assert(pokedex_is_home(&s));
+    assert(!pokedex_is_settings(&s));
+
     pokedex_enter_from_home(&s, 0);
     assert(!pokedex_is_home(&s));
     assert(s.id == 1);

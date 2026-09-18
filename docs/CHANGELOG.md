@@ -6,6 +6,7 @@
 
 ## Unreleased
 
+- Home long-press OK opens volume and backlight settings. Values persist in NVS. Cries stay 20 louder than BGM.
 - Boot keeps only the dark contact shadows; the pale green floor ellipse is gone. The second flavor sentence stays on the bio page when it differs from the intro.
 - Who am I randomly deals a silhouette or a dex sentence; OK reveals the entry with no choices. Lecture portraits are upper-body crops at 80px in a bottom corner. Boot is one Gengar-vs-Nidorino scene on the LCD green for about 4 seconds; BGM starts after home at volume 40, cries at 60.
 - Oak's lecture pool grows to 224 original world-fact sentences.

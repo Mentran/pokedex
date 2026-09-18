@@ -95,6 +95,10 @@ Home
                    Up / Down : previous / next world fact
                    OK click  : next fact
                    OK long   : return home
+  OK long on home ----+--> Volume / backlight
+                   OK click  : switch which row is selected
+                   Up / Down : change the selected value by 10
+                   OK long   : return home and save to NVS
 ```
 
 Random mode picks a new id when entering from home. After that, Up / Down still walk the dex so the user is not stuck on one entry. Who am I always draws a new species on Up / Down and randomly chooses silhouette or bio text. Lecture picks a random sentence on enter; Up / Down walk the pool. The speaker changes on enter and on every flip; the sentence pool keeps the same wording.

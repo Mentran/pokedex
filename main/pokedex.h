@@ -14,12 +14,19 @@
 #define POKEDEX_BOOT_SCENE_COUNT 1
 #define POKEDEX_CORNER_COUNT 2
 #define POKEDEX_GUESS_CLUE_COUNT 2
+#define POKEDEX_SETTINGS_COUNT 2
 
 typedef enum {
     POKEDEX_SCREEN_HOME = 0,
     POKEDEX_SCREEN_ENTRY,
     POKEDEX_SCREEN_FACT,
+    POKEDEX_SCREEN_SETTINGS,
 } pokedex_screen_t;
+
+typedef enum {
+    POKEDEX_SET_VOLUME = 0,
+    POKEDEX_SET_BACKLIGHT = 1,
+} pokedex_settings_t;
 
 typedef enum {
     POKEDEX_HOME_BROWSE = 0,
@@ -64,6 +71,7 @@ typedef struct {
     int portrait_corner;
     int last_portrait_corner;
     int zoomed;
+    int settings_sel;
 } pokedex_state_t;
 
 typedef struct {
@@ -98,6 +106,9 @@ typedef struct {
 void pokedex_init(pokedex_state_t *s);
 int pokedex_is_home(const pokedex_state_t *s);
 int pokedex_is_fact(const pokedex_state_t *s);
+int pokedex_is_settings(const pokedex_state_t *s);
+void pokedex_settings_toggle(pokedex_state_t *s);
+int pokedex_settings_sel(const pokedex_state_t *s);
 int pokedex_is_guess(const pokedex_state_t *s);
 int pokedex_guess_revealed(const pokedex_state_t *s);
 pokedex_guess_clue_t pokedex_guess_clue(const pokedex_state_t *s);

@@ -8,6 +8,12 @@
 
 方案、容量和数据管线见 [docs/assets/pokedex/README.zh_CN.md](docs/assets/pokedex/README.zh_CN.md)。
 
+![AI Passport 运行第一世代宝可梦图鉴](docs/assets/pokedex/pokedex-cover.png)
+
+图鉴按实体按键快速浏览：先在首页选择模式，再用上下键切换池子里的内容，用确定键翻阅条目页面。下面的操作图基于真实硬件，概括了主要交互方式。
+
+![第一世代宝可梦图鉴硬件操作](docs/assets/pokedex/pokedex-operation-guide.png)
+
 ## 烧录
 
 已经写过身份的胸牌**不要**执行 `idf.py erase-flash`，也**不要**把 `build/FoloToy-AI-Passport-full.bin` 从 `0x0` 整包刷进去（会清掉 `cardid`）。
@@ -27,9 +33,9 @@ idf.py flash
 | 上 / 下 | 移动菜单 | 上一只 / 下一只（克制页先滚动） |
 | 确定短按 | 进入所选入口 | 下一页：封面、介绍、能力、招式、克制、进化。放大时还原封面 |
 | 确定双击 | — | 封面放大立绘到全屏 3 倍 |
-| 确定长按 | 回到 BSP 演示菜单 | 回图鉴首页（从封面离开时再播叫声） |
+| 确定长按 | 打开音量亮度 | 回图鉴首页（从封面离开时再播叫声） |
 
-小知识：上下键或短按确定翻池子；长按确定回首页。
+小知识：上下键或短按确定翻池子；长按确定回首页。音量亮度页：确定切换，上下调节，长按返回；关机后仍记住。
 
 ## 粉丝向说明
 

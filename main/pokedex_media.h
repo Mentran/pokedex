@@ -2,6 +2,7 @@
 
 #include "lvgl.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 bool pokedex_media_init(void);
 void pokedex_media_deinit(void);
@@ -11,3 +12,5 @@ void pokedex_media_play_cry(int id);
 void pokedex_media_stop_cry(void);
 void pokedex_media_start_bgm(void);
 void pokedex_media_stop_bgm(void);
+void pokedex_media_set_volume(uint8_t percent);
+uint8_t pokedex_media_volume(void);

@@ -9,7 +9,7 @@ typedef struct {
     const char *name;
     void (*enter)(void);                          // 建自己的屏并载入
     void (*exit)(void);                           // 删屏、停定时器、释放资源
-    void (*key)(bsp_btn_t btn, bsp_btn_ev_t ev);  // 收按键(长按确定已被 main 拦截)
+    void (*key)(bsp_btn_t btn, bsp_btn_ev_t ev);  // 收按键(图鉴自理长按确定;其他页由 main 拦截)
 } demo_entry_t;
 
 // 各演示页(定义在各自的 .c 里)
